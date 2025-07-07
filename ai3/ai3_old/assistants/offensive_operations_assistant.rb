@@ -1,1 +1,0 @@
-offensive_operations_assistant

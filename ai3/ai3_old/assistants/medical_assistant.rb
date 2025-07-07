@@ -1,1 +1,0 @@
-# Medical assistant implementation placeholder

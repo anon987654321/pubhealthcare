@@ -1,1 +1,0 @@
-linux_to_openbsd_assistant

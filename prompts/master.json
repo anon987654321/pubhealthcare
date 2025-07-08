@@ -3,7 +3,29 @@
     "version": "v10.0.0",
     "updated": "2025-07-02T18:32:07Z",
     "by": "anon987654321",
-    "description": "Self-optimizing project completion system with world-class standards"
+    "description": "Self-optimizing project completion system with world-class standards and workflow intelligence"
+  },
+  "system_directives": {
+    "modification_philosophy": "surgical_enhancement_preserve_architecture",
+    "integration_approach": "understand_before_modify",
+    "prohibited_actions": [
+      "naive_concatenation_appending",
+      "architecture_ignorant_changes",
+      "truncation_of_existing_logic",
+      "removal_of_working_components"
+    ],
+    "required_before_modification": [
+      "architectural_analysis",
+      "compatibility_assessment",
+      "impact_evaluation",
+      "preservation_validation"
+    ],
+    "enhancement_guidelines": {
+      "preserve_existing_structure": true,
+      "maintain_version_integrity": true,
+      "surgical_additions_only": true,
+      "validate_architectural_fit": true
+    }
   },
   "workflow": {
     "mode_detection": {
@@ -18,7 +40,13 @@
       "auto_iterate": true,
       "max_iterations": 3,
       "validation_required": true,
-      "ai_enhancement": "enabled"
+      "ai_enhancement": "enabled",
+      "autonomous_mode": {
+        "enabled": true,
+        "user_intervention": "minimal",
+        "decision_threshold": "high_confidence",
+        "fallback_to_user": "complex_decisions"
+      }
     }
   },
   "core": {
@@ -35,7 +63,13 @@
     "limits": {
       "memory": "unlimited_with_gc",
       "timeout": "unlimited_with_user_control",
-      "recursion": "unlimited_with_circuit_breaker"
+      "recursion": "unlimited_with_circuit_breaker",
+      "input_handling": {
+        "large_files": "automatic_chunking",
+        "html_css_threshold": "50kb",
+        "preservation_strategy": "never_truncate",
+        "integrity_validation": "strict_gates"
+      }
     },
     "principles": {
       "security": "zero_trust_defense_in_depth",
@@ -85,7 +119,13 @@
       "frontend": {
         "standards": ["html5", "wcag_2.2_aaa", "mobile_first"],
         "performance": ["core_web_vitals_95_plus", "gpu_acceleration"],
-        "design": ["golden_ratio", "8px_grid", "modular_scale"]
+        "design": ["golden_ratio", "8px_grid", "modular_scale"],
+        "input_handling": {
+          "large_files": "automatic_chunking",
+          "size_threshold": "50kb",
+          "chunking_strategy": "semantic_boundaries",
+          "preservation_guarantee": "no_data_loss"
+        }
       },
       "shell": {
         "compatibility": ["posix", "zsh", "openbsd_ksh"],
@@ -165,7 +205,16 @@
     "localization": {
       "nordic": ["norwegian", "swedish", "danish", "icelandic"],
       "communication": "direct_transparent",
-      "currency": "nok_sek_dkk_isk"
+      "currency": "nok_sek_dkk_isk",
+      "compliance": {
+        "innovasjon_norge": {
+          "language_requirement": "norwegian_mandatory",
+          "business_plan_format": "norwegian_standards",
+          "investor_presentation": "norwegian_language"
+        },
+        "regulatory": "norwegian_business_law",
+        "cultural_adaptation": "norwegian_business_norms"
+      }
     }
   },
   "specialized_capabilities": {
@@ -197,7 +246,9 @@
       "security": "zero_trust_a_plus",
       "performance": "95_plus_core_web_vitals",
       "accessibility": "wcag_2_2_aaa",
-      "formatting": "universal_consistency"
+      "formatting": "universal_consistency",
+      "integration_intelligence": "architectural_compatibility",
+      "data_integrity": "no_truncation_guarantee"
     },
     "tools": {
       "linting": ["rubocop", "eslint"],
@@ -210,7 +261,9 @@
       "code_review": "semantic_analysis",
       "security": "vulnerability_detection",
       "performance": "predictive_analysis",
-      "accessibility": "automated_validation"
+      "accessibility": "automated_validation",
+      "architectural_compatibility_check": "integration_intelligence",
+      "modification_awareness": "surgical_enhancement_only"
     }
   },
   "security": {
@@ -246,6 +299,12 @@
       "satisfaction": "nps_70_plus",
       "quality": "world_class_compliance",
       "performance": "95_plus_lighthouse"
+    },
+    "workflow_intelligence": {
+      "autonomous_decision_making": "enabled",
+      "pattern_recognition": "continuous_learning",
+      "architectural_preservation": "mandatory",
+      "integration_methodology": "understand_before_modify"
     }
   }
 }

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="J Dilla ultra minimal audio visualizer with warp tunnel - radio.brgen.no">
+  <meta name="keywords" content="J Dilla, audio visualizer, warp tunnel, minimal">
+  <meta name="theme-color" content="#000000">
+  <title>J Dilla - Audio Visualizer</title>
+  <style>
+    :root {
+      --font-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      --font-size-base: clamp(16px, 4vw, 18px);
+      --font-size-small: clamp(14px, 3.5vw, 16px);
+      --line-height-base: 1.4;
+      --color-bg: #000000;
+      --color-text: #ffffff;
+      --color-accent: #4ecdc4;
+      --color-muted: rgba(255, 255, 255, 0.7);
+      --color-overlay: rgba(0, 0, 0, 0.9);
+      --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+      --space-sm: clamp(0.5rem, 2vw, 1rem);
+      --space-md: clamp(1rem, 3vw, 1.5rem);
+      --border-radius: 0.5rem;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      font-size: 100%;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+      font-family: var(--font-primary);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-base);
+      color: var(--color-text);
+      background: var(--color-bg);
+      overflow: hidden;
+      cursor: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* Canvas styling */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+    }
+
+    /* Minimal header */
+    .minimal-header {
+      position: fixed;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      z-index: 10;
+      pointer-events: none;
+      font-size: var(--font-size-small);
+      color: var(--color-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Ultra minimal controls */
+    .minimal-controls {
+      position: fixed;
+      bottom: var(--space-sm);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+      padding: var(--space-xs) var(--space-sm);
+      pointer-events: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .play-pause {
+      background: transparent;
+      border: none;
+      color: var(--color-accent);
+      font-size: 1.5em;
+      cursor: pointer;
+      padding: 0.2em;
+      border-radius: 50%;
+      width: 2.5em;
+      height: 2.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .play-pause:hover {
+      background: rgba(78, 205, 196, 0.1);
+      transform: scale(1.1);
+    }
+
+    .track-info {
+      font-size: var(--font-size-small);
+      color: var(--color-muted);
+      font-family: var(--font-mono);
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Start overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-overlay);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    .overlay.hidden {
+      display: none;
+    }
+
+    .start-message {
+      font-size: var(--font-size-base);
+      color: var(--color-accent);
+      font-family: var(--font-mono);
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Hidden YouTube container */
+    .youtube-container {
+      position: absolute;
+      top: -1000px;
+      left: -1000px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .minimal-controls {
+        bottom: calc(var(--space-sm) + env(safe-area-inset-bottom));
+        padding: 0.3rem 0.6rem;
+      }
+      
+      .play-pause {
+        font-size: 1.3em;
+        width: 2.2em;
+        height: 2.2em;
+      }
+      
+      .track-info {
+        font-size: clamp(12px, 3vw, 14px);
+        max-width: min(200px, 45vw);
+      }
+    }
+
+    @media (prefers-contrast: high) {
+      canvas { filter: contrast(150%); }
+      .minimal-header, .track-info { text-shadow: 0 0 2px var(--color-bg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Visualization Canvas -->
+  <canvas id="canvas" role="img" aria-label="J Dilla audio-reactive warp tunnel visualization"></canvas>
+
+  <!-- Minimal header -->
+  <div class="minimal-header">
+    radio.brgen.no
+  </div>
+
+  <!-- Ultra minimal controls -->
+  <div class="minimal-controls">
+    <button class="play-pause" id="play-pause" aria-label="Play/Pause">⏯</button>
+    <div class="track-info" id="track-info">J Dilla - Microphone Master</div>
+  </div>
+
+  <!-- Overlay for initial user interaction -->
+  <div class="overlay" id="overlay" role="dialog" aria-labelledby="overlay-title" tabindex="0">
+    <h2 id="overlay-title" style="display: none;">Start Audio Visualization</h2>
+    <p class="start-message">Touch or click to start</p>
+  </div>
+
+  <!-- Hidden YouTube container -->
+  <div class="youtube-container">
+    <iframe id="youtube-player" width="1" height="1" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    // Extended J Dilla Playlist
+    const tracks = [
+      { id: "9EGHwkDix78", title: "Microphone Master [Extended]", artist: "J Dilla" },
+      { id: "WC09qDzU9y4", title: "Due Time", artist: "AFTA-1" },
+      { id: "9ycJsnzJ-hA", title: "In Space", artist: "J Dilla" },
+      { id: "9OPypHXlJUQ", title: "Chinubian", artist: "Jneiro Jarel" },
+      { id: "_-17rzyBrKY", title: "Rhodes Ahead", artist: "Karriem Riggins" },
+      { id: "RpDcz90_oWY", title: "Ooooaaa", artist: "Karriem Riggins" },
+      { id: "B1ZvmzfUJv0", title: "Back in Brazil", artist: "Karriem Riggins" },
+      { id: "JGUqRBJ4bIo", title: "Embryo", artist: "Baatin" },
+      { id: "nelU7OMF7VY", title: "Orbitz", artist: "Karriem Riggins" },
+      { id: "jnP3tRG-LZs", title: "Sounds Like Love (Extended)", artist: "J Dilla" },
+      { id: "t6T-Q6HMbEo", title: "Get It Together (Instrumental)", artist: "J-88 (Slum Village)" },
+      { id: "zoGTC7uROZE", title: "Hustle (Instrumental Mix)", artist: "J Dilla" },
+      { id: "7611GgbJAbM", title: "Stupid Lies (Instrumental) (HQ)", artist: "J Dilla" },
+      { id: "j0z_-7TfPeM", title: "Fantastic (Instrumental)", artist: "J Dilla" }
+    ];
+
+    // Audio Engine for playlist management
+    class AudioEngine {
+      constructor() {
+        this.iframe = document.getElementById('youtube-player');
+        this.isPlaying = false;
+        this.currentTrack = 0;
+        this.userInteracted = false;
+        this.tracks = tracks;
+        this.setupPlaylistLoop();
+      }
+      
+      setupPlaylistLoop() {
+        // Listen for when a video ends to automatically play next
+        this.iframe.addEventListener('load', () => {
+          // Set up message listener for YouTube iframe API
+          window.addEventListener('message', (event) => {
+            if (event.origin !== 'https://www.youtube.com') return;
+            
+            try {
+              const data = JSON.parse(event.data);
+              if (data.event === 'video-ended' || data.info === 0) {
+                this.nextTrack();
+              }
+            } catch (e) {
+              // Ignore parsing errors
+            }
+          });
+        });
+        
+        // Auto-advance after reasonable time (fallback)
+        setInterval(() => {
+          if (this.isPlaying && this.userInteracted) {
+            this.nextTrack();
+          }
+        }, 180000); // 3 minutes fallback
+      }
+      
+      start() {
+        if (!this.userInteracted) return;
+        this.loadCurrentTrack();
+      }
+      
+      setUserInteracted() {
+        this.userInteracted = true;
+      }
+      
+      loadCurrentTrack() {
+        const track = this.tracks[this.currentTrack];
+        const embedUrl = `https://www.youtube.com/embed/${track.id}?autoplay=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1`;
+        this.iframe.src = embedUrl;
+        this.isPlaying = true;
+        this.updateTrackDisplay();
+      }
+      
+      updateTrackDisplay() {
+        const track = this.tracks[this.currentTrack];
+        const displayEl = document.getElementById('track-info');
+        if (displayEl) displayEl.textContent = `${track.artist} - ${track.title}`;
+      }
+      
+      nextTrack() {
+        this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+        this.loadCurrentTrack();
+      }
+      
+      togglePlayPause() {
+        this.isPlaying = !this.isPlaying;
+        const btn = document.getElementById('play-pause');
+        if (btn) btn.textContent = this.isPlaying ? '⏸' : '⏯';
+      }
+      
+      getAudioData() {
+        // Simulated audio data for visualization
+        const time = performance.now() * 0.001;
+        return {
+          bass: Math.abs(Math.sin(time * 0.8)),
+          mid: Math.abs(Math.cos(time * 1.2)),
+          high: Math.abs(Math.sin(time * 0.5)),
+          average: (Math.abs(Math.sin(time * 0.8)) +
+                    Math.abs(Math.cos(time * 1.2)) +
+                    Math.abs(Math.sin(time * 0.5))) / 3
+        };
+      }
+    }
+
+    // Warp Tunnel Visualization Engine
+    class WarpTunnelEngine {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.resize();
+        
+        // Warp tunnel variables
+        this.imageData = null;
+        this.data = null;
+        this.mouseActive = false;
+        this.mouseDown = false;
+        this.mousePos = { x: 0, y: 0 };
+        this.mouseFollowSpeed = 0.015;
+        this.fov = 250;
+        this.speed = 0.75;
+        this.particles = [];
+        this.particlesCenter = [];
+        this.time = 0;
+        this.colorInvertValue = 0;
+        
+        this.setupEventListeners();
+        this.addParticles();
+      }
+      
+      setupEventListeners() {
+        this.canvas.addEventListener('mousedown', (e) => this.mouseDown = true);
+        this.canvas.addEventListener('mouseup', (e) => this.mouseDown = false);
+        this.canvas.addEventListener('mousemove', (e) => this.mouseMoveHandler(e));
+        this.canvas.addEventListener('mouseenter', (e) => this.mouseActive = true);
+        this.canvas.addEventListener('mouseleave', (e) => {
+          this.mouseActive = false;
+          this.mousePos.x = this.w / 2;
+          this.mousePos.y = this.h / 2;
+          this.mouseDown = false;
+        });
+        
+        // Touch events
+        this.canvas.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          this.mouseDown = true;
+          this.mouseActive = true;
+          this.updateMousePos(e.touches[0]);
+        });
+        this.canvas.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          this.mouseDown = false;
+          this.mouseActive = false;
+        });
+        this.canvas.addEventListener('touchmove', (e) => {
+          e.preventDefault();
+          this.updateMousePos(e.touches[0]);
+        });
+      }
+      
+      updateMousePos(event) {
+        const rect = this.canvas.getBoundingClientRect();
+        this.mousePos = {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top
+        };
+      }
+      
+      mouseMoveHandler(event) {
+        this.updateMousePos(event);
+      }
+      
+      resize() {
+        this.w = window.innerWidth;
+        this.h = window.innerHeight;
+        this.canvas.width = this.w;
+        this.canvas.height = this.h;
+        this.ctx.fillStyle = '#000000';
+        this.ctx.fillRect(0, 0, this.w, this.h);
+        this.imageData = this.ctx.getImageData(0, 0, this.w, this.h);
+        this.data = this.imageData.data;
+      }
+      
+      clearImageData() {
+        for (let i = 0, l = this.data.length; i < l; i += 4) {
+          this.data[i] = 0;
+          this.data[i + 1] = 0;
+          this.data[i + 2] = 0;
+          this.data[i + 3] = 255;
+        }
+      }
+      
+      setPixel(x, y, r, g, b, a) {
+        const i = (x + y * this.imageData.width) * 4;
+        this.data[i] = r;
+        this.data[i + 1] = g;
+        this.data[i + 2] = b;
+        this.data[i + 3] = a;
+      }
+      
+      drawLine(x1, y1, x2, y2, r, g, b, a) {
+        const dx = Math.abs(x2 - x1);
+        const dy = Math.abs(y2 - y1);
+        const sx = (x1 < x2) ? 1 : -1;
+        const sy = (y1 < y2) ? 1 : -1;
+        let err = dx - dy;
+        let lx = x1, ly = y1;
+        
+        while (true) {
+          if (lx > 0 && lx < this.w && ly > 0 && ly < this.h) {
+            this.setPixel(lx, ly, r, g, b, a);
+          }
+          if (lx === x2 && ly === y2) break;
+          const e2 = 2 * err;
+          if (e2 > -dx) { err -= dy; lx += sx; }
+          if (e2 < dy) { err += dx; ly += sy; }
+        }
+      }
+      
+      getCirclePosition(centerX, centerY, radius, index, segments) {
+        const angle = index * ((Math.PI * 2) / segments) + this.time;
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        return { x, y };
+      }
+      
+      drawCircle(centerPosition, radius, segments) {
+        const coordinates = [];
+        let radiusSave;
+        
+        for (let i = 0; i <= segments; i++) {
+          let radiusRandom = radius;
+          if (i === 0) radiusSave = radiusRandom;
+          if (i === segments) radiusRandom = radiusSave;
+          
+          const centerX = centerPosition.x;
+          const centerY = centerPosition.y;
+          const position = this.getCirclePosition(centerX, centerY, radiusRandom, i, segments);
+          coordinates.push({
+            x: position.x,
+            y: position.y,
+            index: i,
+            radius: radiusRandom,
+            segments: segments,
+            centerX: centerX,
+            centerY: centerY
+          });
+        }
+        return coordinates;
+      }
+      
+      addParticles() {
+        const audioBufferIndexMin = 8;
+        const audioBufferIndexMax = 1024;
+        let audioBufferIndex = audioBufferIndexMin;
+        
+        const centerPosition = { x: 0, y: 0 };
+        let c = 0;
+        const w1 = Math.random() * (this.w / 1);
+        const h1 = Math.random() * (this.h / 1);
+        
+        for (let z = -this.fov; z < this.fov; z += 4) {
+          const coordinates = this.drawCircle(centerPosition, 75, 64);
+          const particlesRow = [];
+          const center = {
+            x: ((this.w / 2) - w1) * (c / 15) + this.w / 2,
+            y: ((this.h / 2) - h1) * (c / 15) + this.h / 2
+          };
+          c++;
+          this.particlesCenter.push(center);
+          audioBufferIndex = Math.floor(Math.random() * audioBufferIndexMax) + audioBufferIndexMin;
+          
+          for (let i = 0, l = coordinates.length; i < l; i++) {
+            const coordinate = coordinates[i];
+            const particle = {
+              x: coordinate.x,
+              y: coordinate.y,
+              z: z,
+              x2d: 0,
+              y2d: 0,
+              audioBufferIndex: audioBufferIndex,
+              index: coordinate.index,
+              radius: coordinate.radius,
+              radiusAudio: coordinate.radius,
+              segments: coordinate.segments,
+              centerX: coordinate.centerX,
+              centerY: coordinate.centerY
+            };
+            particlesRow.push(particle);
+            
+            if (i < coordinates.length / 2) audioBufferIndex++;
+            else audioBufferIndex--;
+            if (audioBufferIndex > audioBufferIndexMax) audioBufferIndex = audioBufferIndexMin;
+            if (audioBufferIndex < audioBufferIndexMin) audioBufferIndex = audioBufferIndexMax;
+          }
+          this.particles.push(particlesRow);
+        }
+      }
+      
+      update(audioData) {
+        this.clearImageData();
+        
+        let sortArray = false;
+        for (let i = 0, l = this.particles.length; i < l; i++) {
+          const particlesRow = this.particles[i];
+          let particlesRowBack;
+          if (i > 0) {
+            particlesRowBack = this.particles[i - 1];
+          }
+          
+          const center = this.particlesCenter[i];
+          if (this.mouseActive) {
+            center.x = ((this.w / 2) - this.mousePos.x) * ((particlesRow[0].z - this.fov) / 500) + this.w / 2;
+            center.y = ((this.h / 2) - this.mousePos.y) * ((particlesRow[0].z - this.fov) / 500) + this.h / 2;
+          } else {
+            center.x += ((this.w / 2) - center.x) * this.mouseFollowSpeed;
+            center.y += ((this.h / 2) - center.y) * this.mouseFollowSpeed;
+          }
+          
+          for (let j = 0, k = particlesRow.length; j < k; j++) {
+            const particle = particlesRow[j];
+            const scale = this.fov / (this.fov + particle.z);
+            particle.x2d = (particle.x * scale) + center.x;
+            particle.y2d = (particle.y * scale) + center.y;
+            
+            // Audio reactivity
+            const frequency = (audioData.bass + audioData.mid + audioData.high) * 255 / 3;
+            const frequencyAdd = frequency / 8;
+            particle.radiusAudio = particle.radius + frequencyAdd;
+            
+            if (this.mouseDown) {
+              particle.z += this.speed;
+              if (particle.z > this.fov) {
+                particle.z -= (this.fov * 2);
+                sortArray = true;
+              }
+            } else {
+              particle.z -= this.speed;
+              if (particle.z < -this.fov) {
+                particle.z += (this.fov * 2);
+                sortArray = true;
+              }
+            }
+            
+            let lineColorValue = 0;
+            if (j > 0) {
+              const p = particlesRow[j - 1];
+              lineColorValue = Math.round(i / l * 200);
+              this.drawLine(
+                particle.x2d | 0, particle.y2d | 0,
+                p.x2d | 0, p.y2d | 0,
+                0, Math.round(lineColorValue / 2), lineColorValue, 255
+              );
+            }
+            
+            let position;
+            if (j < k - 1) {
+              position = this.getCirclePosition(
+                particle.centerX, particle.centerY,
+                particle.radiusAudio, particle.index, particle.segments
+              );
+            } else {
+              const p1 = particlesRow[0];
+              position = this.getCirclePosition(
+                p1.centerX, p1.centerY,
+                p1.radiusAudio, p1.index, p1.segments
+              );
+            }
+            particle.x = position.x;
+            particle.y = position.y;
+            
+            if (i > 0 && i < l - 1) {
+              let pB;
+              if (j === 0) {
+                pB = particlesRowBack[particlesRowBack.length - 1];
+              } else {
+                pB = particlesRowBack[j - 1];
+              }
+              this.drawLine(
+                particle.x2d | 0, particle.y2d | 0,
+                pB.x2d | 0, pB.y2d | 0,
+                0, Math.round(lineColorValue / 2), lineColorValue, 255
+              );
+            }
+          }
+        }
+        
+        if (sortArray) {
+          this.particles.sort((a, b) => b[0].z - a[0].z);
+        }
+        
+        if (this.mouseDown) {
+          this.time -= 0.005;
+          if (this.colorInvertValue < 255) this.colorInvertValue += 5;
+          else this.colorInvertValue = 255;
+          this.softInvert(this.colorInvertValue);
+        } else {
+          this.time += 0.005;
+          if (this.colorInvertValue > 0) this.colorInvertValue -= 5;
+          else this.colorInvertValue = 0;
+          if (this.colorInvertValue > 0) this.softInvert(this.colorInvertValue);
+        }
+        
+        this.ctx.putImageData(this.imageData, 0, 0);
+      }
+      
+      softInvert(value) {
+        for (let j = 0, n = this.data.length; j < n; j += 4) {
+          this.data[j] = Math.abs(value - this.data[j]);
+          this.data[j + 1] = Math.abs(value - this.data[j + 1]);
+          this.data[j + 2] = Math.abs(value - this.data[j + 2]);
+          this.data[j + 3] = 255;
+        }
+      }
+    }
+
+    // Main Application
+    class JDillaVisualizer {
+      constructor() {
+        this.canvas = document.getElementById('canvas');
+        this.audioEngine = new AudioEngine();
+        this.visualEngine = new WarpTunnelEngine(this.canvas);
+        this.isStarted = false;
+        
+        this.setupEventListeners();
+        this.animate();
+      }
+      
+      setupEventListeners() {
+        const overlay = document.getElementById('overlay');
+        const playPauseBtn = document.getElementById('play-pause');
+        
+        const startExperience = () => {
+          if (this.isStarted) return;
+          this.isStarted = true;
+          this.audioEngine.setUserInteracted();
+          this.audioEngine.start();
+          overlay.classList.add('hidden');
+        };
+        
+        overlay.addEventListener('click', startExperience);
+        overlay.addEventListener('keydown', (e) => {
+          if (e.code === 'Space' || e.code === 'Enter') {
+            e.preventDefault();
+            startExperience();
+          }
+        });
+        
+        playPauseBtn.addEventListener('click', () => {
+          if (this.isStarted) {
+            this.audioEngine.nextTrack();
+          }
+        });
+        
+        // Next track on spacebar
+        document.addEventListener('keydown', (e) => {
+          if (e.code === 'Space' && this.isStarted) {
+            e.preventDefault();
+            this.audioEngine.nextTrack();
+          }
+        });
+        
+        window.addEventListener('resize', () => {
+          this.visualEngine.resize();
+        });
+      }
+      
+      animate() {
+        const audioData = this.audioEngine.getAudioData();
+        this.visualEngine.update(audioData);
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    // Initialize the application
+    const app = new JDillaVisualizer();
+  </script>
+</body>
+</html>

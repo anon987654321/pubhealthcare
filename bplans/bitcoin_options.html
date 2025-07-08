@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Bitcoin Options Market - Kryptovaluta Derivater - Forretningsplan for Innovasjon Norge">
+  <title>Bitcoin Options Market - Kryptovaluta Derivater</title>
+  
+  <!-- Norwegian fonts and libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Chart libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+  <style>
+    /* Norwegian Business Document Styling */
+    @page { size: A4; margin: 20mm; }
+    
+    :root {
+      --primary-color: #f57c00;
+      --secondary-color: #ff9800;
+      --accent-color: #ffcc02;
+      --text-color: #333333;
+      --background-color: #ffffff;
+      --light-gray: #f5f5f5;
+      --border-color: #e0e0e0;
+      --success-color: #4caf50;
+      --warning-color: #ff9800;
+      --error-color: #f44336;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono-font: 'Roboto Mono', Monaco, 'Courier New', monospace;
+      --base-font-size: 16px;
+      --line-height: 1.6;
+      --spacing-unit: 1rem;
+      --border-radius: 8px;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      font-size: var(--base-font-size);
+      line-height: var(--line-height);
+      color: var(--text-color);
+      background-color: var(--background-color);
+      padding: 20mm;
+    }
+    
+    /* Norwegian Typography */
+    .page {
+      min-height: 257mm;
+      page-break-after: always;
+      position: relative;
+      padding-bottom: 30mm;
+    }
+    
+    .page:last-child { page-break-after: avoid; }
+    
+    .header {
+      text-align: center;
+      padding: 2rem 0;
+      border-bottom: 3px solid var(--primary-color);
+      margin-bottom: 2rem;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .header .subtitle {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .header .date {
+      font-size: 1rem;
+      color: var(--text-color);
+      font-family: var(--mono-font);
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin: 1.5rem 0 0.8rem 0;
+    }
+    
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--secondary-color);
+      margin: 1rem 0 0.5rem 0;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+    
+    ul, ol {
+      margin: 1rem 0;
+      padding-left: 2rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Financial Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--background-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    tr:hover {
+      background-color: var(--light-gray);
+    }
+    
+    /* Crypto price styling */
+    .crypto-price {
+      font-family: var(--mono-font);
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .price-up {
+      color: var(--success-color);
+    }
+    
+    .price-down {
+      color: var(--error-color);
+    }
+    
+    /* Chart containers */
+    .chart-container {
+      margin: 2rem 0;
+      padding: 1rem;
+      background: var(--background-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .chart-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .chart, .babylon-canvas {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--border-radius);
+    }
+    
+    .babylon-canvas {
+      background: linear-gradient(135deg, #f57c00 0%, #e65100 25%, #bf360c 50%, #e65100 75%, #f57c00 100%);
+    }
+    
+    /* Norwegian compliance indicators */
+    .compliance-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background: var(--success-color);
+      color: white;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 0.25rem;
+    }
+    
+    .innovasjon-norge {
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin: 2rem 0;
+    }
+    
+    .innovasjon-norge h3 {
+      color: white;
+      margin-top: 0;
+    }
+    
+    /* Financial metrics */
+    .financial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .metric-card {
+      background: var(--light-gray);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border-left: 4px solid var(--secondary-color);
+    }
+    
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-family: var(--mono-font);
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Risk warning */
+    .risk-warning {
+      background: #ffebee;
+      border: 2px solid var(--error-color);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius);
+    }
+    
+    .risk-warning h4 {
+      color: var(--error-color);
+      margin-top: 0;
+    }
+    
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 8mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #666;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.5rem;
+    }
+    
+    .confidentiality {
+      color: var(--error-color);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Print styles */
+    @media print {
+      body { padding: 0; }
+      .page { page-break-after: always; }
+      .chart-container { break-inside: avoid; }
+      .financial-grid { break-inside: avoid; }
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .header h1 { font-size: 2rem; }
+      .financial-grid { grid-template-columns: 1fr; }
+      .chart, .babylon-canvas { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1>Bitcoin Options Market</h1>
+      <div class="subtitle">Kryptovaluta Derivater og Strukturerte Produkter</div>
+      <div class="date">Generert: <span id="currentDate"></span></div>
+    </div>
+    
+    <div class="innovasjon-norge">
+      <h3>🇳🇴 Innovasjon Norge Compliance</h3>
+      <p>Bitcoin Options Market etablerer Norge som ledende innen regulert kryptovaluta-trading og fintech-innovasjon. Prosjektet adresserer digitalisering av finansmarkeder og internasjonalisering av norske fintech-løsninger.</p>
+      <div>
+        <span class="compliance-badge">Fintech Innovasjon</span>
+        <span class="compliance-badge">Blockchain Teknologi</span>
+        <span class="compliance-badge">Derivat Trading</span>
+        <span class="compliance-badge">Regulatorisk Compliance</span>
+        <span class="compliance-badge">Internasjonalisering</span>
+      </div>
+    </div>
+    
+    <h2>Sammendrag</h2>
+    <p>Bitcoin Options Market utvikler en avansert handelsplattform for kryptovaluta-derivater med fokus på Bitcoin-opsjoner og strukturerte produkter. Plattformen kombinerer tradisjonell finansmarkedsteknologi med blockchain-innovasjon for å tilby institusjonelle og kvalifiserte private investorer sofistikerte risikostyringsverktøy.</p>
+    
+    <p>Ved å operere under norsk finanstilsyn og integrere med eksisterende finansinfrastruktur, posisjonerer vi Norge som et ledende marked for regulert kryptovaluta-handel i Europa.</p>
+    
+    <h2>Finansielle Prognoser</h2>
+    <div class="financial-grid">
+      <div class="metric-card">
+        <div class="metric-value">650M</div>
+        <div class="metric-label">Omsetning År 5</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">95%</div>
+        <div class="metric-label">Årlig Vekstrate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">280</div>
+        <div class="metric-label">Ansatte År 5</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">85M</div>
+        <div class="metric-label">Kapitalbehov</div>
+      </div>
+    </div>
+    
+    <h2>Sanntids Bitcoin Prisvisualisering</h2>
+    <div class="chart-container">
+      <div class="chart-title">3D Bitcoin Blockchain og Transaksjonsflyt</div>
+      <canvas id="bitcoinCanvas" class="babylon-canvas"></canvas>
+    </div>
+    
+    <h2>Handelsvolum og Markedsflyt</h2>
+    <div class="chart-container">
+      <div class="chart-title">Global Bitcoin Options Handelsflyt</div>
+      <div id="tradingFlowChart" class="chart"></div>
+    </div>
+    
+    <div class="footer">
+      <div class="confidentiality">Fortrolig</div>
+      <div>Side 1 av 2</div>
+      <div>Bitcoin Options Market AS</div>
+    </div>
+  </div>
+  
+  <div class="page">
+    <h2>Produktportefølje</h2>
+    
+    <h3>Bitcoin Opsjoner</h3>
+    <ul>
+      <li><strong>Vanilla Options:</strong> Standard europeiske og amerikanske Bitcoin calls og puts</li>
+      <li><strong>Eksotiske Opsjoner:</strong> Barrier opsjoner, Asian opsjoner og binære opsjoner</li>
+      <li><strong>Strukturerte Produkter:</strong> Principal Protected Notes knyttet til Bitcoin ytelse</li>
+      <li><strong>Volatilitetsderivater:</strong> VIX-lignende produkter for Bitcoin volatilitet</li>
+    </ul>
+    
+    <h3>Risikostyringsverktøy</h3>
+    <ul>
+      <li><strong>Delta Hedging:</strong> Automatisk portfolio delta-nøytralisering</li>
+      <li><strong>Volatility Surface:</strong> Sanntids implied volatility overflatekartlegging</li>
+      <li><strong>Greeks Dashboard:</strong> Kontinuerlig overvåkning av alle opsjonsgreeker</li>
+      <li><strong>Stress Testing:</strong> Scenario-analyse for ekstreme markedsbevegelser</li>
+    </ul>
+    
+    <h2>Aktuell Markedspris og Volatilitet</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Kryptovaluta</th>
+          <th>Spotpris (USD)</th>
+          <th>24h Endring</th>
+          <th>Volatilitet (30d)</th>
+          <th>Handelsvolum (24h)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bitcoin (BTC)</td>
+          <td class="crypto-price">$42,150</td>
+          <td class="price-up">+2.3%</td>
+          <td>65.2%</td>
+          <td>$8.5B</td>
+        </tr>
+        <tr>
+          <td>Ethereum (ETH)</td>
+          <td class="crypto-price">$2,580</td>
+          <td class="price-down">-1.1%</td>
+          <td>78.8%</td>
+          <td>$4.2B</td>
+        </tr>
+        <tr>
+          <td>Bitcoin Cash (BCH)</td>
+          <td class="crypto-price">$285</td>
+          <td class="price-up">+0.8%</td>
+          <td>85.5%</td>
+          <td>$180M</td>
+        </tr>
+        <tr>
+          <td>Litecoin (LTC)</td>
+          <td class="crypto-price">$72</td>
+          <td class="price-up">+1.5%</td>
+          <td>72.3%</td>
+          <td>$320M</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2>Teknisk Infrastruktur</h2>
+    <div class="chart-container">
+      <div class="chart-title">Handelsvolum og Markedslikviditet</div>
+      <canvas id="volumeChart" class="chart"></canvas>
+    </div>
+    
+    <div class="risk-warning">
+      <h4>⚠️ Risikovarsel</h4>
+      <p><strong>Handel med kryptovaluta-derivater innebærer høy risiko og er ikke egnet for alle investorer.</strong> Kryptovalutaer er volatile instrumenter som kan resultere i betydelige tap. Investorer bør kun investere kapital de har råd til å tape. Denne plattformen er kun tilgjengelig for kvalifiserte investorer som oppfyller MiFID II-krav.</p>
+    </div>
+    
+    <h2>Regulatorisk Framework</h2>
+    <ul>
+      <li><strong>Finanstilsynet (Norge):</strong> Autorisert som verdipapirforetak</li>
+      <li><strong>MiFID II Compliance:</strong> Fullstendig etterlevelse av europeiske direktiver</li>
+      <li><strong>AML/KYC:</strong> Omfattende anti-hvitvasking og kunde-kjennskap prosedyrer</li>
+      <li><strong>EMIR Reporting:</strong> Automatisk rapportering til europeiske handelsregistre</li>
+      <li><strong>Basel III:</strong> Kapitalkrav og likviditetsbuffere i henhold til bankregulering</li>
+    </ul>
+    
+    <h2>Markedspartnerskap</h2>
+    <ul>
+      <li><strong>Binance:</strong> Likviditetstilgang for underliggende Bitcoin spot-priser</li>
+      <li><strong>CME Group:</strong> Clearing og settlement for institusjonelle kunder</li>
+      <li><strong>BitMEX:</strong> Cross-platform arbitrage og likviditetstilgang</li>
+      <li><strong>Chainalysis:</strong> Blockchain-analyse og compliance-overvåkning</li>
+      <li><strong>Refinitiv:</strong> Markedsdata og analysetjenester</li>
+    </ul>
+    
+    <h2>Målmarked og Kundesegmenter</h2>
+    <ul>
+      <li><strong>Institusjonelle Investorer:</strong> Banker, forsikringsselskaper og pensjonsfond</li>
+      <li><strong>Hedge Funds:</strong> Krypto-spesialiserte og tradisjonelle fond</li>
+      <li><strong>Family Offices:</strong> Ultra-high-net-worth individer og familier</li>
+      <li><strong>Cryptocurrency Miners:</strong> Hedging av mining-inntekter</li>
+      <li><strong>Corporate Treasury:</strong> Selskaper med kryptovaluta-eksponering</li>
+    </ul>
+    
+    <div class="footer">
+      <div class="confidentiality">Fortrolig</div>
+      <div>Side 2 av 2</div>
+      <div>Bitcoin Options Market AS</div>
+    </div>
+  </div>
+  
+  <script>
+    // Set current date
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('nb-NO');
+    
+    // Initialize Babylon.js for 3D Bitcoin Blockchain Visualization
+    function initBitcoin3D() {
+      const canvas = document.getElementById('bitcoinCanvas');
+      const engine = new BABYLON.Engine(canvas, true);
+      const scene = new BABYLON.Scene(engine);
+      
+      // Camera setup
+      const camera = new BABYLON.ArcRotateCamera('camera', -Math.PI/2, Math.PI/2.5, 15, BABYLON.Vector3.Zero(), scene);
+      camera.attachControls(canvas, true);
+      
+      // Lighting
+      const light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 1, 0), scene);
+      light.intensity = 0.8;
+      
+      // Bitcoin symbol (central node)
+      const bitcoinCore = BABYLON.MeshBuilder.CreateSphere('bitcoinCore', {diameter: 2}, scene);
+      bitcoinCore.position.y = 0;
+      
+      const bitcoinMaterial = new BABYLON.StandardMaterial('bitcoinMat', scene);
+      bitcoinMaterial.diffuseColor = new BABYLON.Color3(1, 0.6, 0);
+      bitcoinMaterial.emissiveColor = new BABYLON.Color3(0.3, 0.2, 0);
+      bitcoinMaterial.specularColor = new BABYLON.Color3(0.5, 0.3, 0);
+      bitcoinCore.material = bitcoinMaterial;
+      
+      // Blockchain blocks
+      const blocks = [];
+      for (let i = 0; i < 12; i++) {
+        const block = BABYLON.MeshBuilder.CreateBox('block' + i, {size: 0.8}, scene);
+        
+        const angle = (i / 12) * Math.PI * 2;
+        const radius = 5;
+        block.position.x = Math.cos(angle) * radius;
+        block.position.z = Math.sin(angle) * radius;
+        block.position.y = (Math.random() - 0.5) * 2;
+        
+        const blockMaterial = new BABYLON.StandardMaterial('blockMat' + i, scene);
+        blockMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+        blockMaterial.emissiveColor = new BABYLON.Color3(0.1, 0.4, 0.1);
+        blockMaterial.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+        block.material = blockMaterial;
+        
+        blocks.push(block);
+      }
+      
+      // Transaction flow (particles)
+      const transactions = [];
+      for (let i = 0; i < 50; i++) {
+        const tx = BABYLON.MeshBuilder.CreateSphere('tx' + i, {diameter: 0.1}, scene);
+        tx.position.x = (Math.random() - 0.5) * 15;
+        tx.position.y = (Math.random() - 0.5) * 8;
+        tx.position.z = (Math.random() - 0.5) * 15;
+        
+        const txMaterial = new BABYLON.StandardMaterial('txMat' + i, scene);
+        txMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0);
+        txMaterial.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0);
+        tx.material = txMaterial;
+        
+        transactions.push(tx);
+      }
+      
+      // Price indicators
+      const priceNodes = [];
+      for (let i = 0; i < 8; i++) {
+        const node = BABYLON.MeshBuilder.CreateCylinder('price' + i, {height: 3, diameter: 0.3}, scene);
+        
+        const angle = (i / 8) * Math.PI * 2;
+        const radius = 8;
+        node.position.x = Math.cos(angle) * radius;
+        node.position.z = Math.sin(angle) * radius;
+        node.position.y = 2;
+        
+        const nodeMaterial = new BABYLON.StandardMaterial('priceMat' + i, scene);
+        nodeMaterial.diffuseColor = new BABYLON.Color3(0, 1, 0.5);
+        nodeMaterial.emissiveColor = new BABYLON.Color3(0, 0.3, 0.15);
+        node.material = nodeMaterial;
+        
+        priceNodes.push(node);
+      }
+      
+      // Animation
+      let time = 0;
+      scene.registerBeforeRender(() => {
+        time += 0.01;
+        
+        // Rotate Bitcoin core
+        bitcoinCore.rotation.y = time * 0.5;
+        bitcoinCore.rotation.x = Math.sin(time) * 0.1;
+        
+        // Animate blockchain blocks
+        blocks.forEach((block, index) => {
+          block.rotation.y = time + index * 0.2;
+          block.position.y = Math.sin(time * 2 + index) * 0.5;
+          
+          // Pulse effect
+          const pulse = Math.sin(time * 3 + index) * 0.1 + 1;
+          block.scaling.x = pulse;
+          block.scaling.y = pulse;
+          block.scaling.z = pulse;
+        });
+        
+        // Animate transaction flow
+        transactions.forEach((tx, index) => {
+          tx.position.x = Math.cos(time + index * 0.1) * 7;
+          tx.position.z = Math.sin(time + index * 0.1) * 7;
+          tx.position.y = Math.sin(time * 2 + index) * 2;
+        });
+        
+        // Animate price indicators
+        priceNodes.forEach((node, index) => {
+          const priceChange = Math.sin(time * 1.5 + index) * 2 + 2;
+          node.scaling.y = priceChange;
+          node.material.emissiveColor = new BABYLON.Color3(
+            priceChange > 2 ? 0 : 0.3,
+            priceChange > 2 ? 0.3 : 0,
+            0.15
+          );
+        });
+      });
+      
+      engine.runRenderLoop(() => {
+        scene.render();
+      });
+      
+      window.addEventListener('resize', () => {
+        engine.resize();
+      });
+    }
+    
+    // Initialize ECharts for Trading Flow (adapted from lines-ny)
+    const flowChart = echarts.init(document.getElementById('tradingFlowChart'));
+    const flowOption = {
+      title: {
+        text: 'Global Bitcoin Options Handelsflyt',
+        left: 'center',
+        textStyle: {
+          color: '#f57c00',
+          fontSize: 16,
+          fontWeight: 600
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: function(params) {
+          return params.marker + params.name + ': $' + params.value[2] + 'M handel/dag';
+        }
+      },
+      geo: {
+        map: 'world',
+        roam: true,
+        zoom: 1.2,
+        center: [10, 60],
+        itemStyle: {
+          areaColor: '#f3f3f3',
+          borderColor: '#999',
+          borderWidth: 0.5
+        },
+        emphasis: {
+          itemStyle: {
+            areaColor: '#ffcc02'
+          }
+        }
+      },
+      series: [{
+        name: 'Handelsvolum',
+        type: 'lines',
+        coordinateSystem: 'geo',
+        zlevel: 2,
+        effect: {
+          show: true,
+          period: 3,
+          trailLength: 0.8,
+          color: '#ff9800',
+          symbolSize: 4
+        },
+        lineStyle: {
+          color: '#f57c00',
+          width: 3,
+          curveness: 0.3
+        },
+        data: [
+          {
+            name: 'Oslo → New York',
+            coords: [[10.7522, 59.9139], [-74.0059, 40.7128]],
+            value: 2500
+          },
+          {
+            name: 'Oslo → London',
+            coords: [[10.7522, 59.9139], [-0.1276, 51.5074]],
+            value: 1800
+          },
+          {
+            name: 'Oslo → Tokyo',
+            coords: [[10.7522, 59.9139], [139.6917, 35.6895]],
+            value: 1200
+          },
+          {
+            name: 'Oslo → Singapore',
+            coords: [[10.7522, 59.9139], [103.8198, 1.3521]],
+            value: 950
+          },
+          {
+            name: 'Oslo → Dubai',
+            coords: [[10.7522, 59.9139], [55.2708, 25.2048]],
+            value: 750
+          }
+        ]
+      }]
+    };
+    flowChart.setOption(flowOption);
+    
+    // Initialize Chart.js for Volume Chart
+    const volumeCtx = document.getElementById('volumeChart').getContext('2d');
+    new Chart(volumeCtx, {
+      type: 'line',
+      data: {
+        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+        datasets: [
+          {
+            label: 'Call Options Volume',
+            data: [450, 680, 1200, 2100, 1800, 950, 420],
+            borderColor: '#4caf50',
+            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Put Options Volume',
+            data: [320, 420, 850, 1500, 1300, 750, 380],
+            borderColor: '#f44336',
+            backgroundColor: 'rgba(244, 67, 54, 0.1)',
+            fill: true,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              font: {
+                family: 'Inter',
+                size: 12
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Kontrakter'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Tid (UTC)'
+            }
+          }
+        }
+      }
+    });
+    
+    // Initialize 3D visualization
+    initBitcoin3D();
+    
+    // Resize charts on window resize
+    window.addEventListener('resize', () => {
+      flowChart.resize();
+    });
+  </script>
+</body>
+</html>

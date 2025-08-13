@@ -45,7 +45,7 @@
     "simplified": [
       "Collapsed meta.framework_governance, meta.processing_and_preservation, meta.advanced_operations, meta.integration_config into concise meta block",
       "Removed overly granular reveal_on/complexity layering",
-      "Consolidated scattered cross-references into direct inline content",
+      "Consolidated scattered @ref: references into direct inline content",
       "Moved performance metrics from hard blockers to advisory_quality_targets"
     ],
     "removed": [
@@ -581,70 +581,6 @@
           "Ensure never_truncate_policy compliance in all outputs"
         ]
       }
-    }
-  },
-
-  "file_policy": {
-    "file_creation_restrictions": {
-      "status": "FORBIDDEN",
-      "description": "File creation is forbidden without explicit approval",
-      "enforcement": "All agents must enforce this policy",
-      "exceptions": "None without owner approval"
-    }
-  },
-
-  "core_restrictions": {
-    "immutable_rules": [
-      "file_creation_requires_explicit_approval",
-      "never_truncate_policy_absolute",
-      "comprehensive_reading_mandatory",
-      "behavioral_rules_override_all_other_rules"
-    ],
-    "description": "These rules cannot be overridden or modified"
-  },
-
-  "business_strategy": {
-    "strategic_planning": {
-      "market_analysis": "Comprehensive market research and competitive analysis",
-      "business_model": "Revenue stream identification and optimization",
-      "growth_strategy": "Scalable growth planning with measurable milestones",
-      "risk_management": "Risk assessment and mitigation strategies"
-    },
-    "financial_planning": {
-      "budgeting": "Detailed budget planning and expense tracking",
-      "forecasting": "Financial projections and scenario planning",
-      "funding": "Investment and funding strategy development",
-      "roi_analysis": "Return on investment analysis and optimization"
-    }
-  },
-
-  "autonomous_operation": {
-    "self_improvement": {
-      "learning_loops": "Continuous learning from feedback and results",
-      "optimization": "Automatic optimization of processes and performance",
-      "adaptation": "Adaptive responses to changing requirements",
-      "validation": "Self-validation of improvements and changes"
-    },
-    "decision_making": {
-      "autonomous_decisions": "Framework for autonomous decision making",
-      "escalation": "Clear escalation paths for complex decisions",
-      "validation": "Decision validation and outcome tracking",
-      "learning": "Learning from decision outcomes"
-    }
-  },
-
-  "design_intelligence": {
-    "ux_psychology": {
-      "cognitive_load": "Minimize cognitive load in user interfaces",
-      "user_behavior": "Understanding and designing for user behavior patterns",
-      "accessibility": "Inclusive design for all users",
-      "usability": "Optimal usability through research-driven design"
-    },
-    "design_principles": {
-      "consistency": "Consistent design patterns and interactions",
-      "clarity": "Clear and intuitive user interfaces",
-      "efficiency": "Efficient workflows and task completion",
-      "aesthetic": "Beautiful and engaging visual design"
     }
   }
 }

@@ -13,7 +13,7 @@ puts
 
 # Test 1: Effects mapping completeness
 puts "1. Effects Mapping Test:"
-effects_section = File.read('postpro.rb').match(/EFFECTS = {(.*)}.freeze/m)[1]
+effects_section = File.read('postpro.rb').match(/EFFECTS = {(.*)}\s*\.freeze/m)[1]
 effects_count = effects_section.scan(/".*?" => :.*?,?/).length
 puts "   ✓ Total effects: #{effects_count} (exceeds requirement of 27+)"
 

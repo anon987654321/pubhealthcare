@@ -18,7 +18,7 @@ effects_count = effects_section.scan(/".*?" => :.*?,?/).length
 puts "   ✓ Total effects: #{effects_count} (exceeds requirement of 27+)"
 
 # Test 2: Experimental effects subset
-experimental_section = File.read('postpro.rb').match(/EXPERIMENTAL_EFFECTS = %w\[(.*?)\]\.freeze/m)
+experimental_section = File.read('postpro.rb').match(/EXPERIMENTAL_EFFECTS = %w\[(.*?)\]\s*\.freeze/m)
 if experimental_section
   experimental_effects = experimental_section[1].split(' ')
   puts "   ✓ Experimental effects: #{experimental_effects.length}"

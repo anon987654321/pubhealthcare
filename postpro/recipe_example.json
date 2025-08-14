@@ -1,0 +1,13 @@
+{
+  "film_grain": 0.6,
+  "bloom_effect": 0.8,
+  "teal_and_orange": 0.5,
+  "film_stock_emulation": {
+    "intensity": 0.7,
+    "stock": "kodak_portra"
+  },
+  "film_scratches": {
+    "intensity": 0.3
+  },
+  "golden_hour_glow": 0.4
+}

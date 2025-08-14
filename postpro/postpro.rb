@@ -364,7 +364,11 @@ def chromatic_aberration(image, intensity, mode)
   $logger.debug "Applying chromatic aberration with shift: #{shift}"
   r, g, b = image.bandsplit
   r = r.roll(shift, rand(-shift..shift))
-  b = b.roll(-shift, rand(-shift..shift))
+  # Deterministic offsets based on input parameters
+  r_offset = deterministic_offset(intensity, mode, image.width, image.height, "r", shift)
+  b_offset = deterministic_offset(intensity, mode, image.width, image.height, "b", shift)
+  r = r.roll(shift, r_offset)
+  b = b.roll(-shift, b_offset)
   result = Vips::Image.bandjoin([r, g, b]).cast("uchar")
   $logger.debug "chromatic_aberration applied, avg: #{result.avg}, bands: #{result.bands}"
   result

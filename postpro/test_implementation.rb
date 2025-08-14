@@ -31,7 +31,15 @@ end
 param_section = File.read('postpro.rb').match(/PARAM_RANGES = {(.*)}.freeze/m)[1]
 param_effects = param_section.scan(/"(.*?)" =>/).flatten
 puts "   ✓ Special parameter effects: #{param_effects.length}"
-param_effects.each { |effect| puts "     - #{effect}" }
+param_section_match = File.read('postpro.rb').match(/PARAM_RANGES = {(.*?)}\s*\.freeze/m)
+if param_section_match
+  param_section = param_section_match[1]
+  param_effects = param_section.scan(/"(.*?)" =>/).flatten
+  puts "   ✓ Special parameter effects: #{param_effects.length}"
+  param_effects.each { |effect| puts "     - #{effect}" }
+else
+  puts "   ✗ Could not find PARAM_RANGES definition"
+end
 
 # Test 4: Professional vs Experimental intensity ranges
 puts "\n2. Mode Testing:"

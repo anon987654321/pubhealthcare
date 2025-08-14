@@ -188,6 +188,85 @@ def validate_rails_directory():
     
     return True
 
+def validate_dataset_integration():
+    """Validate the new dataset components."""
+    print("🔍 Validating Dataset Integration:")
+    
+    # Check data directory exists
+    if not os.path.exists('data'):
+        print("  ❌ Data directory not found")
+        return False
+    
+    # Validate required dataset files
+    required_files = [
+        'data/concepts_master.json',
+        'data/additional_concepts.json', 
+        'data/taxonomy.yaml',
+        'data/postpro_recipes.json'
+    ]
+    
+    missing_files = []
+    for file_path in required_files:
+        if not os.path.exists(file_path):
+            missing_files.append(file_path)
+        else:
+            # Validate JSON/YAML syntax
+            try:
+                if file_path.endswith('.json'):
+                    with open(file_path, 'r') as f:
+                        json.load(f)
+                elif file_path.endswith('.yaml'):
+                    import yaml
+                    with open(file_path, 'r') as f:
+                        yaml.safe_load(f)
+                print(f"  ✅ {file_path}: Valid and accessible")
+            except Exception as e:
+                print(f"  ❌ {file_path}: Invalid format - {e}")
+                return False
+    
+    if missing_files:
+        print(f"  ❌ Missing dataset files: {missing_files}")
+        return False
+    
+    # Validate concept data integrity
+    try:
+        with open('data/concepts_master.json', 'r') as f:
+            master_data = json.load(f)
+        
+        concept_ids = [concept['id'] for concept in master_data['concepts']]
+        expected_ids = list(range(4, 31))
+        
+        if set(concept_ids) != set(expected_ids):
+            missing = set(expected_ids) - set(concept_ids)
+            extra = set(concept_ids) - set(expected_ids)
+            print(f"  ❌ Concept ID mismatch. Missing: {missing}, Extra: {extra}")
+            return False
+        
+        print(f"  ✅ All concept IDs 4-30 present ({len(concept_ids)} concepts)")
+    except Exception as e:
+        print(f"  ❌ Failed to validate concept integrity: {e}")
+        return False
+    
+    # Validate postpro recipes integration
+    try:
+        with open('data/postpro_recipes.json', 'r') as f:
+            recipes_data = json.load(f)
+        
+        concept_slugs = [concept['slug'] for concept in master_data['concepts']]
+        recipe_slugs = list(recipes_data['concept_recipes'].keys())
+        
+        missing_recipes = set(concept_slugs) - set(recipe_slugs)
+        if missing_recipes:
+            print(f"  ❌ Missing recipes for concepts: {missing_recipes}")
+            return False
+        
+        print(f"  ✅ All {len(concept_slugs)} concepts have postpro recipes")
+    except Exception as e:
+        print(f"  ❌ Failed to validate postpro recipes: {e}")
+        return False
+    
+    return True
+
 def main():
     """Main validation function."""
     print("🚀 Comprehensive Integration Validation")
@@ -198,7 +277,8 @@ def main():
         validate_modular_system(),
         validate_rails_application(),
         validate_rails_directory(),
-        validate_documentation()
+        validate_documentation(),
+        validate_dataset_integration()
     ]
     
     print("\n📊 Validation Summary:")

@@ -1,0 +1,463 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-08-14T11:27:00Z",
+  "description": "Extended post-processing recipes for Concepts 4-30 - Professional and experimental stacks for each concept",
+  "concept_recipes": {
+    "biomimetic-growth": {
+      "professional": {
+        "film_stock_emulation": 0.45,
+        "film_grain": 0.35,
+        "golden_hour_glow": 0.30,
+        "cross_process": 0.25,
+        "bloom_effect": 0.40
+      },
+      "experimental": {
+        "bloom_effect": 1.1,
+        "chromatic_aberration": 0.6,
+        "vhs_degrade": 0.8,
+        "film_stock_emulation": 0.45,
+        "film_grain": 0.35
+      },
+      "tags": ["macro", "organic", "bioluminescent", "interface", "growth"]
+    },
+    "dimensional-phase-architecture": {
+      "professional": {
+        "lens_distortion": 0.15,
+        "chromatic_aberration": 0.25,
+        "bloom_effect": 0.50,
+        "film_grain": 0.25,
+        "teal_and_orange": 0.30
+      },
+      "experimental": {
+        "chromatic_aberration": 0.8,
+        "bloom_effect": 1.3,
+        "anamorphic_simulation": 0.7,
+        "lens_distortion": 0.15,
+        "film_grain": 0.25
+      },
+      "tags": ["architectural", "holographic", "interface", "glass", "depth"]
+    },
+    "haptic-texture-synthesis": {
+      "professional": {
+        "film_stock_emulation": 0.40,
+        "bleach_bypass": 0.35,
+        "film_grain": 0.50,
+        "lomo": 0.25,
+        "color_fade": 0.20
+      },
+      "experimental": {
+        "vhs_degrade": 0.7,
+        "bleach_bypass": 0.55,
+        "film_stock_emulation": 0.40,
+        "film_grain": 0.50,
+        "lomo": 0.25
+      },
+      "tags": ["macro", "texture", "material", "tactile"]
+    },
+    "gestural-constellation-control": {
+      "professional": {
+        "film_halation": 0.45,
+        "bloom_effect": 0.55,
+        "teal_and_orange": 0.35,
+        "film_grain": 0.30
+      },
+      "experimental": {
+        "chromatic_aberration": 0.7,
+        "film_halation": 0.9,
+        "bloom_effect": 0.55,
+        "teal_and_orange": 0.35,
+        "film_grain": 0.30
+      },
+      "tags": ["long-exposure", "gesture", "constellation", "light-trails"]
+    },
+    "retinal-pattern-recognition": {
+      "professional": {
+        "film_stock_emulation": 0.30,
+        "film_grain": 0.20,
+        "chromatic_aberration": 0.15
+      },
+      "experimental": {
+        "lens_distortion": 0.6,
+        "bleach_bypass": 0.5,
+        "film_stock_emulation": 0.30,
+        "film_grain": 0.20,
+        "chromatic_aberration": 0.15
+      },
+      "tags": ["macro", "eye", "interface", "biometric"]
+    },
+    "synaesthetic-color-sound-mapping": {
+      "professional": {
+        "cross_process": 0.60,
+        "bloom_effect": 0.50,
+        "teal_and_orange": 0.40,
+        "film_grain": 0.35
+      },
+      "experimental": {
+        "film_halation": 0.7,
+        "cross_process": 1.0,
+        "bloom_effect": 0.50,
+        "teal_and_orange": 0.40,
+        "film_grain": 0.35
+      },
+      "tags": ["abstract", "liquid", "synaesthesia", "color"]
+    },
+    "breath-controlled-dynamics": {
+      "professional": {
+        "day_for_night": 0.30,
+        "film_grain": 0.25,
+        "film_scratches": 0.15,
+        "film_stock_emulation": 0.25
+      },
+      "experimental": {
+        "color_fade": 0.6,
+        "bleach_bypass": 0.5,
+        "day_for_night": 0.30,
+        "film_grain": 0.25,
+        "film_scratches": 0.15
+      },
+      "tags": ["breath", "fog", "acoustic", "winter"]
+    },
+    "temporal-archaeology": {
+      "professional": {
+        "bleach_bypass": 0.40,
+        "color_fade": 0.35,
+        "film_grain": 0.45,
+        "film_scratches": 0.25
+      },
+      "experimental": {
+        "lens_distortion": 0.5,
+        "vhs_degrade": 0.7,
+        "bleach_bypass": 0.40,
+        "color_fade": 0.35,
+        "film_grain": 0.45
+      },
+      "tags": ["archaeology", "layers", "fossil", "documentary"]
+    },
+    "quantum-superposition-beats": {
+      "professional": {
+        "color_fade": 0.20,
+        "lens_distortion": 0.10,
+        "film_grain": 0.15
+      },
+      "experimental": {
+        "chromatic_aberration": 0.6,
+        "color_fade": 0.20,
+        "lens_distortion": 0.10,
+        "film_grain": 0.15
+      },
+      "tags": ["quantum", "scientific", "probability", "lab"]
+    },
+    "emotional-ai-composer": {
+      "professional": {
+        "chromatic_aberration": 0.45,
+        "film_halation": 0.50,
+        "teal_and_orange": 0.55,
+        "film_grain": 0.35
+      },
+      "experimental": {
+        "anamorphic_simulation": 0.8,
+        "bloom_effect": 1.0,
+        "chromatic_aberration": 0.45,
+        "film_halation": 0.50,
+        "teal_and_orange": 0.55
+      },
+      "tags": ["cyberpunk", "emotion", "neural", "portrait"]
+    },
+    "swarm-intelligence-sequencing": {
+      "professional": {
+        "golden_hour_glow": 0.50,
+        "film_grain": 0.30,
+        "lens_distortion": 0.20,
+        "film_stock_emulation": 0.40
+      },
+      "experimental": {
+        "vhs_degrade": 0.8,
+        "chromatic_aberration": 0.6,
+        "golden_hour_glow": 0.50,
+        "film_grain": 0.30,
+        "lens_distortion": 0.20
+      },
+      "tags": ["swarm", "robotic", "sunset", "murmuration"]
+    },
+    "metamorphic-pattern-evolution": {
+      "professional": {
+        "lomo": 0.35,
+        "color_fade": 0.40,
+        "film_grain": 0.50,
+        "bloom_effect": 0.45
+      },
+      "experimental": {
+        "film_halation": 0.8,
+        "cross_process": 0.9,
+        "lomo": 0.35,
+        "color_fade": 0.40,
+        "film_grain": 0.50
+      },
+      "tags": ["time-lapse", "metamorphosis", "macro", "evolution"]
+    },
+    "crystalline-growth-visualization": {
+      "professional": {
+        "cross_process": 0.30,
+        "bleach_bypass": 0.25,
+        "film_grain": 0.20,
+        "chromatic_aberration": 0.25
+      },
+      "experimental": {
+        "bloom_effect": 0.9,
+        "cross_process": 0.30,
+        "bleach_bypass": 0.25,
+        "film_grain": 0.20,
+        "chromatic_aberration": 0.25
+      },
+      "tags": ["crystal", "macro", "polarized", "growth"]
+    },
+    "liquid-metal-morphology": {
+      "professional": {
+        "bleach_bypass": 0.50,
+        "chromatic_aberration": 0.30,
+        "film_grain": 0.25,
+        "lens_distortion": 0.20
+      },
+      "experimental": {
+        "vhs_degrade": 0.7,
+        "bleach_bypass": 0.50,
+        "chromatic_aberration": 0.30,
+        "film_grain": 0.25,
+        "lens_distortion": 0.20
+      },
+      "tags": ["liquid", "metal", "high-speed", "fluid"]
+    },
+    "holographic-depth-layers": {
+      "professional": {
+        "chromatic_aberration": 0.40,
+        "bloom_effect": 0.55,
+        "film_grain": 0.20,
+        "film_stock_emulation": 0.30
+      },
+      "experimental": {
+        "lens_distortion": 0.6,
+        "cross_process": 0.7,
+        "chromatic_aberration": 0.40,
+        "bloom_effect": 0.55,
+        "film_grain": 0.20
+      },
+      "tags": ["holographic", "interface", "optical", "depth"]
+    },
+    "particle-system-feedback": {
+      "professional": {
+        "bloom_effect": 0.60,
+        "film_halation": 0.45,
+        "film_grain": 0.35,
+        "teal_and_orange": 0.30
+      },
+      "experimental": {
+        "anamorphic_simulation": 0.8,
+        "bloom_effect": 0.60,
+        "film_halation": 0.45,
+        "film_grain": 0.35,
+        "teal_and_orange": 0.30
+      },
+      "tags": ["particle", "bioluminescent", "long-exposure", "swarm"]
+    },
+    "geometric-mandala-synthesis": {
+      "professional": {
+        "film_stock_emulation": 0.45,
+        "film_grain": 0.25,
+        "golden_hour_glow": 0.35,
+        "cross_process": 0.25
+      },
+      "experimental": {
+        "chromatic_aberration": 0.6,
+        "bloom_effect": 1.0,
+        "film_stock_emulation": 0.45,
+        "film_grain": 0.25,
+        "golden_hour_glow": 0.35
+      },
+      "tags": ["geometry", "fractal", "mandala", "sacred"]
+    },
+    "neuroplastic-rhythm-garden": {
+      "professional": {
+        "bloom_effect": 0.45,
+        "film_grain": 0.30,
+        "film_stock_emulation": 0.40,
+        "cross_process": 0.30
+      },
+      "experimental": {
+        "film_halation": 0.9,
+        "chromatic_aberration": 0.7,
+        "bloom_effect": 0.45,
+        "film_grain": 0.30,
+        "film_stock_emulation": 0.40
+      },
+      "tags": ["neural", "organic", "garden", "bioluminescent"]
+    },
+    "atmospheric-pressure-sequencer": {
+      "professional": {
+        "bloom_effect": 0.35,
+        "lens_distortion": 0.15,
+        "film_grain": 0.20,
+        "teal_and_orange": 0.25
+      },
+      "experimental": {
+        "anamorphic_simulation": 0.6,
+        "chromatic_aberration": 0.7,
+        "bloom_effect": 0.35,
+        "lens_distortion": 0.15,
+        "film_grain": 0.20
+      },
+      "tags": ["atmosphere", "pressure", "waves", "sequencer"]
+    },
+    "bioacoustic-coral-patterns": {
+      "professional": {
+        "film_grain": 0.25,
+        "bloom_effect": 0.50,
+        "film_stock_emulation": 0.40,
+        "teal_and_orange": 0.30
+      },
+      "experimental": {
+        "film_halation": 0.8,
+        "cross_process": 0.7,
+        "film_grain": 0.25,
+        "bloom_effect": 0.50,
+        "film_stock_emulation": 0.40
+      },
+      "tags": ["underwater", "coral", "bioluminescent", "acoustic"]
+    },
+    "temporal-hologram-archive": {
+      "professional": {
+        "chromatic_aberration": 0.40,
+        "bloom_effect": 0.55,
+        "film_grain": 0.30,
+        "film_stock_emulation": 0.35
+      },
+      "experimental": {
+        "lens_distortion": 0.6,
+        "vhs_degrade": 0.7,
+        "chromatic_aberration": 0.40,
+        "bloom_effect": 0.55,
+        "film_grain": 0.30
+      },
+      "tags": ["hologram", "archive", "temporal", "rhythm"]
+    },
+    "gravity-wave-drum-lattice": {
+      "professional": {
+        "lens_distortion": 0.25,
+        "chromatic_aberration": 0.30,
+        "film_grain": 0.20,
+        "bloom_effect": 0.40
+      },
+      "experimental": {
+        "film_halation": 0.8,
+        "lens_distortion": 0.25,
+        "chromatic_aberration": 0.30,
+        "film_grain": 0.20,
+        "bloom_effect": 0.40
+      },
+      "tags": ["gravity", "spacetime", "lattice", "astrophysics"]
+    },
+    "aurora-harmonic-field": {
+      "professional": {
+        "bloom_effect": 0.55,
+        "film_halation": 0.45,
+        "film_grain": 0.30,
+        "teal_and_orange": 0.25
+      },
+      "experimental": {
+        "cross_process": 0.8,
+        "chromatic_aberration": 0.7,
+        "bloom_effect": 0.55,
+        "film_halation": 0.45,
+        "film_grain": 0.30
+      },
+      "tags": ["aurora", "frequency", "tundra", "long-exposure"]
+    },
+    "subsurface-resonance-geology": {
+      "professional": {
+        "bleach_bypass": 0.35,
+        "color_fade": 0.40,
+        "film_grain": 0.45,
+        "film_stock_emulation": 0.35
+      },
+      "experimental": {
+        "vhs_degrade": 0.8,
+        "bleach_bypass": 0.35,
+        "color_fade": 0.40,
+        "film_grain": 0.45,
+        "film_stock_emulation": 0.35
+      },
+      "tags": ["geology", "resonance", "layers", "cutaway"]
+    },
+    "fractal-origami-interface": {
+      "professional": {
+        "film_stock_emulation": 0.40,
+        "chromatic_aberration": 0.25,
+        "film_grain": 0.20,
+        "bloom_effect": 0.30
+      },
+      "experimental": {
+        "lens_distortion": 0.7,
+        "cross_process": 0.8,
+        "film_stock_emulation": 0.40,
+        "chromatic_aberration": 0.25,
+        "film_grain": 0.20
+      },
+      "tags": ["origami", "fractal", "interface", "tessellation"]
+    },
+    "photonic-sand-pattern-synthesizer": {
+      "professional": {
+        "bleach_bypass": 0.30,
+        "film_grain": 0.35,
+        "golden_hour_glow": 0.25,
+        "cross_process": 0.20
+      },
+      "experimental": {
+        "film_halation": 0.7,
+        "chromatic_aberration": 0.6,
+        "bleach_bypass": 0.30,
+        "film_grain": 0.35,
+        "golden_hour_glow": 0.25
+      },
+      "tags": ["cymatic", "sand", "interference", "macro"]
+    },
+    "magnetic-ferrofluid-conductor": {
+      "professional": {
+        "bleach_bypass": 0.45,
+        "film_grain": 0.30,
+        "chromatic_aberration": 0.25,
+        "lens_distortion": 0.20
+      },
+      "experimental": {
+        "vhs_degrade": 0.9,
+        "bleach_bypass": 0.45,
+        "film_grain": 0.30,
+        "chromatic_aberration": 0.25,
+        "lens_distortion": 0.20
+      },
+      "tags": ["ferrofluid", "magnetic", "interface", "spikes"]
+    }
+  },
+  "effect_definitions": {
+    "film_stock_emulation": "Authentic analog film color grading and response curves",
+    "film_grain": "Realistic film grain texture and noise patterns",
+    "golden_hour_glow": "Warm, soft lighting effect simulating golden hour photography",
+    "cross_process": "Cross-processing effect with increased contrast and saturation shifts",
+    "bloom_effect": "Luminous glow around bright areas",
+    "chromatic_aberration": "Color fringing effect from lens imperfections",
+    "lens_distortion": "Geometric distortion from wide-angle or specialty lenses",
+    "teal_and_orange": "Popular cinematic color grading scheme",
+    "bleach_bypass": "High contrast, desaturated look from bleach bypass processing",
+    "lomo": "Lo-fi camera aesthetic with vignetting and color shifts",
+    "color_fade": "Vintage color fading effect",
+    "film_halation": "Light bleeding effect around bright sources",
+    "day_for_night": "Technique to simulate nighttime from daytime footage",
+    "film_scratches": "Vintage film damage effects",
+    "anamorphic_simulation": "Widescreen anamorphic lens flares and bokeh",
+    "vhs_degrade": "VHS tape artifacts and quality degradation"
+  },
+  "usage_notes": {
+    "professional_stacks": "Subtle, broadcast-ready effects suitable for commercial work",
+    "experimental_stacks": "Bold, artistic effects for creative exploration",
+    "intensity_ranges": "Professional: 0.1-0.6, Experimental: 0.6-1.2+",
+    "combination_tips": "Layer 2-5 effects for complex looks. Start with base emulation, add grain, then creative effects"
+  }
+}

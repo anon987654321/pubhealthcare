@@ -144,7 +144,11 @@ def apply_effects_from_recipe(image, recipe, mode)
     # Handle special parameter effects
     image = if effect == "double_exposure"
               blend_mode = params.is_a?(Hash) ? params["blend_mode"] || "over" : "over"
-              send(:double_exposure, image, nil, blend_mode, mode)
+              second_image_path = params.is_a?(Hash) ? params["second_image_path"] : nil
+              if second_image_path.nil? || second_image_path.strip.empty?
+                raise ArgumentError, "double_exposure effect requires a 'second_image_path' parameter in the recipe"
+              end
+              send(:double_exposure, image, second_image_path, blend_mode, mode)
             elsif effect == "polaroid_frame"
               border_style = params.is_a?(Hash) ? params["border_style"] || "classic" : "classic"
               send(:polaroid_frame, image, intensity, border_style, mode)

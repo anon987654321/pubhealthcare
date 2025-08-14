@@ -427,22 +427,58 @@ def gather_inputs
     o.on('--no-polish', 'Skip polishing passes') { options[:polish] = false }
     o.on('--help', 'Show help') { puts o; exit }
   end
+  
+  # Check if this is a CLI-driven run BEFORE parsing (since parsing consumes ARGV)
+  cli_mode = ARGV.any? { |arg| arg.start_with?('--') }
+  
   opt.parse!(ARGV)
 
-  options[:mode] ||= (PROMPT.yes?('Professional mode? (Yes=subtle / No=experimental)', default: true) ? 'professional' : 'experimental')
-  if options[:recipe_file].nil?
-    options[:random] = PROMPT.yes?('Apply random effects? (No = load recipe)', default: true) if options[:random].nil?
-    unless options[:random]
+  options[:mode] ||= if cli_mode
+                       'professional'  # default for CLI mode
+                     else
+                       (PROMPT.yes?('Professional mode? (Yes=subtle / No=experimental)', default: true) ? 'professional' : 'experimental')
+                     end
+  
+  # Handle random vs recipe logic
+  if options[:recipe_file]
+    # Recipe file provided, default to non-random mode
+    options[:random] = false if options[:random].nil?
+  elsif options[:random] == false
+    # --no-random was specified, but no recipe file
+    if cli_mode
+      options[:recipe_file] = 'recipe.json'  # default
+    else
       options[:recipe_file] = PROMPT.ask('Recipe JSON file path:', default: 'recipe.json')
+    end
+  elsif options[:random].nil?
+    # No explicit random choice made
+    if cli_mode
+      options[:random] = true  # default for CLI mode
+    else
+      options[:random] = PROMPT.yes?('Apply random effects? (No = load recipe)', default: true)
+      unless options[:random]
+        options[:recipe_file] = PROMPT.ask('Recipe JSON file path:', default: 'recipe.json')
+      end
     end
   end
 
   if options[:random] != false
-    options[:effect_count] = PROMPT.ask('Effects per variation (1-8):', default: options[:effect_count].to_s, convert: :int) { |q| q.in('1-8') }
+    # Only ask for effect count if not already provided and random mode is active
+    if !cli_mode && options[:effect_count] == 3  # default value, might need prompting
+      options[:effect_count] = PROMPT.ask('Effects per variation (1-8):', default: options[:effect_count].to_s, convert: :int) { |q| q.in('1-8') }
+    end
   end
-  options[:variations] = PROMPT.ask('Variations per image (1-10):', default: options[:variations].to_s, convert: :int) { |q| q.in('1-10') }
-  options[:patterns] = PROMPT.ask('File patterns (comma separated):', default: options[:patterns].join(','))
-                           .split(',').map(&:strip) if options[:patterns].is_a?(Array) && options[:patterns].length == 1
+  
+  # Only ask for variations if still at default and not in CLI mode
+  if !cli_mode && options[:variations] == 3  # default value, might need prompting
+    options[:variations] = PROMPT.ask('Variations per image (1-10):', default: options[:variations].to_s, convert: :int) { |q| q.in('1-10') }
+  end
+  
+  # Only ask for patterns if still at default and not in CLI mode
+  if !cli_mode && options[:patterns] == ['**/*.{jpg,jpeg,png,webp}']  # default value
+    pattern_input = PROMPT.ask('File patterns (comma separated):', default: options[:patterns].join(','))
+    options[:patterns] = pattern_input.split(',').map(&:strip)
+  end
 
   options[:seed] ||= (ENV['SEED'] if ENV['SEED']&.match?(/^[0-9]+$/))
   if options[:seed].nil? && PROMPT.yes?('Set deterministic seed?', default: false)

@@ -29,12 +29,150 @@ bin/rails generate model WardrobeItem user:references item:references acquisitio
 bin/rails generate model StyleProfile user:references style_preferences:text body_type:string preferred_colors:text favorite_brands:text
 bin/rails generate model Recommendation user:references item:references reason:text score:decimal recommended_at:datetime
 
-# Add fashion-specific gems
-bundle add image_processing
-bundle add mini_magick
-bundle add color
-bundle add friendly_id
-bundle install
+# Add fashion-specific gems using modern Ruby best practice
+gem install --user-install image_processing
+gem install --user-install mini_magick
+gem install --user-install color
+gem install --user-install friendly_id
+
+# Rails 8 Propshaft Asset Pipeline Configuration
+mkdir -p app/assets/stylesheets
+mkdir -p app/views/shared
+
+# Create Propshaft configuration
+cat <<EOF > config/initializers/assets.rb
+# Be sure to restart your server when you modify this file.
+
+# Version of your assets, change this if you want to expire all your assets.
+Rails.application.config.assets.version = "1.0"
+
+# Add additional assets to the asset load path.
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
+
+# Precompile additional assets for Rails 8 Propshaft
+Rails.application.config.assets.precompile += %w[ amber.css ]
+EOF
+
+# Create comprehensive amber.css with animated radial gradient and responsive design
+cat <<EOF > app/assets/stylesheets/amber.css
+/* Google Fonts Caprasimo integration */
+.caprasimo-regular {
+  font-family: "Caprasimo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Amber Logo Container - Responsive Design */
+.amber-logo {
+  width: 100vw;
+  height: 33.33vw;
+  max-width: 1000px;
+  max-height: 500px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .amber-logo {
+    width: 1000px;
+    height: 500px;
+  }
+}
+
+/* Animated Radial Gradient Background */
+.amber-logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #FFB999 0%,
+    #E6CCE6 33%,
+    #CCE6CC 66%,
+    #99E6E6 100%
+  );
+  animation: amber-gradient-animation 20s infinite linear;
+  z-index: 0;
+}
+
+@keyframes amber-gradient-animation {
+  0% {
+    background: radial-gradient(circle at 50% 50%, #FFB999 0%, #E6CCE6 33%, #CCE6CC 66%, #99E6E6 100%);
+  }
+  25% {
+    background: radial-gradient(circle at 25% 75%, #E6CCE6 0%, #CCE6CC 33%, #99E6E6 66%, #FFB999 100%);
+  }
+  50% {
+    background: radial-gradient(circle at 75% 25%, #CCE6CC 0%, #99E6E6 33%, #FFB999 66%, #E6CCE6 100%);
+  }
+  75% {
+    background: radial-gradient(circle at 75% 75%, #99E6E6 0%, #FFB999 33%, #E6CCE6 66%, #CCE6CC 100%);
+  }
+  100% {
+    background: radial-gradient(circle at 50% 50%, #FFB999 0%, #E6CCE6 33%, #CCE6CC 66%, #99E6E6 100%);
+  }
+}
+
+/* Retro Lines - 9 layers with varying stroke weights */
+.retro-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.retro-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  opacity: 0.7;
+}
+
+.retro-line:nth-child(1) { top: 10%; stroke-width: 0.5; height: 1px; }
+.retro-line:nth-child(2) { top: 20%; stroke-width: 1; height: 2px; }
+.retro-line:nth-child(3) { top: 30%; stroke-width: 1.5; height: 3px; }
+.retro-line:nth-child(4) { top: 40%; stroke-width: 2; height: 4px; }
+.retro-line:nth-child(5) { top: 50%; stroke-width: 2.5; height: 5px; }
+.retro-line:nth-child(6) { top: 60%; stroke-width: 3; height: 6px; }
+.retro-line:nth-child(7) { top: 70%; stroke-width: 3.5; height: 7px; }
+.retro-line:nth-child(8) { top: 80%; stroke-width: 4; height: 8px; }
+.retro-line:nth-child(9) { top: 90%; stroke-width: 4; height: 8px; }
+
+/* SVG Curved Text Styling */
+.amber-svg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.amber-text-path {
+  font-family: "Caprasimo", serif;
+  font-size: 48px;
+  fill: rgba(255, 255, 255, 0.9);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 767px) {
+  .amber-text-path {
+    font-size: 32px;
+  }
+}
+
+/* Swoosh Curve Path */
+.swoosh-path {
+  fill: none;
+  stroke: none;
+}
+
+EOF
 
 log "Amber fashion platform setup completed with comprehensive wardrobe and styling features"
 commit "Set up Amber fashion platform with advanced wardrobe management and styling algorithms"
@@ -222,19 +360,83 @@ class HomeController < ApplicationController
 end
 EOF
 
-mkdir -p app/views/amber_logo
+mkdir -p app/views/shared
 
-cat <<EOF > app/views/amber_logo/_logo.html.erb
-<%= tag.svg xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 100 50", role: "img", class: "logo", "aria-label": t("amber.logo_alt") do %>
-  <%= tag.title t("amber.logo_title", default: "Amber Logo") %>
-  <%= tag.text x: "50", y: "30", "text-anchor": "middle", "font-family": "Helvetica, Arial, sans-serif", "font-size": "16", fill: "#f44336" do %>Amber<% end %>
-<% end %>
+cat <<EOF > app/views/shared/_amber_logo.html.erb
+<div class="amber-logo">
+  <!-- Retro Lines Layer -->
+  <div class="retro-lines">
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+    <div class="retro-line"></div>
+  </div>
+  
+  <!-- SVG with Curved Text -->
+  <%= tag.svg xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 1000 500", class: "amber-svg", role: "img", "aria-label": t("amber.logo_alt", default: "Amber Fashion Platform Logo") do %>
+    <%= tag.title t("amber.logo_title", default: "Amber - Fashion and Wardrobe Management Platform") %>
+    
+    <!-- Define the swoosh curve path for text -->
+    <%= tag.defs do %>
+      <%= tag.path id: "swoosh", d: "M 100 350 Q 300 200 500 250 T 900 350", class: "swoosh-path" %>
+    <% end %>
+    
+    <!-- Curved text along the swoosh path -->
+    <%= tag.text class: "amber-text-path caprasimo-regular" do %>
+      <%= tag.textPath href: "#swoosh", startOffset: "50%", "text-anchor": "middle" do %>Amber<% end %>
+    <% end %>
+    
+    <!-- Additional decorative elements -->
+    <%= tag.circle cx: "150", cy: "300", r: "20", fill: "rgba(255, 255, 255, 0.2)" %>
+    <%= tag.circle cx: "850", cy: "300", r: "15", fill: "rgba(255, 255, 255, 0.15)" %>
+    <%= tag.circle cx: "500", cy: "150", r: "10", fill: "rgba(255, 255, 255, 0.1)" %>
+  <% end %>
+</div>
 EOF
 
 cat <<EOF > app/views/shared/_header.html.erb
 <%= tag.header role: "banner" do %>
-  <%= render partial: "amber_logo/logo" %>
+  <%= render partial: "shared/amber_logo" %>
 <% end %>
+EOF
+
+# Create Rails 8 Propshaft-compatible layout with Google Fonts integration
+cat <<EOF > app/views/layouts/application.html.erb
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= yield(:title) || "Amber Fashion Platform" %></title>
+  <meta name="description" content="<%= yield(:description) || 'AI-enhanced fashion and wardrobe management platform' %>">
+  <meta name="keywords" content="<%= yield(:keywords) || 'amber, fashion, wardrobe, ai, styling' %>">
+  <link rel="canonical" href="<%= request.original_url %>">
+  
+  <!-- Google Fonts Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts Caprasimo -->
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&display=swap" rel="stylesheet">
+  
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  
+  <!-- Rails 8 Propshaft Asset Loading -->
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "amber", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= yield(:schema) %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>
 EOF
 
 cat <<EOF > app/views/shared/_footer.html.erb

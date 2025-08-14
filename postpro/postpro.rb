@@ -430,7 +430,17 @@ def double_exposure(image, second_image_path, blend_mode = "over", mode = "profe
     return image
   end
   second = second.resize(image.width.to_f / second.width) if second.width != image.width
-  result = (image + second * rand(0.3..0.6)).cast("uchar")
+def double_exposure(image, intensity, second_image_path = nil, blend_mode = "over", mode = "professional")
+  $logger.debug "double_exposure: Blend mode #{blend_mode}, intensity: #{intensity}"
+  second = second_image_path ? load_image(second_image_path) : image
+  unless second&.bands == image.bands
+    $logger.warn "double_exposure: Band mismatch or no second image (image: #{image.bands}, second: #{second&.bands})"
+    return image
+  end
+  second = second.resize(image.width.to_f / second.width) if second.width != image.width
+  # Use intensity to control blend factor, clamp between 0.0 and 1.0
+  blend_factor = [[intensity, 0.0].max, 1.0].min
+  result = (image * (1 - blend_factor) + second * blend_factor).cast("uchar")
   $logger.debug "double_exposure applied, avg: #{result.avg}, bands: #{result.bands}"
   result
 rescue StandardError => e

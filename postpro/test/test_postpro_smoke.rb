@@ -12,7 +12,7 @@ require 'tempfile'
 require 'digest'
 
 # Set up test environment
-ENV['GEM_PATH'] = "#{ENV['HOME']}/.local/share/gem/ruby/3.2.0:#{ENV['GEM_PATH']}"
+ENV['GEM_PATH'] = "#{ENV['HOME']}/.local/share/gem/ruby/#{RUBY_VERSION}:#{ENV['GEM_PATH']}"
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
 class PostproSmokeTest < Test::Unit::TestCase

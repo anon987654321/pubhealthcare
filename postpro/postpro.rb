@@ -312,7 +312,7 @@ def film_scratches(image, intensity, _mode, rng, _meta = {})
 end
 
 def film_stock_emulation(image, intensity, _mode, rng, meta = {})
-  stock = meta[:stock] || %w[kodak_portra fuji_velvia].sample
+  stock = meta[:stock] || %w[kodak_portra fuji_velvia].sample(random: rng)
   r, g, b = image.bandsplit
   case stock
   when 'kodak_portra'

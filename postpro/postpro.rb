@@ -513,7 +513,7 @@ def process_file(path, opts, rng, recipe_effects)
     if opts[:polish]
       polish_sequence = []
       unless effects_spec.any? { |e| e[:key] == 'film_stock_emulation' }
-        polish_sequence << { key: 'film_stock_emulation', intensity: choose_intensity(rng, opts[:mode], 0.25..0.55, 0.4..0.9), meta: { stock: %w[kodak_portra fuji_velvia].sample } }
+        polish_sequence << { key: 'film_stock_emulation', intensity: choose_intensity(rng, opts[:mode], 0.25..0.55, 0.4..0.9), meta: { stock: %w[kodak_portra fuji_velvia].sample(random: rng) } }
       end
       polish_sequence << { key: 'film_grain', intensity: choose_intensity(rng, opts[:mode], 0.3..0.6, 0.6..1.2), meta: {} }
       polish_sequence << { key: 'film_scratches', intensity: choose_intensity(rng, opts[:mode], 0.2..0.4, 0.5..0.9), meta: {} }

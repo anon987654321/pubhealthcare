@@ -184,7 +184,9 @@ def lens_distortion(image, intensity, _mode, _rng, _meta = {})
   factor = 0.15 * intensity
   dx = identity.linear([1 + factor], [0]).cast('float')
   dy = identity.linear([1 + factor], [0]).cast('float')
-  image.mapim(dx.bandjoin(dy))
+  x_distortion = identity.linear([1 + factor], [0]).cast('float')
+  y_distortion = identity.linear([1 + factor], [0]).cast('float')
+  image.mapim(x_distortion.bandjoin(y_distortion))
 rescue StandardError
   image
 end

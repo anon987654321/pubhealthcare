@@ -1,0 +1,104 @@
+{
+  "description": "VulCheck Enterprise JSON Configuration",
+  "version": "2.0",
+  
+  "basic": {
+    "log_file": "/var/log/vulcheck/security.log",
+    "verbose": false,
+    "no_color": false,
+    "strict_security": true,
+    "scan_timeout": 600
+  },
+  
+  "scanning": {
+    "network_scan": true,
+    "process_scan": true,
+    "file_scan": true,
+    "deep_scan": false
+  },
+  
+  "enterprise": {
+    "compliance_mode": "SOX",
+    "audit_logging": true,
+    "evidence_collection": true,
+    "crypto_verification": true,
+    "chain_of_custody": true,
+    
+    "reporting": {
+      "format": "json",
+      "encryption": "AES-256-GCM",
+      "signing": "ECDSA-SHA256",
+      "retention": "7_years",
+      "compression": true
+    },
+    
+    "alerting": {
+      "critical_threshold": 1,
+      "warning_threshold": 5,
+      "notification_email": "security@company.com",
+      "webhook_url": "https://alerts.company.com/webhook",
+      "sms_alerts": true
+    },
+    
+    "integration": {
+      "siem_export": true,
+      "splunk_endpoint": "https://splunk.company.com:8088",
+      "elk_endpoint": "https://elasticsearch.company.com:9200",
+      "api_key": "***REDACTED***"
+    }
+  },
+  
+  "security": {
+    "allowed_commands": [
+      "chkrootkit", "rkhunter", "aide", "netstat", "ps"
+    ],
+    "blocked_environments": [
+      "LD_PRELOAD", "LD_LIBRARY_PATH", "DYLD_INSERT_LIBRARIES"
+    ],
+    "require_secure_execution": true,
+    "log_command_execution": true
+  },
+  
+  "performance": {
+    "max_concurrent_checks": 8,
+    "memory_limit_mb": 512,
+    "cpu_limit_percent": 25,
+    "enable_progress_indicators": true,
+    "cache_results": true,
+    "cache_ttl_hours": 24
+  },
+  
+  "custom_rules": {
+    "platforms": {
+      "macos": {
+        "additional_rootkit_paths": [
+          "/System/Library/Extensions/*.kext",
+          "/Library/Extensions/*.kext"
+        ],
+        "suspicious_launchd_paths": [
+          "/Library/LaunchDaemons",
+          "/Library/LaunchAgents"
+        ]
+      },
+      "ios": {
+        "jailbreak_indicators": [
+          "/Applications/Cydia.app",
+          "/usr/bin/ssh"
+        ],
+        "restricted_directories": [
+          "/var/mobile/Library/Caches",
+          "/private/var/lib/apt"
+        ]
+      },
+      "android": {
+        "root_management_apps": [
+          "com.topjohnwu.magisk",
+          "eu.chainfire.supersu"
+        ],
+        "suspicious_packages": [
+          "rootkit", "trojan", "backdoor"
+        ]
+      }
+    }
+  }
+}

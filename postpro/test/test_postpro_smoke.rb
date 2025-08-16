@@ -167,7 +167,7 @@ class PostproSmokeTest < Test::Unit::TestCase
     require_relative '../postpro'
     
     # Clear any existing cache
-    $noise_cache.clear
+    clear_noise_cache
     
     img = Vips::Image.black(100, 100, bands: 3)
     

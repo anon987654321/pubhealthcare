@@ -1,10 +1,8 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-set -e
+set -euo pipefail
 
 # Shared utility functions for Rails apps on OpenBSD 7.5, unprivileged user, NNG/SEO/Schema optimized
-# Framework v37.3.2 compliant
+# Framework v37.3.2 compliant with Rails 8+ standards and StyleTailor integration support
 
 BASE_DIR="/home/dev/rails"
 RAILS_VERSION="8.0.0"

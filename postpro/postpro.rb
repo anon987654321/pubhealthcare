@@ -322,7 +322,7 @@ def film_stock_emulation(image, intensity, _mode, rng, meta = {})
     b = b.linear([1 - 0.05 * intensity], [-4 * intensity])
   r, g, b = image.bandsplit
   case stock
-  when KODAK_PORTRA
+  when 'kodak_portra'
     r = r.linear([1 + 0.08 * intensity], [8 * intensity])
     g = g.linear([1 - 0.04 * intensity], [0])
     b = b.linear([1 - 0.05 * intensity], [-4 * intensity])

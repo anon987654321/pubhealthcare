@@ -16,7 +16,6 @@ ENV['GEM_PATH'] = "#{ENV['HOME']}/.local/share/gem/ruby/#{RUBY_VERSION}:#{ENV['G
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
 class PostproSmokeTest < Test::Unit::TestCase
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
 class PostproSmokeTest < Test::Unit::TestCase
   def setup

@@ -438,7 +438,11 @@ def gather_inputs
   end
   
   # Check if this is a CLI-driven run BEFORE parsing (since parsing consumes ARGV)
-  cli_mode = ARGV.any? { |arg| arg.start_with?('--') }
+  known_flags = [
+    '--professional', '--experimental', '--effects', '--variations', '--seed',
+    '--patterns', '--recipe', '--no-random', '--no-polish', '--help'
+  ]
+  cli_mode = ARGV.any? { |arg| known_flags.any? { |flag| arg == flag || arg.start_with?("#{flag}=") } }
   
   opt.parse!(ARGV)
 

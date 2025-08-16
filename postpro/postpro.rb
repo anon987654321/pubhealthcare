@@ -37,7 +37,6 @@ require 'optparse'
 # ----------------------------
 # Logging
 # ----------------------------
-File.write('postpro.log', '') if File.exist?('postpro.log')
 $logger     = Logger.new('postpro.log', 'daily')
 $cli_logger = Logger.new($stdout)
 $logger.level     = Logger::DEBUG

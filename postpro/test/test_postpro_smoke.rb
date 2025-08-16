@@ -16,7 +16,13 @@ ENV['GEM_PATH'] = "#{ENV['HOME']}/.local/share/gem/ruby/#{RUBY_VERSION}:#{ENV['G
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
 class PostproSmokeTest < Test::Unit::TestCase
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
+
+class PostproSmokeTest < Test::Unit::TestCase
   def setup
+    # Save and set GEM_PATH for test isolation
+    @original_gem_path = ENV['GEM_PATH']
+    ENV['GEM_PATH'] = "#{ENV['HOME']}/.local/share/gem/ruby/#{RUBY_VERSION}:#{@original_gem_path}"
     @test_dir = File.join(File.dirname(__FILE__), '..', 'test_images')
     @postpro_script = File.join(File.dirname(__FILE__), '..', 'postpro.rb')
     

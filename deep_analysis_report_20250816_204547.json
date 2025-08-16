@@ -1,0 +1,4303 @@
+{
+  "meta": {
+    "analysis_timestamp": "2025-08-16T20:45:47.470082Z",
+    "framework_version": "38.0.0",
+    "framework_size_bytes": 166437,
+    "analyzer_version": "1.0.0",
+    "target_version": "1.0.0-release"
+  },
+  "executive_summary": {
+    "overall_health_score": 0,
+    "critical_issues": 0,
+    "total_conflicts": 6,
+    "total_clarity_issues": 47,
+    "total_overlaps": 289,
+    "total_gaps": 12,
+    "recommendations_count": 2
+  },
+  "detailed_analyses": {
+    "logical_consistency": {
+      "analysis_type": "logical_consistency",
+      "timestamp": "2025-08-16T20:45:47.470082Z",
+      "total_conflicts": 6,
+      "conflicts": [
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "rapid",
+          "missing_field": "resource_allocation",
+          "impact": "Profile rapid may not execute properly"
+        },
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "rapid",
+          "missing_field": "workflow_phases",
+          "impact": "Profile rapid may not execute properly"
+        },
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "balanced",
+          "missing_field": "resource_allocation",
+          "impact": "Profile balanced may not execute properly"
+        },
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "balanced",
+          "missing_field": "workflow_phases",
+          "impact": "Profile balanced may not execute properly"
+        },
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "compliance",
+          "missing_field": "resource_allocation",
+          "impact": "Profile compliance may not execute properly"
+        },
+        {
+          "type": "missing_profile_field",
+          "severity": "medium",
+          "profile": "compliance",
+          "missing_field": "workflow_phases",
+          "impact": "Profile compliance may not execute properly"
+        }
+      ],
+      "cross_references": 78,
+      "circular_dependencies": 0,
+      "severity_distribution": {
+        "medium": 6
+      }
+    },
+    "language_clarity": {
+      "analysis_type": "language_clarity",
+      "timestamp": "2025-08-16T20:45:47.470082Z",
+      "total_issues": 47,
+      "clarity_issues": [
+        {
+          "type": "passive_voice",
+          "severity": "low",
+          "location": "core_framework.behavioral_rules.core_rules.never_truncate_policy.description",
+          "text_sample": "All outputs must be complete and preserve all user work. No truncation, omission, ellipsis (...), or...",
+          "suggestion": "Consider using active voice for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.web_development.ruby_rails_framework.mvc_structure.models.validation_examples.code",
+          "word_count": 65,
+          "sentence": "class User < ApplicationRecord\n  has_many :posts, dependent: :destroy\n  has_many :comments, dependen...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.web_development.browser_automation.ferrum_integration.example_implementation.code",
+          "word_count": 32,
+          "sentence": "require 'ferrum'\nrequire 'stealth'\n\nclass BrowserAutomation\n  def initialize(stealth: true, headless...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.web_development.ai3_integration.example_ai3_implementation.code",
+          "word_count": 40,
+          "sentence": "*(\\S+)/\n      url = $1\n      take_screenshot(url)\n      \n    else\n      puts \"Unknown command: #{com...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.design_system.layout.tailwind_css_integration.example_config.code",
+          "word_count": 69,
+          "sentence": "{html,js,erb}'],\n  theme: {\n    extend: {\n      colors: {\n        primary: {\n          50: 'hsl(var(...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.design_system.visualization_framework.chart_js_integration.example_accessible_chart.code",
+          "word_count": 32,
+          "sentence": "title || 'Chart',\n          font: {\n            size: 18,\n            weight: 'bold'\n          }\n   ...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.design_system.visualization_framework.chart_js_integration.example_accessible_chart.code",
+          "word_count": 50,
+          "sentence": "nextSibling);\n  }\n  \n  getAccessibleColors(colors, isBorder = false) {\n    // Ensure sufficient cont...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.design_system.bundle_optimization.axe_core_validation.example_testing.code",
+          "word_count": 31,
+          "sentence": "length\n      }\n    };\n    \n    return report;\n  }\n  \n  calculateScore(results) {\n    const { violati...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.music_audio_processing.web_audio_api.example_implementation.code",
+          "word_count": 27,
+          "sentence": "webkitAudioContext)({\n        latencyHint: 'interactive', // Prioritize low latency\n        sampleRa...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.music_audio_processing.streaming_capabilities.example_streaming_setup.code",
+          "word_count": 29,
+          "sentence": "peerConnection = new RTCPeerConnection(config);\n      \n      // Get user media with optimized constr...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.code",
+          "word_count": 33,
+          "sentence": "getScreenStream();\n          break;\n        default:\n          throw new Error('Unsupported input so...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.code",
+          "word_count": 36,
+          "sentence": "getUserMedia({\n      video: {\n        width: { ideal: 1280 },\n        height: { ideal: 720 },\n      ...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.code",
+          "word_count": 27,
+          "sentence": "getDisplayMedia({\n      video: {\n        width: { ideal: 1920 },\n        height: { ideal: 1080 },\n  ...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "operations_and_workflow.system_configurations.zsh_configuration.minimal_config.example_function.code",
+          "word_count": 33,
+          "sentence": "Output directory required}\"\n  \n  [[ -d \"$input_dir\" ]] || { echo \"Error: Input directory not found\" ...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "long_sentence",
+          "severity": "medium",
+          "location": "operations_and_workflow.system_configurations.openbsd_security.pledge_unveil.example_implementation.code",
+          "word_count": 45,
+          "sentence": "h>\n\nint main() {\n    if (unveil(\"/tmp\", \"rw\") == -1)\n        err(1, \"unveil /tmp\");\n    if (unveil(\"...",
+          "suggestion": "Break into shorter sentences for clarity"
+        },
+        {
+          "type": "terminology_inconsistency",
+          "severity": "low",
+          "canonical_term": "framework",
+          "variations_used": [
+            [
+              "framework",
+              37
+            ],
+            [
+              "system",
+              25
+            ],
+            [
+              "engine",
+              2
+            ]
+          ],
+          "suggestion": "Standardize on one term for 'framework'"
+        },
+        {
+          "type": "terminology_inconsistency",
+          "severity": "low",
+          "canonical_term": "configuration",
+          "variations_used": [
+            [
+              "config",
+              11
+            ],
+            [
+              "configuration",
+              8
+            ],
+            [
+              "settings",
+              1
+            ],
+            [
+              "options",
+              21
+            ]
+          ],
+          "suggestion": "Standardize on one term for 'configuration'"
+        },
+        {
+          "type": "terminology_inconsistency",
+          "severity": "low",
+          "canonical_term": "validation",
+          "variations_used": [
+            [
+              "validation",
+              51
+            ],
+            [
+              "verification",
+              10
+            ],
+            [
+              "checking",
+              2
+            ],
+            [
+              "testing",
+              15
+            ]
+          ],
+          "suggestion": "Standardize on one term for 'validation'"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "meta.essential_info.description",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "meta.compliance_and_standards.architectural_evolution",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "meta.integration_config.github_integration.direct_repo_editing",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "core_framework.core.execution.phase_requirements.prototype_and_implement.iterative_development",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "core_framework.core.execution.phase_requirements.prototype_and_implement.security_integration",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "core_framework.behavioral_rules.core_rules.approval_required.enforcement_mechanism",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "core_framework.behavioral_rules.core_rules.never_truncate_policy.enforcement_mechanism",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "core_framework.behavioral_rules.integration_requirements.implementation_requirement",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "development_domains.music_audio_processing.streaming_capabilities.example_streaming_setup.code",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "development_domains.music_audio_processing.streaming_capabilities.example_streaming_setup.code",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.comment",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.code",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "ai_and_automation.ai_enhancement.continuous_learning.best_practices.accessibility_enhancement_guidance",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "ai_and_automation.specialized_capabilities.localization.accessibility.screen_readers",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "business_and_communication.communication.unix_style_feedback.status_indicators.optimizing",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "quality_and_standards.formatting.css.performance.vitals",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "quality_and_standards.validation_enhancement.comprehensive_validation.surgical_redundancy_removal.standard_unification",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "quality_and_standards._validation.completion.phase_integration_results.final_phase_validation",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "quality_and_standards._validation.final_validation.dry_compliance",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "quality_and_standards._validation.final_validation.cross_reference_integrity",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration.allocated_budget_percentage",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.phases.validation_integration.final_phase.production_readiness_validation.security_hardening_verification",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.temperatures.experimental.focus",
+          "jargon_term": "paradigm",
+          "suggested_replacement": "approach",
+          "suggestion": "Replace 'paradigm' with 'approach' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.research.continuous_learning.pattern_recognition",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.universal_phase_enforcement.phase_mapping.simple_requests",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.universal_phase_enforcement.phase_mapping.complex_projects",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.execution.universal_phase_enforcement.phase_mapping.complex_projects",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "operations_and_workflow.system_configurations.description",
+          "jargon_term": "optimize",
+          "suggested_replacement": "improve",
+          "suggestion": "Replace 'optimize' with 'improve' for clarity"
+        },
+        {
+          "type": "jargon_usage",
+          "severity": "low",
+          "location": "framework_management.self_optimization.self_improvement_checklist.phases.implementation.success_criteria",
+          "jargon_term": "implement",
+          "suggested_replacement": "do",
+          "suggestion": "Replace 'implement' with 'do' for clarity"
+        }
+      ],
+      "word_frequency_top10": [
+        [
+          "and",
+          265
+        ],
+        [
+          "this",
+          144
+        ],
+        [
+          "with",
+          137
+        ],
+        [
+          "for",
+          99
+        ],
+        [
+          "ref",
+          81
+        ],
+        [
+          "all",
+          59
+        ],
+        [
+          "validation",
+          51
+        ],
+        [
+          "end",
+          38
+        ],
+        [
+          "framework",
+          37
+        ],
+        [
+          "const",
+          37
+        ]
+      ],
+      "total_words": 6401,
+      "unique_words": 1702,
+      "avg_words_per_section": 4.893730886850153
+    },
+    "structural_overlaps": {
+      "analysis_type": "structural_overlaps",
+      "timestamp": "2025-08-16T20:45:47.470082Z",
+      "total_overlaps": 289,
+      "overlaps": [
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "meta",
+          "locations": [
+            "meta",
+            "quality_and_standards.formatting.html.meta"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "version",
+          "locations": [
+            "meta.essential_info.version",
+            "development_domains.web_development.stimulus_reflex.version",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.version"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "timestamp",
+          "locations": [
+            "meta.essential_info.timestamp",
+            "quality_and_standards._validation.execution.timestamp"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "description",
+          "locations": [
+            "meta.essential_info.description",
+            "meta.framework_governance.framework_improvement_mandates.description",
+            "core_framework.description",
+            "core_framework.core.description",
+            "core_framework.universal_standards.description",
+            "core_framework.behavioral_rules.core_rules.approval_required.description",
+            "core_framework.behavioral_rules.core_rules.full_internalization.description",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.description",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.description",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.description",
+            "development_domains.description",
+            "development_domains.web_development.description",
+            "development_domains.web_development.browser_automation.ferrum_integration.description",
+            "development_domains.web_development.ai3_integration.description",
+            "development_domains.design_system.description",
+            "development_domains.design_system.layout.flexbox_grid_layouts.description",
+            "development_domains.design_system.layout.tailwind_css_integration.description",
+            "development_domains.design_system.visualization_framework.description",
+            "development_domains.design_system.visualization_framework.d3_js_integration.description",
+            "development_domains.design_system.bundle_optimization.description",
+            "development_domains.design_system.bundle_optimization.axe_core_validation.description",
+            "development_domains.music_audio_processing.description",
+            "development_domains.music_audio_processing.web_audio_api.description",
+            "development_domains.music_audio_processing.streaming_capabilities.description",
+            "development_domains.music_audio_processing.tv_channel_streaming.description",
+            "development_domains.music_audio_processing.audio_validation.description",
+            "development_domains.file_processing.description",
+            "ai_and_automation.description",
+            "ai_and_automation.ai_enhancement.description",
+            "ai_and_automation.specialized_capabilities.description",
+            "ai_and_automation.autonomous_completion.description",
+            "ai_and_automation.autonomous_completion.core.description",
+            "ai_and_automation.autonomous_completion.core.strunk_white.description",
+            "ai_and_automation.autonomous_completion.core.kiss_principle_scoped.description",
+            "ai_and_automation.autonomous_completion.core.auto_iteration.description",
+            "ai_and_automation.autonomous_completion.core.safety_systems.description",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.description",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.description",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.description",
+            "business_and_communication.description",
+            "business_and_communication.business_strategy.description",
+            "business_and_communication.business_strategy.okr_framework.description",
+            "business_and_communication.business_strategy.iso_9001_compliance.description",
+            "business_and_communication.business_strategy.measurable_outcomes.description",
+            "business_and_communication.communication.description",
+            "quality_and_standards.description",
+            "quality_and_standards.quality.description",
+            "quality_and_standards.formatting.description",
+            "quality_and_standards.documentation.description",
+            "quality_and_standards.validation_enhancement.description",
+            "quality_and_standards._validation.description",
+            "operations_and_workflow.description",
+            "operations_and_workflow.workflow.description",
+            "operations_and_workflow.monitoring.description",
+            "operations_and_workflow.execution.description",
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.description",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.description",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.description",
+            "operations_and_workflow.execution.auto_validation.description",
+            "operations_and_workflow.execution.research.description",
+            "operations_and_workflow.execution.ai.description",
+            "operations_and_workflow.execution.universal_phase_enforcement.description",
+            "operations_and_workflow.execution.session.description",
+            "operations_and_workflow.system_configurations.description",
+            "operations_and_workflow.system_configurations.zsh_configuration.minimal_config.description",
+            "operations_and_workflow.system_configurations.openbsd_security.pledge_unveil.description",
+            "operations_and_workflow.system_configurations.package_management.pkg_add_optimization.description",
+            "operations_and_workflow.infrastructure_preservation.description",
+            "framework_management.description",
+            "framework_management.self_optimization.description",
+            "framework_management.self_optimization.infinite_optimization_safety.description",
+            "framework_management.self_optimization.self_improvement_checklist.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.reconnaissance.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.duplication_analysis.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.architecture_assessment.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.consolidation_design.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.implementation.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.validation.description",
+            "framework_management.self_optimization.self_improvement_checklist.phases.before_after_comparison.description",
+            "framework_management.self_optimization.success_metrics.description",
+            "framework_management.self_optimization.success_metrics.metrics.structural_clarity.description",
+            "framework_management.self_optimization.success_metrics.metrics.modularity.description",
+            "framework_management.self_optimization.success_metrics.metrics.maintainability.description",
+            "framework_management.self_optimization.success_metrics.metrics.extensibility.description",
+            "framework_management.self_optimization.success_metrics.metrics.self_validation.description",
+            "framework_management.self_optimization.meta_validation_prompt.description",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.self_application_requirements.description",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_1_self_assessment.description",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_2_improvement_measurement.description",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_3_systematic_validation.description",
+            "framework_management.cross_reference_integrity_system.description",
+            "framework_management.cross_reference_integrity_system.reference_catalog.description",
+            "framework_management.change_management.description",
+            "framework_management.framework_self_optimization.description"
+          ],
+          "count": 94,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "reveal_on",
+          "locations": [
+            "meta.framework_governance.reveal_on",
+            "meta.compliance_and_standards.reveal_on",
+            "meta.processing_and_preservation.reveal_on",
+            "meta.project_configuration.reveal_on",
+            "meta.advanced_operations.reveal_on",
+            "meta.integration_config.reveal_on",
+            "core_framework.reveal_on",
+            "development_domains.reveal_on",
+            "ai_and_automation.reveal_on",
+            "business_and_communication.reveal_on",
+            "quality_and_standards.reveal_on",
+            "operations_and_workflow.reveal_on",
+            "framework_management.reveal_on"
+          ],
+          "count": 13,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "complexity",
+          "locations": [
+            "meta.framework_governance.complexity",
+            "meta.compliance_and_standards.complexity",
+            "meta.processing_and_preservation.complexity",
+            "meta.project_configuration.complexity",
+            "meta.advanced_operations.complexity",
+            "meta.integration_config.complexity",
+            "core_framework.complexity",
+            "development_domains.complexity",
+            "ai_and_automation.complexity",
+            "business_and_communication.complexity",
+            "quality_and_standards.complexity",
+            "operations_and_workflow.complexity",
+            "framework_management.complexity"
+          ],
+          "count": 13,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "role",
+          "locations": [
+            "meta.framework_governance.role",
+            "ai_and_automation.autonomous_completion.role",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[0].role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[1].role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[2].role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[3].role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[4].role",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[5].role"
+          ],
+          "count": 9,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "measurable_improvement_requirement",
+          "locations": [
+            "meta.framework_governance.framework_improvement_mandates.measurable_improvement_requirement",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.self_application_requirements.measurable_improvement_requirement"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "compliance",
+          "locations": [
+            "meta.compliance_and_standards.compliance",
+            "ai_and_automation.specialized_capabilities.scraping.ethical_framework.compliance",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.risk_categories.compliance"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "change_management",
+          "locations": [
+            "meta.processing_and_preservation.llm_processing_guidelines.change_management",
+            "core_framework.behavioral_rules.cross_references.change_management",
+            "framework_management.change_management"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "quality_gates",
+          "locations": [
+            "meta.project_configuration.project_overrides.prototype_projects.quality_gates",
+            "core_framework.core.execution.quality_gates",
+            "core_framework.universal_standards.quality_gates",
+            "ai_and_automation.ai_enhancement.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.code.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.web_development.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.business.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.creative.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.documentation.quality_gates",
+            "ai_and_automation.autonomous_completion.project_types.configuration.quality_gates",
+            "quality_and_standards.quality.testing_framework.quality_gates"
+          ],
+          "count": 11,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "security_requirements",
+          "locations": [
+            "meta.project_configuration.project_overrides.prototype_projects.security_requirements",
+            "quality_and_standards.validation_enhancement.comprehensive_validation.systematic_analysis.security_requirements"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "documentation",
+          "locations": [
+            "meta.project_configuration.project_overrides.production_projects.documentation",
+            "ai_and_automation.specialized_capabilities.ai_enhancement.content_generation.documentation",
+            "ai_and_automation.autonomous_completion.project_types.documentation",
+            "quality_and_standards.documentation"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "inline_comments",
+          "locations": [
+            "meta.advanced_operations.tiered_documentation.production_requirements.inline_comments",
+            "meta.advanced_operations.tiered_documentation.prototype_requirements.inline_comments",
+            "quality_and_standards.documentation.inline_comments"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "section_descriptions",
+          "locations": [
+            "meta.advanced_operations.tiered_documentation.production_requirements.section_descriptions",
+            "meta.advanced_operations.tiered_documentation.prototype_requirements.section_descriptions"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cross_references",
+          "locations": [
+            "meta.advanced_operations.tiered_documentation.production_requirements.cross_references",
+            "meta.advanced_operations.tiered_documentation.prototype_requirements.cross_references",
+            "core_framework.behavioral_rules.cross_references"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_examples",
+          "locations": [
+            "meta.advanced_operations.tiered_documentation.production_requirements.validation_examples",
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.models.validation_examples"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "never_truncate_policy",
+          "locations": [
+            "meta.advanced_operations.restoration_summary.never_truncate_policy",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "design_system",
+          "locations": [
+            "meta.advanced_operations.restoration_summary.design_system",
+            "development_domains.design_system"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "self_optimization",
+          "locations": [
+            "meta.advanced_operations.restoration_summary.self_optimization",
+            "framework_management.self_optimization"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "specialized_capabilities",
+          "locations": [
+            "meta.advanced_operations.restoration_summary.specialized_capabilities",
+            "ai_and_automation.specialized_capabilities"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "testing_framework",
+          "locations": [
+            "meta.advanced_operations.restoration_summary.testing_framework",
+            "quality_and_standards.quality.testing_framework"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "core",
+          "locations": [
+            "core_framework.core",
+            "ai_and_automation.autonomous_completion.core"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "behavioral_rules",
+          "locations": [
+            "core_framework.core.behavioral_rules",
+            "core_framework.behavioral_rules",
+            "framework_management.self_optimization.preservation_requirements.behavioral_rules"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "approval_required",
+          "locations": [
+            "core_framework.core.behavioral_rules.governance.approval_required",
+            "core_framework.behavioral_rules.core_rules.approval_required",
+            "framework_management.change_management.approval_required"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation",
+          "locations": [
+            "core_framework.core.behavioral_rules.governance.validation",
+            "core_framework.core.execution.validation",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.allocation_strategy.validation",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.response_time.validation",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources.validation",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors.validation",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.cognitive_load.validation",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.allocation.validation",
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.validation",
+            "operations_and_workflow.system_configurations.zsh_configuration.validation",
+            "framework_management.self_optimization.self_improvement_checklist.phases.validation"
+          ],
+          "count": 11,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "rollback_capability",
+          "locations": [
+            "core_framework.core.behavioral_rules.governance.governance_enforcement.rollback_capability",
+            "framework_management.self_optimization.bounded_recursive_enhancement.safety_mechanisms.rollback_capability",
+            "framework_management.cross_reference_integrity_system.maintenance_automation.automatic_updates.update_procedures.rollback_capability"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "execution",
+          "locations": [
+            "core_framework.core.execution",
+            "business_and_communication.business_strategy.okr_framework.implementation.quarterly_cycle.execution",
+            "quality_and_standards._validation.execution",
+            "operations_and_workflow.execution"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "phases",
+          "locations": [
+            "core_framework.core.execution.phases",
+            "business_and_communication.business_strategy.methodology.design_thinking.phases",
+            "quality_and_standards._validation.completion.phases",
+            "operations_and_workflow.execution.phases",
+            "framework_management.self_optimization.self_improvement_checklist.phases"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "stakeholder_mapping",
+          "locations": [
+            "core_framework.core.execution.phase_requirements.empathize_and_analyze.stakeholder_mapping",
+            "business_and_communication.business_strategy.strategic_tools.stakeholder_mapping"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "technology_selection",
+          "locations": [
+            "core_framework.core.execution.phase_requirements.ideate_and_architect.technology_selection",
+            "ai_and_automation.specialized_capabilities.ai_enhancement.decision_support.technology_selection"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "code_quality",
+          "locations": [
+            "core_framework.core.execution.phase_requirements.prototype_and_implement.code_quality",
+            "quality_and_standards.validation_enhancement.comprehensive_validation.systematic_analysis.code_quality"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_optimization",
+          "locations": [
+            "core_framework.core.execution.phase_requirements.optimize_and_refine.performance_optimization",
+            "development_domains.web_development.browser_automation.ferrum_integration.performance_optimization",
+            "development_domains.design_system.visualization_framework.d3_js_integration.performance_optimization",
+            "development_domains.music_audio_processing.web_audio_api.performance_optimization",
+            "framework_management.self_optimization.infinite_optimization_safety.safety_protocols.resource_management.performance_optimization"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "test_coverage_minimum",
+          "locations": [
+            "core_framework.core.execution.quality_gates.test_coverage_minimum",
+            "core_framework.universal_standards.quality_gates.test_coverage_minimum"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "lighthouse_score_minimum",
+          "locations": [
+            "core_framework.core.execution.quality_gates.lighthouse_score_minimum",
+            "core_framework.universal_standards.quality_gates.lighthouse_score_minimum"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "bundle_size_limit",
+          "locations": [
+            "core_framework.core.execution.quality_gates.bundle_size_limit",
+            "core_framework.universal_standards.performance.bundle_size_limit"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "api_latency_limit",
+          "locations": [
+            "core_framework.core.execution.quality_gates.api_latency_limit",
+            "core_framework.universal_standards.performance.api_latency_limit"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "accessibility_compliance",
+          "locations": [
+            "core_framework.core.execution.quality_gates.accessibility_compliance",
+            "quality_and_standards.validation_enhancement.comprehensive_validation.systematic_analysis.accessibility_compliance"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "accessibility",
+          "locations": [
+            "core_framework.universal_standards.accessibility",
+            "development_domains.web_development.frontend.accessibility",
+            "development_domains.design_system.typography.accessibility",
+            "development_domains.design_system.color_system.accessibility",
+            "development_domains.design_system.motion_design.accessibility",
+            "development_domains.design_system.visualization_framework.chart_js_integration.configuration.accessibility",
+            "ai_and_automation.specialized_capabilities.visualization.charts.accessibility",
+            "ai_and_automation.specialized_capabilities.localization.accessibility",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.criteria.accessibility",
+            "quality_and_standards.quality.testing_framework.quality_gates.accessibility",
+            "quality_and_standards.quality.testing_framework.tools.accessibility",
+            "quality_and_standards.formatting.accessibility",
+            "quality_and_standards.formatting.html.accessibility"
+          ],
+          "count": 13,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "contrast_enhanced",
+          "locations": [
+            "core_framework.universal_standards.accessibility.contrast_enhanced",
+            "development_domains.design_system.typography.accessibility.contrast_enhanced"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "security",
+          "locations": [
+            "core_framework.universal_standards.security",
+            "ai_and_automation.specialized_capabilities.async.security",
+            "ai_and_automation.specialized_capabilities.browser.security",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.criteria.security",
+            "quality_and_standards.quality.coverage.security",
+            "quality_and_standards.quality.testing_framework.quality_gates.security",
+            "quality_and_standards.quality.testing_framework.tools.security",
+            "quality_and_standards.formatting.system.security",
+            "quality_and_standards.formatting.database.security",
+            "operations_and_workflow.workflow.automation.deployment.security",
+            "operations_and_workflow.monitoring.real_time.system.security"
+          ],
+          "count": 11,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "architecture",
+          "locations": [
+            "core_framework.universal_standards.security.architecture",
+            "development_domains.music_audio_processing.tv_channel_streaming.architecture",
+            "ai_and_automation.specialized_capabilities.async.patterns.architecture",
+            "quality_and_standards.formatting.css.architecture"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "encryption",
+          "locations": [
+            "core_framework.universal_standards.security.encryption",
+            "quality_and_standards.formatting.database.security.encryption"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance",
+          "locations": [
+            "core_framework.universal_standards.performance",
+            "development_domains.web_development.stimulus_reflex.performance",
+            "development_domains.web_development.performance",
+            "ai_and_automation.specialized_capabilities.visualization.3d.performance",
+            "ai_and_automation.specialized_capabilities.browser.performance",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.criteria.performance",
+            "quality_and_standards.quality.testing_framework.quality_gates.performance",
+            "quality_and_standards.quality.testing_framework.tools.performance",
+            "quality_and_standards.formatting.css.performance",
+            "quality_and_standards.formatting.database.performance",
+            "operations_and_workflow.workflow.automation.testing.performance",
+            "operations_and_workflow.monitoring.real_time.system.performance",
+            "operations_and_workflow.monitoring.alerting.performance"
+          ],
+          "count": 13,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "core_web_vitals",
+          "locations": [
+            "core_framework.universal_standards.performance.core_web_vitals",
+            "development_domains.web_development.performance.core_web_vitals"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "enforcement",
+          "locations": [
+            "core_framework.behavioral_rules.enforcement",
+            "core_framework.behavioral_rules.core_rules.approval_required.enforcement",
+            "core_framework.behavioral_rules.core_rules.full_internalization.enforcement",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.enforcement",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.enforcement",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.enforcement",
+            "framework_management.framework_self_optimization.health_checks.cognitive_load_validation.enforcement"
+          ],
+          "count": 7,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "id",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.id",
+            "core_framework.behavioral_rules.core_rules.full_internalization.id",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.id",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.id",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.id"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "rule",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.rule",
+            "core_framework.behavioral_rules.core_rules.full_internalization.rule",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.rule",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.rule",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.rule"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "applies_to",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.applies_to",
+            "core_framework.behavioral_rules.core_rules.full_internalization.applies_to",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.applies_to",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.applies_to",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.applies_to",
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.applies_to",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.applies_to",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.applies_to"
+          ],
+          "count": 8,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "enforcement_mechanism",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.enforcement_mechanism",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.enforcement_mechanism"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "exceptions",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.exceptions",
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow.exceptions",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.exceptions"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_required",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.validation_required",
+            "operations_and_workflow.execution.phases.execution_rules.validation_required",
+            "operations_and_workflow.system_configurations.openbsd_security.posix_compliance.validation_required"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "compliance_requirement",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.approval_required.compliance_requirement",
+            "core_framework.behavioral_rules.core_rules.never_truncate_policy.compliance_requirement"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "scope",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.full_internalization.scope",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.scope",
+            "ai_and_automation.autonomous_completion.core.strunk_white.scope"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "no_shortcuts",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.full_internalization.no_shortcuts",
+            "core_framework.behavioral_rules.core_rules.comprehensive_reading.no_shortcuts"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "main_branch_workflow",
+          "locations": [
+            "core_framework.behavioral_rules.core_rules.main_branch_workflow",
+            "operations_and_workflow.workflow.git.behavioral_compliance.main_branch_workflow"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "workflow",
+          "locations": [
+            "core_framework.behavioral_rules.cross_references.workflow",
+            "operations_and_workflow.workflow"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "autonomous_completion",
+          "locations": [
+            "core_framework.behavioral_rules.cross_references.autonomous_completion",
+            "ai_and_automation.autonomous_completion",
+            "operations_and_workflow.execution.ai.decision_making.autonomous_completion"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "file_processing",
+          "locations": [
+            "core_framework.behavioral_rules.cross_references.file_processing",
+            "development_domains.file_processing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "integration_requirements",
+          "locations": [
+            "core_framework.behavioral_rules.integration_requirements",
+            "framework_management.self_optimization.meta_validation_prompt.integration_requirements"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_integration",
+          "locations": [
+            "core_framework.behavioral_rules.integration_requirements.validation_integration",
+            "development_domains.file_processing.validation_integration",
+            "operations_and_workflow.execution.phases.validation_integration"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "detection",
+          "locations": [
+            "core_framework.behavioral_rules.violation_handling.detection",
+            "ai_and_automation.autonomous_completion.core.safety_systems.loop_prevention.detection"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "response",
+          "locations": [
+            "core_framework.behavioral_rules.violation_handling.response",
+            "quality_and_standards.quality.metrics.response"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "logging",
+          "locations": [
+            "core_framework.behavioral_rules.violation_handling.logging",
+            "quality_and_standards.formatting.system.logging",
+            "framework_management.change_management.logging"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "recovery",
+          "locations": [
+            "core_framework.behavioral_rules.violation_handling.recovery",
+            "ai_and_automation.autonomous_completion.core.safety_systems.loop_prevention.termination.recovery",
+            "ai_and_automation.autonomous_completion.core.safety_systems.failure_cascade_prevention.recovery",
+            "operations_and_workflow.workflow.state.recovery"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "principles",
+          "locations": [
+            "core_framework.principles",
+            "development_domains.design_system.principles",
+            "quality_and_standards.formatting.rails.principles"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "web_development",
+          "locations": [
+            "development_domains.web_development",
+            "ai_and_automation.autonomous_completion.project_types.web_development"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "comment",
+          "locations": [
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.models.validation_examples.comment",
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.controllers.example_controller.comment",
+            "development_domains.web_development.browser_automation.ferrum_integration.example_implementation.comment",
+            "development_domains.web_development.ai3_integration.example_ai3_implementation.comment",
+            "development_domains.design_system.layout.flexbox_grid_layouts.example_implementation.comment",
+            "development_domains.design_system.layout.tailwind_css_integration.example_config.comment",
+            "development_domains.design_system.visualization_framework.chart_js_integration.example_accessible_chart.comment",
+            "development_domains.design_system.bundle_optimization.axe_core_validation.example_testing.comment",
+            "development_domains.music_audio_processing.web_audio_api.example_implementation.comment",
+            "development_domains.music_audio_processing.streaming_capabilities.example_streaming_setup.comment",
+            "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.comment",
+            "operations_and_workflow.system_configurations.zsh_configuration.minimal_config.example_function.comment",
+            "operations_and_workflow.system_configurations.openbsd_security.pledge_unveil.example_implementation.comment",
+            "operations_and_workflow.system_configurations.package_management.pkg_add_optimization.example_workflow.comment"
+          ],
+          "count": 14,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "code",
+          "locations": [
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.models.validation_examples.code",
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.controllers.example_controller.code",
+            "development_domains.web_development.browser_automation.ferrum_integration.example_implementation.code",
+            "development_domains.web_development.ai3_integration.example_ai3_implementation.code",
+            "development_domains.design_system.layout.flexbox_grid_layouts.example_implementation.code",
+            "development_domains.design_system.layout.tailwind_css_integration.example_config.code",
+            "development_domains.design_system.visualization_framework.chart_js_integration.example_accessible_chart.code",
+            "development_domains.design_system.bundle_optimization.axe_core_validation.example_testing.code",
+            "development_domains.music_audio_processing.web_audio_api.example_implementation.code",
+            "development_domains.music_audio_processing.streaming_capabilities.example_streaming_setup.code",
+            "development_domains.music_audio_processing.tv_channel_streaming.example_minimal_pipeline.code",
+            "ai_and_automation.autonomous_completion.project_types.code",
+            "quality_and_standards.quality.coverage.code",
+            "operations_and_workflow.system_configurations.zsh_configuration.minimal_config.example_function.code",
+            "operations_and_workflow.system_configurations.openbsd_security.pledge_unveil.example_implementation.code",
+            "operations_and_workflow.system_configurations.package_management.pkg_add_optimization.example_workflow.code"
+          ],
+          "count": 16,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "partials",
+          "locations": [
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.views.partials",
+            "quality_and_standards.formatting.erb.partials",
+            "quality_and_standards.formatting.scss.partials"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "controllers",
+          "locations": [
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.controllers",
+            "quality_and_standards.formatting.javascript.stimulus.controllers"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "restful_routing",
+          "locations": [
+            "development_domains.web_development.ruby_rails_framework.mvc_structure.controllers.restful_routing",
+            "development_domains.web_development.ruby_rails_framework.restful_routing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "configuration",
+          "locations": [
+            "development_domains.web_development.browser_automation.ferrum_integration.configuration",
+            "development_domains.design_system.layout.tailwind_css_integration.configuration",
+            "development_domains.design_system.visualization_framework.chart_js_integration.configuration",
+            "ai_and_automation.autonomous_completion.project_types.configuration"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "headless",
+          "locations": [
+            "development_domains.web_development.browser_automation.ferrum_integration.configuration.headless",
+            "ai_and_automation.specialized_capabilities.browser.automation_frameworks.headless"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "example_implementation",
+          "locations": [
+            "development_domains.web_development.browser_automation.ferrum_integration.example_implementation",
+            "development_domains.design_system.layout.flexbox_grid_layouts.example_implementation",
+            "development_domains.music_audio_processing.web_audio_api.example_implementation",
+            "operations_and_workflow.system_configurations.openbsd_security.pledge_unveil.example_implementation"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "frontend",
+          "locations": [
+            "development_domains.web_development.frontend",
+            "quality_and_standards.formatting.rails.usage.frontend"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "breakpoints",
+          "locations": [
+            "development_domains.web_development.frontend.breakpoints",
+            "development_domains.design_system.spatial.breakpoints",
+            "quality_and_standards.formatting.css.architecture.breakpoints"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "frameworks",
+          "locations": [
+            "development_domains.web_development.frontend.frameworks",
+            "ai_and_automation.specialized_capabilities.visualization.3d.frameworks"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "stimulus",
+          "locations": [
+            "development_domains.web_development.frontend.frameworks.stimulus",
+            "quality_and_standards.formatting.javascript.stimulus"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "stimulus_reflex",
+          "locations": [
+            "development_domains.web_development.frontend.frameworks.stimulus_reflex",
+            "development_domains.web_development.stimulus_reflex"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "bundling",
+          "locations": [
+            "development_domains.web_development.frontend.bundling",
+            "quality_and_standards.formatting.javascript.bundling"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "import_maps",
+          "locations": [
+            "development_domains.web_development.frontend.bundling.import_maps",
+            "quality_and_standards.formatting.javascript.bundling.import_maps"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "standards",
+          "locations": [
+            "development_domains.web_development.frontend.bundling.standards",
+            "quality_and_standards.quality.standards"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "solid_queue",
+          "locations": [
+            "development_domains.web_development.backend.rails_8.solid_queue",
+            "quality_and_standards.formatting.rails.features.solid_queue"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "solid_cache",
+          "locations": [
+            "development_domains.web_development.backend.rails_8.solid_cache",
+            "quality_and_standards.formatting.rails.features.solid_cache"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "isolation",
+          "locations": [
+            "development_domains.web_development.stimulus_reflex.isolation",
+            "ai_and_automation.autonomous_completion.core.safety_systems.failure_cascade_prevention.isolation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "pwa",
+          "locations": [
+            "development_domains.web_development.pwa",
+            "quality_and_standards.quality.coverage.pwa",
+            "quality_and_standards.formatting.css.architecture.pwa",
+            "operations_and_workflow.monitoring.real_time.system.pwa"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "lighthouse",
+          "locations": [
+            "development_domains.web_development.pwa.lighthouse",
+            "quality_and_standards.quality.metrics.lighthouse",
+            "operations_and_workflow.workflow.automation.testing.lighthouse"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "typography",
+          "locations": [
+            "development_domains.design_system.typography",
+            "business_and_communication.communication.unix_style_feedback.terminal_aesthetics.typography",
+            "quality_and_standards.formatting.ui_ux.typography"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "scale",
+          "locations": [
+            "development_domains.design_system.typography.scale",
+            "development_domains.design_system.spatial.scale"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "base",
+          "locations": [
+            "development_domains.design_system.typography.base",
+            "development_domains.design_system.spatial.base"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "ratio",
+          "locations": [
+            "development_domains.design_system.typography.ratio",
+            "development_domains.design_system.spatial.ratio"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "primary",
+          "locations": [
+            "development_domains.design_system.typography.fonts.primary",
+            "development_domains.design_system.color_system.palette.primary",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.stop_conditions.primary"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "normal",
+          "locations": [
+            "development_domains.design_system.typography.line_height.normal",
+            "development_domains.design_system.motion_design.duration.normal",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources.normal"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "optimal",
+          "locations": [
+            "development_domains.design_system.typography.measure.optimal",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.cognitive_load.optimal"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "methodology",
+          "locations": [
+            "development_domains.design_system.color_system.methodology",
+            "business_and_communication.business_strategy.methodology"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "semantic",
+          "locations": [
+            "development_domains.design_system.color_system.palette.semantic",
+            "quality_and_standards.formatting.universal.indentation.semantic",
+            "quality_and_standards.formatting.html.semantic"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "error",
+          "locations": [
+            "development_domains.design_system.color_system.palette.semantic.error",
+            "business_and_communication.communication.unix_style_feedback.status_indicators.error"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "grid",
+          "locations": [
+            "development_domains.design_system.spatial.grid",
+            "development_domains.design_system.layout.grid"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "spacing",
+          "locations": [
+            "development_domains.design_system.spatial.spacing",
+            "development_domains.design_system.layout.spacing",
+            "business_and_communication.communication.unix_style_feedback.terminal_aesthetics.spacing"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "mobile",
+          "locations": [
+            "development_domains.design_system.spatial.breakpoints.mobile",
+            "ai_and_automation.specialized_capabilities.browser.automation_frameworks.mobile"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "best_practices",
+          "locations": [
+            "development_domains.design_system.layout.tailwind_css_integration.best_practices",
+            "ai_and_automation.ai_enhancement.continuous_learning.best_practices",
+            "operations_and_workflow.execution.research.sources.best_practices"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "responsive",
+          "locations": [
+            "development_domains.design_system.visualization_framework.chart_js_integration.configuration.responsive",
+            "ai_and_automation.specialized_capabilities.visualization.data_visualization.responsive",
+            "quality_and_standards.formatting.ui_ux.responsive"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "animation",
+          "locations": [
+            "development_domains.design_system.visualization_framework.chart_js_integration.configuration.animation",
+            "ai_and_automation.specialized_capabilities.visualization.animation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "optimization_strategies",
+          "locations": [
+            "development_domains.design_system.bundle_optimization.optimization_strategies",
+            "ai_and_automation.specialized_capabilities.ai_enhancement.decision_support.optimization_strategies"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "tree_shaking",
+          "locations": [
+            "development_domains.design_system.bundle_optimization.optimization_strategies.tree_shaking",
+            "quality_and_standards.formatting.javascript.bundling.tree_shaking"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "caching",
+          "locations": [
+            "development_domains.design_system.bundle_optimization.optimization_strategies.caching",
+            "quality_and_standards.formatting.database.performance.caching"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "integration",
+          "locations": [
+            "development_domains.design_system.bundle_optimization.axe_core_validation.integration",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.integration"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "reporting",
+          "locations": [
+            "development_domains.design_system.bundle_optimization.axe_core_validation.reporting",
+            "operations_and_workflow.monitoring.reporting",
+            "framework_management.cross_reference_integrity_system.automated_verification.broken_reference_detection.reporting"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "target_latency",
+          "locations": [
+            "development_domains.music_audio_processing.web_audio_api.low_latency_requirements.target_latency",
+            "development_domains.music_audio_processing.streaming_capabilities.latency_optimization.target_latency"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "quality_metrics",
+          "locations": [
+            "development_domains.music_audio_processing.audio_validation.quality_metrics",
+            "business_and_communication.business_strategy.measurable_outcomes.outcome_categories.operational_metrics.quality_metrics"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "automated_testing",
+          "locations": [
+            "development_domains.music_audio_processing.audio_validation.automated_testing",
+            "quality_and_standards.quality.testing_framework.validation_procedures.automated_testing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "ai_enhancement",
+          "locations": [
+            "ai_and_automation.ai_enhancement",
+            "ai_and_automation.specialized_capabilities.ai_enhancement",
+            "operations_and_workflow.execution.phases.execution_rules.ai_enhancement"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "semantic_analysis",
+          "locations": [
+            "ai_and_automation.ai_enhancement.semantic_analysis",
+            "ai_and_automation.ai_enhancement.quality_gates.code_review.semantic_analysis"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "dependency_mapping",
+          "locations": [
+            "ai_and_automation.ai_enhancement.semantic_analysis.code_understanding.dependency_mapping",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.dependency_mapping"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "context_awareness",
+          "locations": [
+            "ai_and_automation.ai_enhancement.semantic_analysis.context_awareness",
+            "operations_and_workflow.execution.ai.context_awareness"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "error_prevention",
+          "locations": [
+            "ai_and_automation.ai_enhancement.semantic_analysis.intent_recognition.error_prevention",
+            "framework_management.cross_reference_integrity_system.integrity_monitoring.real_time_validation.validation_response.error_prevention"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_prediction",
+          "locations": [
+            "ai_and_automation.ai_enhancement.quality_gates.code_review.performance_prediction",
+            "ai_and_automation.specialized_capabilities.ai_enhancement.code_analysis.performance_prediction"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "continuous_learning",
+          "locations": [
+            "ai_and_automation.ai_enhancement.continuous_learning",
+            "operations_and_workflow.execution.research.continuous_learning"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "pattern_recognition",
+          "locations": [
+            "ai_and_automation.ai_enhancement.continuous_learning.pattern_recognition",
+            "ai_and_automation.autonomous_completion.core.auto_iteration.learning_and_adaptation.pattern_recognition",
+            "operations_and_workflow.execution.research.continuous_learning.pattern_recognition",
+            "framework_management.self_optimization.meta_analysis.pattern_recognition"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "capabilities",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.visualization.3d.capabilities",
+            "ai_and_automation.autonomous_completion.capabilities"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "optimization",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.visualization.3d.optimization",
+            "ai_and_automation.specialized_capabilities.visualization.animation.optimization",
+            "ai_and_automation.specialized_capabilities.browser.performance.optimization",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.allocation_strategy.optimization",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.allocation.optimization"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "libraries",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.visualization.charts.libraries",
+            "ai_and_automation.specialized_capabilities.scraping.technical_capabilities.libraries"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "features",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.visualization.charts.features",
+            "quality_and_standards.formatting.ruby.features",
+            "quality_and_standards.formatting.rails.features"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "real_time",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.visualization.data_visualization.real_time",
+            "operations_and_workflow.monitoring.real_time",
+            "operations_and_workflow.execution.auto_validation.files.real_time"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "patterns",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.patterns",
+            "ai_and_automation.autonomous_completion.core.safety_systems.loop_prevention.detection.patterns"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "ruby",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.patterns.ruby",
+            "quality_and_standards.formatting.ruby"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "javascript",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.patterns.javascript",
+            "quality_and_standards.formatting.javascript"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "coordination",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.patterns.coordination",
+            "ai_and_automation.specialized_capabilities.scraping.scalability.coordination"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "rate_limiting",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.security.rate_limiting",
+            "ai_and_automation.specialized_capabilities.scraping.ethical_framework.rate_limiting"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "resource_limits",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.security.resource_limits",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.extreme_scrutiny_framework.mandatory_validations.resource_limits"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "sandboxing",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.security.sandboxing",
+            "ai_and_automation.specialized_capabilities.browser.security.sandboxing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "monitoring",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.monitoring",
+            "ai_and_automation.specialized_capabilities.browser.performance.monitoring",
+            "ai_and_automation.specialized_capabilities.scraping.robustness.monitoring",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.monitoring",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.monitoring",
+            "quality_and_standards.formatting.system.monitoring",
+            "operations_and_workflow.workflow.automation.deployment.monitoring",
+            "operations_and_workflow.monitoring",
+            "operations_and_workflow.execution.universal_phase_enforcement.monitoring"
+          ],
+          "count": 9,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_metrics",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.monitoring.performance_metrics",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.monitoring.performance_metrics"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "alerting",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.monitoring.alerting",
+            "operations_and_workflow.monitoring.alerting"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "scalability",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.async.scalability",
+            "ai_and_automation.specialized_capabilities.scraping.scalability",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.criteria.scalability"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "error_handling",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.scraping.robustness.error_handling",
+            "operations_and_workflow.execution.session.error_handling",
+            "operations_and_workflow.system_configurations.zsh_configuration.minimal_config.error_handling"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "storage",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.scraping.scalability.storage",
+            "ai_and_automation.autonomous_completion.core.safety_systems.resource_protection.thresholds.storage"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "processing",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.scraping.scalability.processing",
+            "business_and_communication.communication.unix_style_feedback.status_indicators.processing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "refactoring_suggestions",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.ai_enhancement.code_analysis.refactoring_suggestions",
+            "framework_management.framework_self_optimization.health_checks.dry_compliance.refactoring_suggestions"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "api_documentation",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.ai_enhancement.content_generation.api_documentation",
+            "quality_and_standards.documentation.auto_generation.api_documentation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "risk_assessment",
+          "locations": [
+            "ai_and_automation.specialized_capabilities.ai_enhancement.decision_support.risk_assessment",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.risk_assessment"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "enabled",
+          "locations": [
+            "ai_and_automation.autonomous_completion.enabled",
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.enabled",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.extreme_scrutiny_framework.enabled",
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.enabled",
+            "ai_and_automation.autonomous_completion.core.auto_iteration.enabled",
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.enabled",
+            "business_and_communication.communication.unix_style_feedback.enabled",
+            "business_and_communication.communication.unix_style_feedback.command_style_prompts.enabled",
+            "quality_and_standards.quality.testing_framework.rollback_mechanisms.enabled",
+            "quality_and_standards.documentation.inline_comments.enabled",
+            "quality_and_standards.validation_enhancement.zero_tolerance_mode.enabled",
+            "operations_and_workflow.execution.phases.execution_rules.performance_monitoring.enabled",
+            "operations_and_workflow.execution.phases.execution_rules.circuit_breaker_integration.enabled",
+            "operations_and_workflow.execution.phases.execution_rules.cognitive_load_verification.enabled",
+            "operations_and_workflow.execution.universal_phase_enforcement.enabled",
+            "framework_management.self_optimization.bounded_recursive_enhancement.enabled",
+            "framework_management.cross_reference_integrity_system.enabled",
+            "framework_management.cross_reference_integrity_system.automated_verification.reference_validation.enabled",
+            "framework_management.cross_reference_integrity_system.automated_verification.consistency_checking.enabled",
+            "framework_management.cross_reference_integrity_system.automated_verification.broken_reference_detection.enabled",
+            "framework_management.cross_reference_integrity_system.automated_verification.circular_reference_prevention.enabled",
+            "framework_management.cross_reference_integrity_system.integrity_monitoring.real_time_validation.enabled",
+            "framework_management.cross_reference_integrity_system.maintenance_automation.automatic_updates.enabled"
+          ],
+          "count": 23,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "methods",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_detection.methods",
+            "quality_and_standards.formatting.universal.newlines.methods",
+            "quality_and_standards.formatting.ruby.features.methods",
+            "operations_and_workflow.infrastructure_preservation.database.methods"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "fallback",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_detection.fallback",
+            "ai_and_automation.autonomous_completion.core.safety_systems.cognitive_overload.actions.fallback"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "indicators",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_types.code.indicators",
+            "ai_and_automation.autonomous_completion.project_types.web_development.indicators",
+            "ai_and_automation.autonomous_completion.project_types.business.indicators",
+            "ai_and_automation.autonomous_completion.project_types.creative.indicators",
+            "ai_and_automation.autonomous_completion.project_types.documentation.indicators",
+            "ai_and_automation.autonomous_completion.project_types.configuration.indicators"
+          ],
+          "count": 6,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "completion_criteria",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_types.code.completion_criteria",
+            "ai_and_automation.autonomous_completion.project_types.web_development.completion_criteria",
+            "ai_and_automation.autonomous_completion.project_types.business.completion_criteria",
+            "ai_and_automation.autonomous_completion.project_types.creative.completion_criteria",
+            "ai_and_automation.autonomous_completion.project_types.documentation.completion_criteria",
+            "ai_and_automation.autonomous_completion.project_types.configuration.completion_criteria"
+          ],
+          "count": 6,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "business",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_types.business",
+            "operations_and_workflow.execution.perspectives.business"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "creative",
+          "locations": [
+            "ai_and_automation.autonomous_completion.project_types.creative",
+            "operations_and_workflow.execution.perspectives.creative",
+            "operations_and_workflow.execution.temperatures.creative"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "maintainability",
+          "locations": [
+            "ai_and_automation.autonomous_completion.production_readiness_assessment.criteria.maintainability",
+            "framework_management.self_optimization.success_metrics.metrics.maintainability"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "indentation",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.formatting_standards.indentation",
+            "quality_and_standards.formatting.universal.indentation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "quotes",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.formatting_standards.quotes",
+            "quality_and_standards.formatting.universal.quotes",
+            "quality_and_standards.formatting.shell.quotes",
+            "quality_and_standards.formatting.javascript.syntax.quotes"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "line_length",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.formatting_standards.line_length",
+            "quality_and_standards.formatting.universal.line_length"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cognitive_load_monitoring",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.implementation_patterns.cognitive_load_monitoring",
+            "framework_management.self_optimization.bounded_recursive_enhancement.safety_mechanisms.cognitive_load_monitoring"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "measurement_precision",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.extreme_scrutiny_framework.precision_questions.measurement_precision",
+            "ai_and_automation.autonomous_completion.core.measurement_precision"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "analysis",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.allocation_strategy.analysis",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.allocation.analysis"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "implementation",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.cognitive_framework.cognitive_load_budgeting.allocation_strategy.implementation",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.allocation.implementation",
+            "business_and_communication.business_strategy.okr_framework.implementation",
+            "framework_management.self_optimization.self_improvement_checklist.phases.implementation"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "never_apply_to",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.strunk_white.never_apply_to",
+            "ai_and_automation.autonomous_completion.core.kiss_principle_scoped.never_apply_to"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "circuit_breakers",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.circuit_breakers",
+            "ai_and_automation.autonomous_completion.core.circuit_breakers"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "memory",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.circuit_breakers.memory",
+            "ai_and_automation.autonomous_completion.core.safety_systems.resource_protection.thresholds.memory"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cpu",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.circuit_breakers.cpu",
+            "ai_and_automation.autonomous_completion.core.safety_systems.resource_protection.thresholds.cpu"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "actions",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.circuit_breakers.actions",
+            "ai_and_automation.autonomous_completion.core.safety_systems.cognitive_overload.actions",
+            "ai_and_automation.autonomous_completion.core.cognitive_budgeting.overflow.actions"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "failure_analysis",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.learning_and_adaptation.failure_analysis",
+            "framework_management.self_optimization.meta_analysis.failure_analysis"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "optimization_memory",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.learning_and_adaptation.optimization_memory",
+            "framework_management.self_optimization.meta_analysis.optimization_memory"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "continuous_calibration",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.auto_iteration.learning_and_adaptation.continuous_calibration",
+            "framework_management.self_optimization.meta_analysis.continuous_calibration"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "safety_systems",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems",
+            "framework_management.self_optimization.preservation_requirements.safety_systems"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "metrics",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.cognitive_overload.metrics",
+            "business_and_communication.business_strategy.financial_planning.metrics",
+            "quality_and_standards.quality.metrics",
+            "framework_management.self_optimization.success_metrics.metrics"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "nesting",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.cognitive_overload.metrics.nesting",
+            "quality_and_standards.formatting.css.formatting.nesting"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "reduce",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.cognitive_overload.actions.reduce",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.mitigation_strategies.reduce"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cycles",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.loop_prevention.detection.cycles",
+            "business_and_communication.business_strategy.methodology.design_thinking.cycles"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "resources",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.loop_prevention.detection.resources",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources",
+            "business_and_communication.business_strategy.iso_9001_compliance.process_requirements.support.resources"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "thresholds",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.resource_protection.thresholds",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "failure_cascade_prevention",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.safety_systems.failure_cascade_prevention",
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.failure_cascade_prevention"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "pause_processing",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.cognitive_overload_protection.response_actions.pause_processing",
+            "operations_and_workflow.execution.phases.execution_rules.circuit_breaker_integration.automatic_intervention.pause_processing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "detection_methods",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.infinite_loop_prevention.detection_methods",
+            "framework_management.cross_reference_integrity_system.automated_verification.broken_reference_detection.detection_methods"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "resource_consumption",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.infinite_loop_prevention.detection_methods.resource_consumption",
+            "operations_and_workflow.execution.phases.execution_rules.circuit_breaker_integration.phase_specific_thresholds.resource_consumption"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "mitigation_strategies",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.circuit_breakers.resource_exhaustion_protection.mitigation_strategies",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.mitigation_strategies"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "unit",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.response_time.unit",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources.unit",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors.unit",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.cognitive_load.unit"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "ok",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.response_time.ok",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors.ok"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "warn",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.response_time.warn",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources.warn",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors.warn",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.cognitive_load.warn"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "critical",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.response_time.critical",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.resources.critical",
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors.critical"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "errors",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.measurement_precision.thresholds.errors",
+            "quality_and_standards.formatting.shell.errors",
+            "quality_and_standards.formatting.ui_ux.errors"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "temp",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[0].temp",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[1].temp",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[2].temp",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[3].temp",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[4].temp",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[5].temp",
+            "operations_and_workflow.execution.temperatures.ultra_conservative.temp",
+            "operations_and_workflow.execution.temperatures.conservative.temp",
+            "operations_and_workflow.execution.temperatures.balanced.temp",
+            "operations_and_workflow.execution.temperatures.creative.temp",
+            "operations_and_workflow.execution.temperatures.experimental.temp"
+          ],
+          "count": 11,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "weight",
+          "locations": [
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[0].weight",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[1].weight",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[2].weight",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[3].weight",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[4].weight",
+            "ai_and_automation.autonomous_completion.core.multi_perspective.roles[5].weight"
+          ],
+          "count": 6,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "business_strategy",
+          "locations": [
+            "business_and_communication.business_strategy",
+            "quality_and_standards._validation.completion.simulated_execution_results.business_strategy"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "framework",
+          "locations": [
+            "business_and_communication.business_strategy.framework",
+            "business_and_communication.business_strategy.strategic_tools.risk_management.framework"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "research",
+          "locations": [
+            "business_and_communication.business_strategy.methodology.design_thinking.research",
+            "operations_and_workflow.execution.research"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cycle",
+          "locations": [
+            "business_and_communication.business_strategy.methodology.lean_startup.cycle",
+            "business_and_communication.business_strategy.strategic_tools.okr.cycle"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "required",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.required",
+            "quality_and_standards.documentation.required"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "frequency",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.frequency",
+            "business_and_communication.business_strategy.okr_framework.structure.objectives.frequency"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "sections",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.sections",
+            "quality_and_standards.formatting.universal.newlines.sections",
+            "quality_and_standards.formatting.comments.positioning.sections"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "customer_segments",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.sections.customer_segments",
+            "business_and_communication.business_strategy.strategic_tools.business_model_canvas.customer_segments"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "channels",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.sections.channels",
+            "business_and_communication.business_strategy.strategic_tools.business_model_canvas.channels"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cost_structure",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.sections.cost_structure",
+            "business_and_communication.business_strategy.strategic_tools.business_model_canvas.cost_structure"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "revenue_streams",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.lean_canvas.sections.revenue_streams",
+            "business_and_communication.business_strategy.strategic_tools.business_model_canvas.revenue_streams"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "jobs_to_be_done",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.value_proposition_canvas.customer_profile.jobs_to_be_done",
+            "business_and_communication.business_strategy.market_analysis.customer_research.jobs_to_be_done"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "communication",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.stakeholder_mapping.communication",
+            "business_and_communication.business_strategy.iso_9001_compliance.process_requirements.support.communication",
+            "business_and_communication.communication"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "objectives",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.okr.objectives",
+            "business_and_communication.business_strategy.okr_framework.structure.objectives"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "key_results",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.okr.key_results",
+            "business_and_communication.business_strategy.okr_framework.structure.key_results"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "scoring",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.okr.scoring",
+            "business_and_communication.business_strategy.okr_framework.structure.key_results.scoring"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "alignment",
+          "locations": [
+            "business_and_communication.business_strategy.strategic_tools.okr.alignment",
+            "quality_and_standards.formatting.universal.alignment"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "market_analysis",
+          "locations": [
+            "business_and_communication.business_strategy.market_analysis",
+            "operations_and_workflow.execution.research.market_analysis"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "structure",
+          "locations": [
+            "business_and_communication.business_strategy.okr_framework.structure",
+            "quality_and_standards.formatting.ruby.organization.structure"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "definition",
+          "locations": [
+            "business_and_communication.business_strategy.okr_framework.structure.objectives.definition",
+            "business_and_communication.business_strategy.okr_framework.structure.key_results.definition"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "characteristics",
+          "locations": [
+            "business_and_communication.business_strategy.okr_framework.structure.objectives.characteristics",
+            "business_and_communication.business_strategy.okr_framework.structure.key_results.characteristics"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "limit",
+          "locations": [
+            "business_and_communication.business_strategy.okr_framework.structure.objectives.limit",
+            "business_and_communication.business_strategy.okr_framework.structure.key_results.limit"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "planning",
+          "locations": [
+            "business_and_communication.business_strategy.okr_framework.implementation.quarterly_cycle.planning",
+            "business_and_communication.business_strategy.iso_9001_compliance.process_requirements.planning"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "continuous_improvement",
+          "locations": [
+            "business_and_communication.business_strategy.iso_9001_compliance.risk_audit_framework.continuous_improvement",
+            "framework_management.framework_self_optimization.self_enforcement.continuous_improvement"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_methods",
+          "locations": [
+            "business_and_communication.business_strategy.measurable_outcomes.validation_methods",
+            "framework_management.cross_reference_integrity_system.automated_verification.reference_validation.validation_methods"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "format",
+          "locations": [
+            "business_and_communication.communication.unix_style_feedback.command_style_prompts.format",
+            "quality_and_standards.documentation.code_examples.format",
+            "operations_and_workflow.workflow.git.commits.format",
+            "framework_management.change_management.format"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "quality",
+          "locations": [
+            "quality_and_standards.quality",
+            "operations_and_workflow.execution.perspectives.quality"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "docs",
+          "locations": [
+            "quality_and_standards.quality.coverage.docs",
+            "quality_and_standards.formatting.comments.style.docs"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "tests",
+          "locations": [
+            "quality_and_standards.quality.coverage.tests",
+            "quality_and_standards.quality.testing_framework.quality_gates.tests"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "completion",
+          "locations": [
+            "quality_and_standards.quality.metrics.completion",
+            "quality_and_standards._validation.completion"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "reflex",
+          "locations": [
+            "quality_and_standards.quality.metrics.reflex",
+            "quality_and_standards.formatting.javascript.stimulus.reflex",
+            "operations_and_workflow.monitoring.real_time.vitals.reflex"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "syntax",
+          "locations": [
+            "quality_and_standards.quality.testing_framework.quality_gates.syntax",
+            "quality_and_standards.formatting.javascript.syntax"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "formatting",
+          "locations": [
+            "quality_and_standards.quality.testing_framework.quality_gates.formatting",
+            "quality_and_standards.formatting",
+            "quality_and_standards.formatting.ruby.formatting",
+            "quality_and_standards.formatting.css.formatting"
+          ],
+          "count": 4,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "testing",
+          "locations": [
+            "quality_and_standards.quality.testing_framework.tools.testing",
+            "operations_and_workflow.workflow.automation.testing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "triggers",
+          "locations": [
+            "quality_and_standards.quality.testing_framework.rollback_mechanisms.triggers",
+            "framework_management.self_optimization.triggers",
+            "framework_management.change_management.triggers"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "type",
+          "locations": [
+            "quality_and_standards.formatting.universal.indentation.type",
+            "quality_and_standards.formatting.universal.line_endings.type"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "size",
+          "locations": [
+            "quality_and_standards.formatting.universal.indentation.size",
+            "operations_and_workflow.workflow.git.commits.size"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "consistent",
+          "locations": [
+            "quality_and_standards.formatting.universal.indentation.consistent",
+            "quality_and_standards.formatting.universal.quotes.consistent",
+            "quality_and_standards.formatting.universal.line_endings.consistent"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "trailing",
+          "locations": [
+            "quality_and_standards.formatting.universal.line_endings.trailing",
+            "quality_and_standards.formatting.comments.positioning.trailing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "params",
+          "locations": [
+            "quality_and_standards.formatting.universal.alignment.params",
+            "quality_and_standards.formatting.rails.usage.params"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "comments",
+          "locations": [
+            "quality_and_standards.formatting.universal.alignment.comments",
+            "quality_and_standards.formatting.comments"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "alt_text",
+          "locations": [
+            "quality_and_standards.formatting.accessibility.alt_text",
+            "quality_and_standards.formatting.seo.alt_text"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "headings",
+          "locations": [
+            "quality_and_standards.formatting.accessibility.headings",
+            "quality_and_standards.formatting.seo.headings"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "focus",
+          "locations": [
+            "quality_and_standards.formatting.accessibility.focus",
+            "operations_and_workflow.execution.temperatures.ultra_conservative.focus",
+            "operations_and_workflow.execution.temperatures.conservative.focus",
+            "operations_and_workflow.execution.temperatures.balanced.focus",
+            "operations_and_workflow.execution.temperatures.creative.focus",
+            "operations_and_workflow.execution.temperatures.experimental.focus",
+            "operations_and_workflow.execution.research.market_analysis.focus",
+            "operations_and_workflow.execution.research.future_analysis.focus"
+          ],
+          "count": 8,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "functions",
+          "locations": [
+            "quality_and_standards.formatting.shell.functions",
+            "quality_and_standards.formatting.javascript.syntax.functions",
+            "quality_and_standards.formatting.scss.functions"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "system",
+          "locations": [
+            "quality_and_standards.formatting.system",
+            "operations_and_workflow.monitoring.real_time.system"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "automation",
+          "locations": [
+            "quality_and_standards.formatting.system.automation",
+            "operations_and_workflow.workflow.automation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "kamal_2",
+          "locations": [
+            "quality_and_standards.formatting.rails.features.kamal_2",
+            "operations_and_workflow.workflow.automation.deployment.kamal_2"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "vars",
+          "locations": [
+            "quality_and_standards.formatting.javascript.syntax.vars",
+            "quality_and_standards.formatting.css.formatting.vars"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "attributes",
+          "locations": [
+            "quality_and_standards.formatting.javascript.stimulus.attributes",
+            "quality_and_standards.formatting.html.attributes"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "philosophy",
+          "locations": [
+            "quality_and_standards.formatting.css.architecture.philosophy",
+            "framework_management.self_optimization.philosophy"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "loading",
+          "locations": [
+            "quality_and_standards.formatting.css.performance.loading",
+            "quality_and_standards.formatting.ui_ux.loading"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "vitals",
+          "locations": [
+            "quality_and_standards.formatting.css.performance.vitals",
+            "operations_and_workflow.monitoring.real_time.vitals"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "mobile_first",
+          "locations": [
+            "quality_and_standards.formatting.css.formatting.mobile_first",
+            "quality_and_standards.formatting.html.mobile_first"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "properties",
+          "locations": [
+            "quality_and_standards.formatting.css.formatting.properties",
+            "quality_and_standards.formatting.json.properties"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "database",
+          "locations": [
+            "quality_and_standards.formatting.database",
+            "operations_and_workflow.infrastructure_preservation.database"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "style",
+          "locations": [
+            "quality_and_standards.formatting.comments.style",
+            "quality_and_standards.documentation.style",
+            "quality_and_standards.documentation.inline_comments.style"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "content",
+          "locations": [
+            "quality_and_standards.formatting.comments.content",
+            "operations_and_workflow.workflow.git.commits.content"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "sophistication_preservation",
+          "locations": [
+            "quality_and_standards.validation_enhancement.zero_tolerance_mode.sophistication_preservation",
+            "quality_and_standards.validation_enhancement.comprehensive_validation.sophistication_preservation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "real_time_validation",
+          "locations": [
+            "quality_and_standards.validation_enhancement.enforcement_mechanisms.real_time_validation",
+            "framework_management.cross_reference_integrity_system.integrity_monitoring.real_time_validation"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "dry_compliance",
+          "locations": [
+            "quality_and_standards._validation.final_validation.dry_compliance",
+            "framework_management.framework_self_optimization.health_checks.dry_compliance"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cross_reference_integrity",
+          "locations": [
+            "quality_and_standards._validation.final_validation.cross_reference_integrity",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cross_reference_integrity"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "reference",
+          "locations": [
+            "operations_and_workflow.workflow.git.behavioral_compliance.reference",
+            "framework_management.change_management.reference"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "deployment",
+          "locations": [
+            "operations_and_workflow.workflow.automation.ci_cd.deployment",
+            "operations_and_workflow.workflow.automation.deployment"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "files",
+          "locations": [
+            "operations_and_workflow.monitoring.real_time.system.files",
+            "operations_and_workflow.execution.auto_validation.files"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_impact",
+          "locations": [
+            "operations_and_workflow.monitoring.real_time.business_metrics.performance_impact",
+            "framework_management.cross_reference_integrity_system.integrity_monitoring.health_metrics.performance_impact"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "simple",
+          "locations": [
+            "operations_and_workflow.execution.phases.simple",
+            "operations_and_workflow.execution.phases.mode_detection.simple"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "complex",
+          "locations": [
+            "operations_and_workflow.execution.phases.complex",
+            "operations_and_workflow.execution.phases.mode_detection.complex"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "circuit_breaker_integration",
+          "locations": [
+            "operations_and_workflow.execution.phases.execution_rules.circuit_breaker_integration",
+            "framework_management.self_optimization.bounded_recursive_enhancement.safety_mechanisms.circuit_breaker_integration"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "real_time_monitoring",
+          "locations": [
+            "operations_and_workflow.execution.phases.execution_rules.circuit_breaker_integration.real_time_monitoring",
+            "framework_management.cross_reference_integrity_system.real_time_monitoring"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_requirements",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.validation_requirements",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.validation_requirements",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.validation_requirements"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_tracking",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_start_timestamp",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.validation_start_timestamp",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.validation_start_timestamp",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.validation_start_timestamp"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_completion_timestamp",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.validation_completion_timestamp",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.validation_completion_timestamp",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.validation_completion_timestamp"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_duration_ms",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.validation_duration_ms",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.validation_duration_ms",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.validation_duration_ms"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cognitive_load_consumed",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.cognitive_load_consumed",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.cognitive_load_consumed",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.cognitive_load_consumed"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "circuit_breaker_activations",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.circuit_breaker_activations",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.circuit_breaker_activations",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.circuit_breaker_activations"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "performance_baseline_comparison",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.performance_tracking.performance_baseline_comparison",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.performance_tracking.performance_baseline_comparison",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.performance_tracking.performance_baseline_comparison"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "cognitive_load_integration",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.cognitive_load_integration",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cognitive_load_integration"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "allocated_budget_percentage",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.cognitive_load_integration.allocated_budget_percentage",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration.allocated_budget_percentage",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cognitive_load_integration.allocated_budget_percentage"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "actual_utilization",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.cognitive_load_integration.actual_utilization",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration.actual_utilization",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cognitive_load_integration.actual_utilization"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "remaining_capacity",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.cognitive_load_integration.remaining_capacity",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration.remaining_capacity",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cognitive_load_integration.remaining_capacity"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "load_optimization_actions",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.cognitive_load_integration.load_optimization_actions",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.cognitive_load_integration.load_optimization_actions",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.cognitive_load_integration.load_optimization_actions"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "circuit_breaker_monitoring",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.circuit_breaker_monitoring",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.circuit_breaker_monitoring",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.circuit_breaker_monitoring"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "active_breakers",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.circuit_breaker_monitoring.active_breakers",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.circuit_breaker_monitoring.active_breakers",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.circuit_breaker_monitoring.active_breakers"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "trigger_events",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.circuit_breaker_monitoring.trigger_events",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.circuit_breaker_monitoring.trigger_events",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.circuit_breaker_monitoring.trigger_events"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "recovery_actions",
+          "locations": [
+            "operations_and_workflow.execution.phases.validation_integration.early_phase.circuit_breaker_monitoring.recovery_actions",
+            "operations_and_workflow.execution.phases.validation_integration.middle_phase.circuit_breaker_monitoring.recovery_actions",
+            "operations_and_workflow.execution.phases.validation_integration.final_phase.circuit_breaker_monitoring.recovery_actions"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "use_for",
+          "locations": [
+            "operations_and_workflow.execution.temperatures.ultra_conservative.use_for",
+            "operations_and_workflow.execution.temperatures.conservative.use_for",
+            "operations_and_workflow.execution.temperatures.balanced.use_for",
+            "operations_and_workflow.execution.temperatures.creative.use_for",
+            "operations_and_workflow.execution.temperatures.experimental.use_for"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "temperature",
+          "locations": [
+            "operations_and_workflow.execution.research.market_analysis.temperature",
+            "operations_and_workflow.execution.research.future_analysis.temperature"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "timing",
+          "locations": [
+            "operations_and_workflow.execution.research.market_analysis.timing",
+            "operations_and_workflow.execution.research.future_analysis.timing"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "autonomous_behavior",
+          "locations": [
+            "operations_and_workflow.execution.research.market_analysis.autonomous_behavior",
+            "operations_and_workflow.execution.research.future_analysis.autonomous_behavior"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "optimization_recommendations",
+          "locations": [
+            "operations_and_workflow.execution.ai.decision_making.optimization_recommendations",
+            "framework_management.cross_reference_integrity_system.integrity_monitoring.optimization_recommendations"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_gates",
+          "locations": [
+            "operations_and_workflow.execution.universal_phase_enforcement.validation_gates",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.automated_enforcement.validation_gates"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "audit_trail",
+          "locations": [
+            "operations_and_workflow.execution.universal_phase_enforcement.monitoring.audit_trail",
+            "framework_management.self_optimization.infinite_optimization_safety.safety_protocols.enhanced_rollback.audit_trail"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "policy",
+          "locations": [
+            "operations_and_workflow.infrastructure_preservation.safeguards.policy",
+            "framework_management.change_management.policy"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "improvement_threshold",
+          "locations": [
+            "framework_management.self_optimization.bounded_recursive_enhancement.termination_conditions.improvement_threshold",
+            "framework_management.self_optimization.infinite_optimization_safety.safety_protocols.convergence_detection.improvement_threshold"
+          ],
+          "count": 2,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "purpose",
+          "locations": [
+            "framework_management.self_optimization.self_improvement_checklist.purpose",
+            "framework_management.self_optimization.success_metrics.purpose",
+            "framework_management.self_optimization.meta_validation_prompt.purpose"
+          ],
+          "count": 3,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "tasks",
+          "locations": [
+            "framework_management.self_optimization.self_improvement_checklist.phases.reconnaissance.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.duplication_analysis.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.architecture_assessment.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.consolidation_design.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.implementation.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.validation.tasks",
+            "framework_management.self_optimization.self_improvement_checklist.phases.before_after_comparison.tasks",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_1_self_assessment.tasks",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_2_improvement_measurement.tasks",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.validation_process.step_3_systematic_validation.tasks"
+          ],
+          "count": 10,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "success_criteria",
+          "locations": [
+            "framework_management.self_optimization.self_improvement_checklist.phases.reconnaissance.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.duplication_analysis.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.architecture_assessment.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.consolidation_design.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.implementation.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.validation.success_criteria",
+            "framework_management.self_optimization.self_improvement_checklist.phases.before_after_comparison.success_criteria",
+            "framework_management.self_optimization.meta_validation_prompt.validation_framework.success_criteria"
+          ],
+          "count": 8,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "measurement_criteria",
+          "locations": [
+            "framework_management.self_optimization.success_metrics.metrics.structural_clarity.measurement_criteria",
+            "framework_management.self_optimization.success_metrics.metrics.modularity.measurement_criteria",
+            "framework_management.self_optimization.success_metrics.metrics.maintainability.measurement_criteria",
+            "framework_management.self_optimization.success_metrics.metrics.extensibility.measurement_criteria",
+            "framework_management.self_optimization.success_metrics.metrics.self_validation.measurement_criteria"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "target_improvement",
+          "locations": [
+            "framework_management.self_optimization.success_metrics.metrics.structural_clarity.target_improvement",
+            "framework_management.self_optimization.success_metrics.metrics.modularity.target_improvement",
+            "framework_management.self_optimization.success_metrics.metrics.maintainability.target_improvement",
+            "framework_management.self_optimization.success_metrics.metrics.extensibility.target_improvement",
+            "framework_management.self_optimization.success_metrics.metrics.self_validation.target_improvement"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_method",
+          "locations": [
+            "framework_management.self_optimization.success_metrics.metrics.structural_clarity.validation_method",
+            "framework_management.self_optimization.success_metrics.metrics.modularity.validation_method",
+            "framework_management.self_optimization.success_metrics.metrics.maintainability.validation_method",
+            "framework_management.self_optimization.success_metrics.metrics.extensibility.validation_method",
+            "framework_management.self_optimization.success_metrics.metrics.self_validation.validation_method"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "count",
+          "locations": [
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.universal_standards_references.count",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.execution_phase_references.count",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.behavioral_rules_references.count",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.core_system_references.count",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.meta_infrastructure_references.count"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "most_referenced",
+          "locations": [
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.universal_standards_references.most_referenced",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.execution_phase_references.most_referenced",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.behavioral_rules_references.most_referenced",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.core_system_references.most_referenced",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.meta_infrastructure_references.most_referenced"
+          ],
+          "count": 5,
+          "impact": "Potential confusion and maintenance issues"
+        },
+        {
+          "type": "duplicate_key",
+          "severity": "medium",
+          "key": "validation_status",
+          "locations": [
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.universal_standards_references.validation_status",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.execution_phase_references.validation_status",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.behavioral_rules_references.validation_status",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.core_system_references.validation_status",
+            "framework_management.cross_reference_integrity_system.reference_catalog.reference_categories.meta_infrastructure_references.validation_status",
+            "framework_management.eof_metadata.validation_status"
+          ],
+          "count": 6,
+          "impact": "Potential confusion and maintenance issues"
+        }
+      ],
+      "duplicate_keys": 289,
+      "similar_functions": 0,
+      "redundant_configs": 0
+    },
+    "gaps_and_bottlenecks": {
+      "analysis_type": "gaps_and_bottlenecks",
+      "timestamp": "2025-08-16T20:45:47.470082Z",
+      "total_gaps": 12,
+      "critical_gaps": 0,
+      "high_priority_gaps": 5,
+      "gaps": [
+        {
+          "type": "resource_under_allocation",
+          "severity": "medium",
+          "total_allocation": 0,
+          "impact": "Resources may be underutilized"
+        },
+        {
+          "type": "missing_error_handler",
+          "severity": "high",
+          "error_type": "network_failure",
+          "impact": "System may crash on this error type"
+        },
+        {
+          "type": "missing_error_handler",
+          "severity": "high",
+          "error_type": "timeout",
+          "impact": "System may crash on this error type"
+        },
+        {
+          "type": "missing_error_handler",
+          "severity": "high",
+          "error_type": "validation_error",
+          "impact": "System may crash on this error type"
+        },
+        {
+          "type": "missing_error_handler",
+          "severity": "high",
+          "error_type": "resource_exhaustion",
+          "impact": "System may crash on this error type"
+        },
+        {
+          "type": "missing_error_handler",
+          "severity": "high",
+          "error_type": "permission_denied",
+          "impact": "System may crash on this error type"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "empty_input",
+          "impact": "System behavior undefined in this scenario"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "null_values",
+          "impact": "System behavior undefined in this scenario"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "extremely_large_input",
+          "impact": "System behavior undefined in this scenario"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "concurrent_access",
+          "impact": "System behavior undefined in this scenario"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "network_partition",
+          "impact": "System behavior undefined in this scenario"
+        },
+        {
+          "type": "unhandled_edge_case",
+          "severity": "medium",
+          "edge_case": "disk_full",
+          "impact": "System behavior undefined in this scenario"
+        }
+      ]
+    },
+    "deep_trace_simulation": {
+      "analysis_type": "deep_trace_simulation",
+      "timestamp": "2025-08-16T20:45:47.470082Z",
+      "profiles_tested": 3,
+      "execution_traces": [
+        {
+          "profile_name": "rapid",
+          "config": {
+            "quality_gates": "minimal",
+            "speed": "high"
+          },
+          "execution_time_estimate": "unknown",
+          "resource_requirements": {},
+          "quality_gate_results": {},
+          "potential_failures": [],
+          "success_probability": 0.95
+        },
+        {
+          "profile_name": "balanced",
+          "config": {
+            "quality_gates": "standard",
+            "speed": "medium"
+          },
+          "execution_time_estimate": "unknown",
+          "resource_requirements": {},
+          "quality_gate_results": {},
+          "potential_failures": [],
+          "success_probability": 0.95
+        },
+        {
+          "profile_name": "compliance",
+          "config": {
+            "quality_gates": "comprehensive",
+            "speed": "low"
+          },
+          "execution_time_estimate": "unknown",
+          "resource_requirements": {},
+          "quality_gate_results": {},
+          "potential_failures": [],
+          "success_probability": 0.95
+        }
+      ],
+      "overall_trace_health": {
+        "status": "healthy",
+        "score": 95
+      }
+    }
+  },
+  "conflict_matrix": {
+    "logical_conflicts": 0,
+    "dependency_conflicts": 0,
+    "mathematical_conflicts": 0,
+    "structural_conflicts": 0,
+    "workflow_conflicts": 0
+  },
+  "optimization_recommendations": [
+    {
+      "priority": "high",
+      "type": "clarity_improvement",
+      "recommendation": "Comprehensive language clarity review needed",
+      "issues_count": 47,
+      "impact": "medium",
+      "effort": "high"
+    },
+    {
+      "priority": "medium",
+      "type": "structural_consolidation",
+      "recommendation": "Consolidate overlapping functionality",
+      "overlaps_count": 289,
+      "impact": "medium",
+      "effort": "medium"
+    }
+  ],
+  "quality_standards_compliance": {
+    "strunk_white_compliance": 96.40672782874617,
+    "logical_coherence_score": 100.0,
+    "mathematical_consistency": {
+      "total_mathematical_elements": 50,
+      "conflicts_found": 0,
+      "consistency_score": 100.0,
+      "status": "consistent"
+    }
+  }
+}

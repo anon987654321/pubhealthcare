@@ -66,6 +66,13 @@ PARAM_RANGES = {
   "film_stock_emulation" => { "stock_type" => %w[kodak_portra fuji_velvia] }
 }.freeze
 
+# Helper function for deterministic offsets in chromatic aberration
+def deterministic_offset(intensity, mode, width, height, channel, shift)
+  # Create deterministic but pseudo-random offset based on image properties
+  seed = intensity.to_s.hash ^ mode.hash ^ width ^ height ^ channel.hash
+  Random.new(seed).rand(-shift..shift)
+end
+
 # True randomization with proper mode support
 def random_effects(count, mode)
   available = EFFECTS.keys.shuffle # Shuffle for true randomness
@@ -148,7 +155,7 @@ def apply_effects_from_recipe(image, recipe, mode)
               if second_image_path.nil? || second_image_path.strip.empty?
                 raise ArgumentError, "double_exposure effect requires a 'second_image_path' parameter in the recipe"
               end
-              send(:double_exposure, image, second_image_path, blend_mode, mode)
+              send(:double_exposure, image, intensity, second_image_path, blend_mode, mode)
             elsif effect == "polaroid_frame"
               border_style = params.is_a?(Hash) ? params["border_style"] || "classic" : "classic"
               send(:polaroid_frame, image, intensity, border_style, mode)
@@ -367,7 +374,6 @@ def chromatic_aberration(image, intensity, mode)
   shift = mode == "professional" ? 1.0 * intensity : rand(3.0..6.0) * intensity
   $logger.debug "Applying chromatic aberration with shift: #{shift}"
   r, g, b = image.bandsplit
-  r = r.roll(shift, rand(-shift..shift))
   # Deterministic offsets based on input parameters
   r_offset = deterministic_offset(intensity, mode, image.width, image.height, "r", shift)
   b_offset = deterministic_offset(intensity, mode, image.width, image.height, "b", shift)
@@ -422,14 +428,6 @@ rescue StandardError => e
   raise
 end
 
-def double_exposure(image, second_image_path, blend_mode = "over", mode = "professional")
-  $logger.debug "double_exposure: Blend mode #{blend_mode}"
-  second = second_image_path ? load_image(second_image_path) : image
-  unless second&.bands == image.bands
-    $logger.warn "double_exposure: Band mismatch or no second image (image: #{image.bands}, second: #{second&.bands})"
-    return image
-  end
-  second = second.resize(image.width.to_f / second.width) if second.width != image.width
 def double_exposure(image, intensity, second_image_path = nil, blend_mode = "over", mode = "professional")
   $logger.debug "double_exposure: Blend mode #{blend_mode}, intensity: #{intensity}"
   second = second_image_path ? load_image(second_image_path) : image

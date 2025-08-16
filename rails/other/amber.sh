@@ -1434,6 +1434,381 @@ namespace :amber do
 end
 EOF
 
+# Create Rails controllers for AI and affiliate endpoints
+cat <<'EOF' > app/controllers/api/v1/style_controller.rb
+# frozen_string_literal: true
+
+class Api::V1::StyleController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_ai_enabled
+
+  def recommendations
+    context = {
+      occasion: params[:occasion],
+      weather: params[:weather],
+      preferences: JSON.parse(params[:preferences] || '{}')
+    }
+    
+    orchestrator = Ai::Orchestrator.new
+    recommendations = orchestrator.generate_style_recommendations(current_user, context)
+    
+    render json: recommendations
+  end
+
+  def analyze_consistency
+    outfit_data = JSON.parse(params[:outfit_data])
+    
+    critic = Ai::CriticAgent.new
+    consistency = critic.calculate_style_consistency_score(outfit_data)
+    
+    render json: consistency
+  end
+
+  def persona_analysis
+    user_context = {
+      device_type: request.user_agent.mobile? ? 'mobile' : 'desktop',
+      usage_frequency: current_user.usage_frequency || 'medium',
+      accessibility_needs: current_user.accessibility_needs?
+    }
+    
+    selector = Ai::SelectorAgent.new
+    persona = selector.send(:determine_user_persona, user_context)
+    
+    render json: { persona: persona, context: user_context }
+  end
+
+  private
+
+  def ensure_ai_enabled
+    unless ENV['ENABLE_AI_FEATURES'] == 'true'
+      render json: { error: 'AI features not enabled' }, status: :forbidden
+    end
+  end
+end
+EOF
+
+cat <<'EOF' > app/controllers/wardrobe_controller.rb
+# frozen_string_literal: true
+
+class WardrobeController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_wardrobe_item, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @wardrobe_items = current_user.wardrobe_items.includes(:item).recent
+    @analytics = calculate_wardrobe_analytics
+    @declutter_suggestions = get_declutter_suggestions if params[:suggest_declutter]
+  end
+
+  def show
+    @outfit_suggestions = get_outfit_suggestions_for_item(@wardrobe_item)
+  end
+
+  def new
+    @wardrobe_item = current_user.wardrobe_items.build
+    @wardrobe_item.build_item
+  end
+
+  def create
+    @wardrobe_item = current_user.wardrobe_items.build(wardrobe_item_params)
+    
+    if @wardrobe_item.save
+      redirect_to wardrobe_index_path, notice: 'Item added to wardrobe!'
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @wardrobe_item.update(wardrobe_item_params)
+      redirect_to @wardrobe_item, notice: 'Wardrobe item updated!'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @wardrobe_item.destroy
+    redirect_to wardrobe_index_path, notice: 'Item removed from wardrobe'
+  end
+
+  def analytics
+    @analytics = {
+      total_items: current_user.wardrobe_items.count,
+      total_value: current_user.wardrobe_items.joins(:item).sum('items.price'),
+      avg_joy_rating: current_user.wardrobe_items.average(:joy_rating) || 0,
+      most_worn: current_user.wardrobe_items.order(wear_count: :desc).first,
+      cost_per_wear: calculate_average_cost_per_wear,
+      category_breakdown: category_breakdown,
+      color_analysis: color_analysis
+    }
+  end
+
+  def export_csv
+    @wardrobe_items = current_user.wardrobe_items.includes(:item)
+    
+    csv_data = CSV.generate(headers: true) do |csv|
+      csv << ['Item', 'Category', 'Color', 'Brand', 'Price', 'Joy Rating', 'Wear Count', 'Cost Per Wear']
+      
+      @wardrobe_items.each do |wi|
+        csv << [
+          wi.item.title,
+          wi.item.category,
+          wi.item.color,
+          wi.item.brand,
+          wi.item.price,
+          wi.joy_rating,
+          wi.wear_count,
+          wi.wear_count > 0 ? (wi.item.price / wi.wear_count).round(2) : 0
+        ]
+      end
+    end
+    
+    send_data csv_data, filename: "wardrobe_#{Date.current}.csv", type: 'text/csv'
+  end
+
+  private
+
+  def set_wardrobe_item
+    @wardrobe_item = current_user.wardrobe_items.find(params[:id])
+  end
+
+  def wardrobe_item_params
+    params.require(:wardrobe_item).permit(
+      :acquisition_date, :condition, :notes, :joy_rating, :wear_count,
+      item_attributes: [:title, :color, :category, :brand, :price, :material, :size]
+    )
+  end
+
+  def calculate_wardrobe_analytics
+    items = current_user.wardrobe_items.includes(:item)
+    
+    {
+      total_items: items.count,
+      total_value: items.sum { |wi| wi.item.price || 0 },
+      avg_joy_rating: items.average(:joy_rating) || 0,
+      high_joy_items: items.where('joy_rating >= ?', 8).count,
+      unused_items: items.where('last_worn_at < ? OR last_worn_at IS NULL', 6.months.ago).count
+    }
+  end
+
+  def get_declutter_suggestions
+    {
+      unused: current_user.wardrobe_items.where('last_worn_at < ? OR last_worn_at IS NULL', 6.months.ago).limit(5),
+      low_joy: current_user.wardrobe_items.where('joy_rating < ?', 4).limit(5),
+      duplicates: find_duplicate_items.take(5)
+    }
+  end
+
+  def find_duplicate_items
+    current_user.wardrobe_items.includes(:item)
+      .group_by { |wi| [wi.item.category, wi.item.color] }
+      .select { |_, items| items.size > 1 }
+      .values
+      .flatten
+  end
+
+  def get_outfit_suggestions_for_item(wardrobe_item)
+    return [] unless ENV['ENABLE_AI_FEATURES'] == 'true'
+    
+    # Use AI to suggest outfits that include this item
+    orchestrator = Ai::Orchestrator.new
+    context = { focus_item: wardrobe_item.item }
+    
+    orchestrator.generate_style_recommendations(current_user, context)
+  end
+
+  def calculate_average_cost_per_wear
+    items_with_wear = current_user.wardrobe_items.where('wear_count > 0').includes(:item)
+    return 0 if items_with_wear.empty?
+    
+    total_cost_per_wear = items_with_wear.sum do |wi|
+      (wi.item.price || 0) / wi.wear_count
+    end
+    
+    total_cost_per_wear / items_with_wear.count
+  end
+
+  def category_breakdown
+    current_user.wardrobe_items.joins(:item)
+      .group('items.category')
+      .count
+  end
+
+  def color_analysis
+    current_user.wardrobe_items.joins(:item)
+      .group('items.color')
+      .count
+  end
+end
+EOF
+
+# Create modern view templates for StyleTailor interface
+mkdir -p app/views/wardrobe app/javascript/controllers
+
+cat <<'EOF' > app/views/wardrobe/index.html.erb
+<% content_for :title, "My Wardrobe - Amber" %>
+
+<div class="wardrobe-container" data-controller="wardrobe">
+  <header class="wardrobe-header">
+    <h1>My Wardrobe</h1>
+    <div class="wardrobe-actions">
+      <%= link_to "Add Item", new_wardrobe_path, class: "btn btn-primary" %>
+      <% if ENV['ENABLE_AI_FEATURES'] == 'true' %>
+        <button class="btn btn-ai" data-action="click->wardrobe#generateOutfit">
+          AI Suggestions
+        </button>
+      <% end %>
+      <%= link_to "Export CSV", wardrobe_export_csv_path, class: "btn btn-secondary" %>
+    </div>
+  </header>
+
+  <!-- Wardrobe Analytics -->
+  <section class="wardrobe-analytics">
+    <div class="analytics-grid">
+      <div class="analytic-card">
+        <div class="analytic-number"><%= @analytics[:total_items] %></div>
+        <div class="analytic-label">Total Items</div>
+      </div>
+      <div class="analytic-card">
+        <div class="analytic-number">$<%= @analytics[:total_value].round %></div>
+        <div class="analytic-label">Total Value</div>
+      </div>
+      <div class="analytic-card">
+        <div class="analytic-number"><%= @analytics[:avg_joy_rating].round(1) %></div>
+        <div class="analytic-label">Avg Joy Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Outfit Suggestions -->
+  <% if ENV['ENABLE_AI_FEATURES'] == 'true' %>
+    <section class="outfit-suggestions" id="outfit-suggestions">
+      <h2>AI Style Recommendations</h2>
+      <div class="suggestions-placeholder">
+        <p>Click "AI Suggestions" to get personalized outfit recommendations</p>
+      </div>
+    </section>
+  <% end %>
+
+  <!-- Wardrobe Grid -->
+  <section class="wardrobe-grid">
+    <div class="wardrobe-items-grid">
+      <% @wardrobe_items.each do |wardrobe_item| %>
+        <div class="wardrobe-item-card">
+          <div class="item-details">
+            <h3 class="item-title"><%= wardrobe_item.item.title %></h3>
+            <div class="item-meta">
+              <span class="item-category"><%= wardrobe_item.item.category %></span>
+              <span class="item-color"><%= wardrobe_item.item.color %></span>
+            </div>
+            
+            <!-- Joy Rating (Marie Kondo Style) -->
+            <div class="joy-rating" data-controller="joy-rating" 
+                 data-joy-rating-rating-value="<%= wardrobe_item.joy_rating || 5 %>">
+              <span class="joy-label">Joy Level:</span>
+              <div class="joy-stars">
+                <% (1..10).each do |rating| %>
+                  <button class="joy-star" data-joy-rating-target="star" 
+                          data-rating="<%= rating %>" data-action="click->joy-rating#rate">★</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+EOF
+
+cat <<'EOF' > app/javascript/controllers/wardrobe_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  generateOutfit(event) {
+    this.showLoadingState()
+    
+    fetch('/api/v1/style/recommendations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+      },
+      body: JSON.stringify({
+        occasion: 'casual',
+        weather: 'moderate',
+        preferences: {}
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.displayRecommendations(data))
+    .catch(error => this.showError(error))
+  }
+
+  showLoadingState() {
+    const container = document.getElementById('outfit-suggestions')
+    if (container) {
+      container.innerHTML = '<div class="loading">Generating AI recommendations...</div>'
+    }
+  }
+
+  displayRecommendations(recommendations) {
+    const container = document.getElementById('outfit-suggestions')
+    if (container && recommendations.recommendations) {
+      const outfit = recommendations.recommendations.selected_outfit
+      container.innerHTML = `
+        <h3>Recommended Outfit</h3>
+        <div class="outfit-recommendation">
+          <div class="outfit-score">Score: ${outfit.overall_score}/10</div>
+          <div class="outfit-reasoning">${recommendations.recommendations.reasoning}</div>
+        </div>
+      `
+    }
+  }
+
+  showError(error) {
+    const container = document.getElementById('outfit-suggestions')
+    if (container) {
+      container.innerHTML = '<div class="error">Error generating recommendations</div>'
+    }
+  }
+}
+EOF
+
+cat <<'EOF' > app/javascript/controllers/joy_rating_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static values = { rating: Number }
+  static targets = ["star"]
+
+  connect() {
+    this.updateStarDisplay()
+  }
+
+  ratingValueChanged() {
+    this.updateStarDisplay()
+  }
+
+  rate(event) {
+    const newRating = parseInt(event.target.dataset.rating)
+    this.ratingValue = newRating
+  }
+
+  updateStarDisplay() {
+    this.starTargets.forEach((star, index) => {
+      const starRating = index + 1
+      if (starRating <= this.ratingValue) {
+        star.classList.add('active')
+      } else {
+        star.classList.remove('active')
+      }
+    })
+  }
+}
+EOF
+
 commit "Amber setup complete: AI-enhanced fashion network with live search and anonymous features"
 
 log "Amber setup complete. Run 'bin/falcon-host' with PORT set to start on OpenBSD."

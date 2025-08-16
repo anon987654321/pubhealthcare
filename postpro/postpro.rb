@@ -321,7 +321,14 @@ def film_stock_emulation(image, intensity, _mode, rng, meta = {})
     r = r.linear([1 + 0.08 * intensity], [8 * intensity])
     g = g.linear([1 - 0.04 * intensity], [0])
     b = b.linear([1 - 0.05 * intensity], [-4 * intensity])
-  else # fuji_velvia
+  stock = meta[:stock] || FILM_STOCKS.sample(random: rng)
+  r, g, b = image.bandsplit
+  case stock
+  when KODAK_PORTRA
+    r = r.linear([1 + 0.08 * intensity], [8 * intensity])
+    g = g.linear([1 - 0.04 * intensity], [0])
+    b = b.linear([1 - 0.05 * intensity], [-4 * intensity])
+  else # FUJI_VELVIA
     r = r.linear([1 + 0.12 * intensity], [10 * intensity])
     g = g.linear([1 + 0.06 * intensity], [0])
     b = b.linear([1 + 0.04 * intensity], [0])

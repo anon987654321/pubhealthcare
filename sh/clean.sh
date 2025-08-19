@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Removes carriage returns, trailing whitespaces, and extra blank lines from text files.
 # Usage: ./clean.sh [target_folder]
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob
 
 dir="${1:-.}"

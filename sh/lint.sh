@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Checks and fixes Ruby code files for errors.
 # Usage: ./lint.sh
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
 check_tool() {

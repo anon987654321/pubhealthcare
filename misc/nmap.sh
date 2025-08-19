@@ -1,10 +1,13 @@
-#!/bin/sh
-set -eu
-
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 # nmap.sh - Cognitive-Aware Network Security Assessment Tool
 # OpenBSD-optimized comprehensive network scanning with cognitive load management
-# Usage: doas sh nmap.sh <target>
+# Usage: doas zsh nmap.sh <target>
 # Purpose: Professional security assessment with structured output and progress feedback
+
+set -euo pipefail
+emulate -L zsh
+setopt extended_glob null_glob
 
 # Cognitive Architecture Constants
 COGNITIVE_CHUNK_LIMIT=7

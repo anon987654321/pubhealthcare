@@ -1,10 +1,9 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Sets up utility scripts in ~/bin and adds them to PATH.
-# Usage: ./install.sh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
-set -e
+set -euo pipefail
+emulate -L zsh
+setopt extended_glob null_glob
 
 echo "Installing scripts..."
 

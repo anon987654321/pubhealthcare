@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Changes file ownership and permissions.
 # Usage: ./perms.sh <owner> <group> <file_perms> <folder_perms>
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
 if (( $# < 4 )); then

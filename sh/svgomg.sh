@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Shrinks SVG files to save space.
 # Usage: ./svgomg.sh [folder]
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extendedglob
 
 if ! command -v svgo >/dev/null 2>&1; then

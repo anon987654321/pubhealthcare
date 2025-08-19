@@ -1,10 +1,10 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 # Archives folders to dated .tgz files, skips unchanged ones.
 # Usage: ./backup.sh [directory]
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
 log_error() { echo "[$(date +"%Y-%m-%d %H:%M:%S")] $1" >> "$HOME/script_errors.log"; }

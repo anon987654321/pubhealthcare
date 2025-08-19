@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Creates a Markdown list of text files and their contents.
 # Usage: ./showp.sh
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extendedglob
 
 root=$(basename "$PWD")

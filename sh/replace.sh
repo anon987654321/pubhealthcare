@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Swaps out words in files or renames them.
 # Usage: ./replace.sh [-b] <old> <new> [folder]
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extendedglob
 
 backup=false

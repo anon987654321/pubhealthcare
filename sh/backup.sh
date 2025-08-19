@@ -1,53 +1,52 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Archives folders to dated .tgz files, skips unchanged ones.
-# Usage: ./backup.sh [directory]
+# sh/backup.sh - create per-subfolder dated tar.gz backups when content changed
+# Keeps a checksum store to avoid redundant backups.
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
-log_error() { echo "[$(date +"%Y-%m-%d %H:%M:%S")] $1" >> "$HOME/script_errors.log"; }
+dir="${{1:-.}}"
+checksum_file="${{dir}}/.backup_checksums"
+date_tag="$(date +%Y%m%d)"
 
-dir="${1:-.}"
-checksum_file="$dir/.backup_checksums"
-date_format=$(date +"%Y%m%d")
-cd "$dir" || exit 1
+cd "$dir" || { echo "Cannot cd to $dir"; exit 1; }
 
-# Load prior checksums to check for changes.
-typeset -A old_checksums
-if [[ -f "$checksum_file" ]]; then
-  while read -r folder checksum; do
+declare -A old_checksums
+if [[ -f $checksum_file ]]; then
+  while IFS=' ' read -r folder checksum; do
     old_checksums["$folder"]="$checksum"
-  done < "$checksum_file"
+  done <"$checksum_file"
 fi
 
-typeset -A new_checksums
+declare -A new_checksums
 
-for subdir in */(N); do
-  folder="${subdir%/}"
-  
-  # Creates a unique hash from all files in folder.
-  checksum=$(find "$folder" -type f -exec md5 -q {} + | sort | md5 -q)
+for sub in */(N); do
+  [[ -d $sub ]] || continue
+  folder="${sub%/}"
+
+  # compute checksum of all files in the folder
+  checksum=$(
+    find "$folder" -type f -print0 \
+      | xargs -0 md5 -q 2>/dev/null \
+      | sort \
+      | md5 -q 2>/dev/null
+  )
+
   new_checksums["$folder"]="$checksum"
 
-  backup_file="${folder}_${date_format}.tgz"
-  if [[ -z "${old_checksums[$folder]}" || "${old_checksums[$folder]}" != "$checksum" ]]; then
+  backup_file="${folder}_${date_tag}.tgz"
+  if [[ -z "${old_checksums[$folder]:-}" || "${old_checksums[$folder]}" != "$checksum" ]]; then
     echo "Backing up: $folder -> $backup_file"
-    tar cvzf "$backup_file" "$folder" 2>/dev/null
-    
-    if [[ $? -ne 0 ]]; then
-      log_error "tar failed for $backup_file"
-      echo "Failed: $backup_file"
-    else
-      echo "Created: $backup_file"
-    fi
+    tar -czf "$backup_file" "$folder" 2>/dev/null && echo "Created: $backup_file" || echo "Backup failed: $backup_file"
   else
-    echo "Skipped (no changes): $folder"
+    echo "Skipped (no change): $folder"
   fi
 done
 
-# Updates checksum file for next run.
-for folder in ${(k)new_checksums}; do
-  echo "$folder ${new_checksums[$folder]}"
-done > "$checksum_file"
+# write new checksums
+{
+  for k in "${(k)new_checksums}"; do
+    echo "$k ${new_checksums[$k]}"
+  done
+} >"$checksum_file"

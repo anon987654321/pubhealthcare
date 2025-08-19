@@ -1,69 +1,78 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Finds and deletes large files to free up space.
-# Usage: ./free_up_space.sh [directory]
+# sh/free_up_space.sh - interactively list and remove large files
+# Prefer multi-step logic over single-line pipelines.
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
-search_dir="${1:-.}"
+search_dir="${{1:-.}}"
 
-if [[ ! -d "$search_dir" ]]; then
-  echo "Error: '$search_dir' is not a directory"
+if [[ ! -d $search_dir ]]; then
+  echo "Error: $search_dir is not a directory" >&2
   exit 1
 fi
 
-echo "Scanning '$search_dir'..."
-typeset -a large_files
-# Lists top 10 largest files by size.
-find "$search_dir" -type f -exec du -k {} + 2>/dev/null | sort -nr | head -n 10 | while read -r size path; do
-  human_size=$(echo "$size" | awk '{printf "%.1fK", $1}')
-  large_files+=("$human_size $path")
-done
+echo "Scanning '$search_dir' for large files..."
+# collect top 10 largest files (size in KB and path)
+typeset -a candidates
+while IFS= read -r -d $'\0' file; do
+  if [[ -f $file ]]; then
+    size_kb=$(du -k "$file" 2>/dev/null | awk '{print $1}')
+    candidates+=("${{size_kb}}\t${{file}}")
+  fi
+done < <(find "$search_dir" -type f -print0)
 
-if (( ${#large_files} == 0 )); then
+if (( ${#candidates} == 0 )); then
   echo "No files found."
   exit 0
 fi
 
-echo "Largest files:"
-for i in {1..${#large_files}}; do
-  printf "%2d: %s\n" "$i" "${large_files[i]}"
+# Sort and show top 10
+printf "%2s %-8s %s\n" "#" "kB" "path"
+sorted=("${(@s:\n:)$(printf '%s\n' "${{candidates[@]}}" | sort -nr -k1 | head -n 10)}")
+i=1
+for entry in "${{sorted[@]}}"; do
+  size=${{entry%%$'\t'*}}
+  path=${{entry#*$'\t'}}
+  printf "%2d %-8s %s\n" "$i" "$size" "$path"
+  i=$((i + 1))
 done
 
-echo "\nDelete? (y/N)"
+echo
+echo "Delete files? (y/N)"
 read -r response
 if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  echo "Done."
+  echo "Cancelled."
   exit 0
 fi
 
-echo "Enter numbers (e.g., 1 3 5) or 'all':"
+echo "Enter numbers separated by spaces (e.g., 1 3), or 'all':"
 read -r delete_list
 
-if [[ "$delete_list" == "all" ]]; then
-  for line in "${large_files[@]}"; do
-    path="${line#* }"
-    if rm -f "$path" 2>/dev/null; then
-      echo "Deleted: $path"
-    else
-      echo "Failed: $path"
-    fi
-  done
+if [[ "$delete_list" = "all" ]]; then
+  to_delete=( "${{sorted[@]}}" )
 else
-  for num in ${(s: :)delete_list}; do
-    if (( num >= 1 && num <= ${#large_files} )); then
-      path="${large_files[num]#* }"
-      if rm -f "$path" 2>/dev/null; then
-        echo "Deleted: $path"
+  to_delete=()
+  for token in ${(s: :)delete_list}; do
+    if [[ "$token" =~ '^[0-9]+$' ]]; then
+      idx=$(( token - 1 ))
+      if (( idx >= 0 && idx < ${#sorted} )); then
+        to_delete+=( "${{sorted[$idx]}}" )
       else
-        echo "Failed: $path"
+        echo "Invalid selection: $token"
       fi
-    else
-      echo "Invalid: $num"
     fi
   done
 fi
+
+for pair in "${{to_delete[@]}}"; do
+  path=${{pair#*$'\t'}}
+  if rm -f -- "$path"; then
+    echo "Deleted: $path"
+  else
+    echo "Failed to delete: $path"
+  fi
+done
 
 echo "Done."

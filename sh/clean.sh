@@ -1,36 +1,42 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Removes carriage returns, trailing whitespaces, and extra blank lines from text files.
-# Usage: ./clean.sh [target_folder]
+# sh/clean.sh - remove CRLF, trim trailing spaces, collapse extra blank lines
+# See pub/prompts.json — coding_style guidance.
 
-set -e
-setopt extended_glob
+set -euo pipefail
+emulate -L zsh
+setopt extended_glob null_glob
 
-dir="${1:-.}"
+target="${{1:-.}}"
 
-if [[ ! -d "$dir" ]]; then
-  echo "Error: '$dir' is not a directory"
+if [[ ! -d $target ]]; then
+  echo "Error: not a directory: $target" >&2
   exit 1
 fi
 
-for file in "$dir"/**/*(.N); do
-  if file -b "$file" | grep -q "text"; then
-  
-    tmp=$(mktemp)
-    if [[ $? -ne 0 ]]; then
-      echo "Error: mktemp failed"
-      exit 1
-    fi
-    
-    # Removes CRLF, trims trailing whitespaces, reduces blank lines.
-    tr -d '\r' < "$file" | awk '{sub(/[ \t]+$/, "");} NF{print; if(p)print ""} {p=NF}' > "$tmp" 2>/dev/null
-    if [[ $? -eq 0 ]]; then
-      mv "$tmp" "$file"
-      echo "Cleaned: $file"
-    else
-      rm "$tmp"
-      echo "Failed: $file"
-    fi
+process_file() {
+  local f="$1"
+  local tmp
+  tmp=""$(mktemp)" || { echo "mktemp failed"; return 1; }
+
+  # Stepwise processing for clarity:
+  # 1) Remove CR (\r)
+  # 2) Trim trailing whitespace per line
+  # 3) Collapse multiple blank lines into a single blank line
+  tr -d '\r' <"$f" >"${{tmp}}.step1" || return 1
+
+  awk '{ sub(/[ \t]+$/, ""); print }' "${{tmp}}.step1" >"${{tmp}}.step2" || return 1
+
+  awk 'NF { print; last=1 } !NF && last { print ""; last=0 }' "${{tmp}}.step2" >"$tmp" || return 1
+
+  mv -- "$tmp" "$f"
+  rm -f -- "${{tmp}}.step1" "${{tmp}}.step2" 2>/dev/null || true
+  echo "Cleaned: $f"
+}
+
+# Walk and process text files only.
+for f in "${{target}}"/**/*(.N); do
+  [[ -e $f ]] || continue
+  if file -b "$f" 2>/dev/null | grep -q text; then
+    process_file "$f" || echo "Failed to process: $f" >&2
   fi
 done

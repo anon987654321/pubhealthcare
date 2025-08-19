@@ -1,66 +1,68 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Swaps out words in files or renames them.
-# Usage: ./replace.sh [-b] <old> <new> [folder]
+# sh/replace.sh - replace text or rename filename patterns
+# Usage: replace.sh [-b] [-f] <old> <new> [folder]
+# -b : backup file before replacing content
+# -f : treat old/new as filename substrings (rename files)
 
-set -e
-setopt extendedglob
+set -euo pipefail
+emulate -L zsh
+setopt extended_glob null_glob
 
 backup=false
-if [[ "$1" == "-b" ]]; then
-  backup=true
-  shift
-fi
-
 is_filename=false
-if [[ "$1" == "-f" ]]; then
-  is_filename=true
-  shift
-fi
 
-old_str="$1"
-new_str="$2"
-folder="${3:-.}"
-
-if [[ -z "$old_str" || -z "$new_str" ]]; then
-  echo "Error: Must provide old and new strings"
-  exit 1
-fi
-if [[ ! -d "$folder" ]]; then
-  echo "Error: '$folder' is not a directory"
-  exit 1
-fi
-
-echo "Processing: $folder"
-for file in "$folder"/**/*(.N); do
-  if "$is_filename"; then
-    new_file="${file//$old_str/$new_str}"
-    if [[ "$file" != "$new_file" && ! -e "$new_file" ]]; then
-      mv "$file" "$new_file" 2>/dev/null
-      if [[ $? -eq 0 ]]; then
-        echo "Renamed: $file -> $new_file"
-      else
-        echo "Failed: $file"
-      fi
-    fi
-  else
-    is_text=$(file -b "$file" | grep -q "text"; echo $?)
-    if [[ $is_text -eq 0 ]]; then
-      if grep -q "$old_str" "$file" 2>/dev/null; then
-        if "$backup"; then
-          cp "$file" "$file.bak" 2>/dev/null || echo "Backup failed: $file"
-        fi
-        
-        sed "s|$old_str|$new_str|g" "$file" > "$file.tmp" 2>/dev/null
-        if [[ $? -eq 0 ]]; then
-          mv "$file.tmp" "$file"
-          echo "Updated: $file"
-        else
-          echo "Failed: $file"
-          rm -f "$file.tmp"
-        fi
-      fi
-    fi
-  fi
+while [[ $# -gt 0 && "${{1:0:1}}" = "-" ]]; do
+  case "$1" in
+    -b) backup=true; shift;;
+    -f) is_filename=true; shift;;
+    -h|--help) echo "Usage: $0 [-b] [-f] <old> <new> [folder]"; exit 0;;
+    *) break;;
+  esac
 done
+
+if (( $# < 2 )); then
+  echo "Usage: $0 [-b] [-f] <old> <new> [folder]" >&2
+  exit 1
+fi
+
+old="$1"
+new="$2"
+folder="${{3:-.}}"
+
+if [[ ! -d $folder ]]; then
+  echo "Error: not a directory: $folder" >&2
+  exit 1
+fi
+
+if $is_filename; then
+  # Rename files whose names contain $old -> replace with $new
+  for file in "$folder"/**/*(.N); do
+    [[ -e $file ]] || continue
+    base="$(basename -- "$file")"
+    if [[ "$base" = *"$old"* ]]; then
+      newname="${{file//$old/$new}}"
+      if [[ "$file" != "$newname" ]]; then
+        if [[ -e "$newname" ]]; then
+          echo "Skipping rename; target exists: $newname"
+        else
+          mv -- "$file" "$newname" && echo "Renamed: $file -> $newname"
+        fi
+      fi
+    fi
+  done
+else
+  # Replace content in text files
+  for file in "$folder"/**/*(.N); do
+    [[ -e $file ]] || continue
+    if file -b "$file" 2>/dev/null | grep -q text; then
+      if grep -q -- "$old" "$file" 2>/dev/null; then
+        if $backup; then
+          cp -- "$file" "$file.bak"
+        fi
+        tmp=""$(mktemp)" || { echo "mktemp failed"; exit 1; }
+        sed "s|$old|$new|g" "$file" >"$tmp" && mv -- "$tmp" "$file"
+        echo "Updated: $file"
+      fi
+    fi
+  done
+fi

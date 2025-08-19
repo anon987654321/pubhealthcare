@@ -1,37 +1,41 @@
-#!/bin/bash
-
 #!/usr/bin/env zsh
-# Checks and fixes Ruby code files for errors.
-# Usage: ./lint.sh
+# sh/lint.sh - run linters on Ruby files (rubocop, reek) where available
+# Non-fatal: report issues but continue.
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
 check_tool() {
-  if ! command -v "$1" >/dev/null 2>&1; then
-    echo "Error: $1 not found. Install it."
-    exit 1
-  fi
+  command -v "$1" >/dev/null 2>&1
 }
 
-lint_ruby() {
+lint_ruby_file() {
   local file="$1"
-  echo "Linting: $file"
-  
-  if ! reek "$file" >/dev/null 2>&1; then
-    echo "Reek flagged: $file"
+  echo "Lint: $file"
+
+  if check_tool rubocop; then
+    if rubocop --auto-correct "$file"; then
+      echo "rubocop: OK $file"
+    else
+      echo "rubocop: issues in $file"
+    fi
+  else
+    echo "rubocop not installed; skipping"
   fi
-  if ! rubocop --autocorrect "$file" >/dev/null 2>&1; then
-    echo "Rubocop failed: $file"
+
+  if check_tool reek; then
+    if reek "$file" >/dev/null 2>&1; then
+      echo "reek: OK $file"
+    else
+      echo "reek: issues in $file"
+    fi
+  else
+    echo "reek not installed; skipping"
   fi
-  
-  echo "Done: $file"
 }
 
-check_tool "rubocop"
-check_tool "reek"
-
-find . -type f \( -name "*.rb" -o -name "*.erb" \) \
-  ! -path "*/.gem/*" ! -path "*/vendor/*" | while read -r file; do
-    lint_ruby "$file"
-  done
+for f in **/*.(rb|erb)(.N); do
+  [[ -e $f ]] || continue
+  lint_ruby_file "$f"
+done

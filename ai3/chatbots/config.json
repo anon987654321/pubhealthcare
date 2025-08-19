@@ -1,0 +1,35 @@
+{
+  "platforms": {
+    "discord": {
+      "enabled": true,
+      "token": "",
+      "guild_id": ""
+    },
+    "snapchat": {
+      "enabled": true,
+      "username": "",
+      "password": ""
+    },
+    "4chan": {
+      "enabled": false,
+      "boards": ["g", "pol", "biz"]
+    },
+    "onlyfans": {
+      "enabled": false,
+      "username": "",
+      "password": ""
+    },
+    "reddit": {
+      "enabled": true,
+      "client_id": "",
+      "client_secret": "",
+      "username": "",
+      "password": ""
+    }
+  },
+  "general": {
+    "response_delay": 1000,
+    "max_message_length": 2000,
+    "auto_reply": false
+  }
+}

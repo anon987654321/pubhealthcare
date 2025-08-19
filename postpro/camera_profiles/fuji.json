@@ -1,0 +1,35 @@
+{
+  "camera": "Fujifilm",
+  "profiles": {
+    "X-T4": {
+      "color_profile": "Classic Chrome",
+      "iso_range": [160, 12800],
+      "optimal_iso": 800,
+      "dynamic_range": "DR400",
+      "film_simulation": "Classic Chrome",
+      "noise_reduction": {
+        "luminance": 0.2,
+        "color": 0.1
+      },
+      "sharpening": {
+        "amount": 0.3,
+        "radius": 1.0
+      }
+    },
+    "X-T5": {
+      "color_profile": "Provia",
+      "iso_range": [125, 51200],
+      "optimal_iso": 640,
+      "dynamic_range": "DR400",
+      "film_simulation": "Provia",
+      "noise_reduction": {
+        "luminance": 0.15,
+        "color": 0.08
+      },
+      "sharpening": {
+        "amount": 0.35,
+        "radius": 1.2
+      }
+    }
+  }
+}

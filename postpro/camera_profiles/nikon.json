@@ -1,0 +1,39 @@
+{
+  "camera": "Nikon",
+  "profiles": {
+    "Z9": {
+      "color_profile": "Natural",
+      "iso_range": [64, 25600],
+      "optimal_iso": 400,
+      "dynamic_range": "14 stops",
+      "picture_control": "Natural",
+      "noise_reduction": {
+        "high_iso": 0.25,
+        "long_exposure": 0.2
+      },
+      "sharpening": {
+        "amount": 0.4,
+        "radius": 1.1,
+        "detail": 0.6
+      },
+      "color_space": "Adobe RGB"
+    },
+    "D850": {
+      "color_profile": "Standard",
+      "iso_range": [64, 25600],
+      "optimal_iso": 320,
+      "dynamic_range": "14.8 stops",
+      "picture_control": "Standard",
+      "noise_reduction": {
+        "high_iso": 0.3,
+        "long_exposure": 0.25
+      },
+      "sharpening": {
+        "amount": 0.35,
+        "radius": 1.0,
+        "detail": 0.5
+      },
+      "color_space": "sRGB"
+    }
+  }
+}

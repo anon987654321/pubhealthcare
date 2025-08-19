@@ -37,7 +37,7 @@
   "github_workflow": {
     "ci_checks": [
       "rubocop",
-      "shellcheck (best-effort)"
+      "shellcheck (best-effort, bash)"
     ],
     "pr_restore_policy": "apply closed PR commits first, then open PRs; create CONFLICTS_RESTORE.md on conflicts and stop",
     "automerge_hints": {

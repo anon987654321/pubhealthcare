@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+# See pub/prompts.json v1.0.0-RELEASE — shell standards
 
 #!/usr/bin/env zsh
 # Finds and deletes large files to free up space.
 # Usage: ./free_up_space.sh [directory]
 
-set -e
+set -euo pipefail
+emulate -L zsh
 setopt extended_glob null_glob
 
 search_dir="${1:-.}"

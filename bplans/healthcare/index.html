@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Healthcare API (hAPI) - Moderne erstatning for FHIR med forbedret interoperabilitet og ytelse">
+    <meta name="generator" content="master.json v111.7-internalized">
+    <title>Healthcare API (hAPI) - Fremtiden for Helseteknologi</title>
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #000000;
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo with animated gradient */
+        .logo-container {
+            font-family: var(--font-family);
+            font-weight: 900;
+            font-size: 80px;
+            color: transparent;
+            background: linear-gradient(45deg, #ff007f, #00c9ff, #ffcc00, #ff007f);
+            background-size: 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: gradientMove 5s infinite linear, hueRotation 10s linear infinite;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes hueRotation {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Header and main content */
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h1 {
+            font-size: 72px;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #444444;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: #fafafa;
+            transition: transform 0.2s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .feature-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .comparison-table .advantage {
+            background: #e8f5e8;
+            color: #2d5a2d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 64px; }
+            .logo-container { font-size: 60px; }
+            main { padding: 0 1rem; }
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">hAPI</div>
+        <h1>healthcare api</h1>
+        <p>Moderne, effektiv erstatning for FHIR med forbedret interoperabilitet</p>
+    </header>
+
+    <main>
+        <section id="overview">
+            <h2>Oversikt</h2>
+            <p>Healthcare API (hAPI) er designet som en moderne, effektiv erstatning for FHIR (Fast Healthcare Interoperability Resources). Med fokus på ytelse, enkelhet og bred kompatibilitet, tilbyr hAPI en strømlinjeformet tilnærming til helsedatautveksling.</p>
+            
+            <div class="feature-list">
+                <h3>Hovedfunksjoner</h3>
+                <ul>
+                    <li><strong>Høy ytelse</strong>: Optimalisert for stor skala og rask databehandling</li>
+                    <li><strong>Enkel integrasjon</strong>: Intuitive APIer som reduserer utviklingstid</li>
+                    <li><strong>Bred kompatibilitet</strong>: Støtter eksisterende helsesystemer og standarder</li>
+                    <li><strong>Sanntids datautveksling</strong>: Umiddelbar synkronisering mellom systemer</li>
+                    <li><strong>Sikkerhetsoptimalisert</strong>: Innebygd kryptering og tilgangskontroll</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="technology">
+            <h2>Teknologisk Arkitektur</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Core API Layer</h3>
+                    <p>RESTful APIs med GraphQL-støtte for fleksibel dataforespørsel og effektiv båndbreddebruk.</p>
+                    <ul>
+                        <li>JSON/XML dual format</li>
+                        <li>Async/await patterns</li>
+                        <li>Batch operations</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Data Standardization</h3>
+                    <p>Automatisk konvertering mellom forskjellige helsedata-formater med minimal konfigurasjon.</p>
+                    <ul>
+                        <li>HL7 v2/v3 support</li>
+                        <li>FHIR compatibility layer</li>
+                        <li>Custom schema mapping</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Security Framework</h3>
+                    <p>Enterprise-grade sikkerhet med OAuth 2.0, RBAC og ende-til-ende kryptering.</p>
+                    <ul>
+                        <li>Multi-factor authentication</li>
+                        <li>Audit logging</li>
+                        <li>GDPR compliance tools</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Real-time Sync</h3>
+                    <p>WebSocket-baserte live oppdateringer og event-driven arkitektur for sanntids responsivitet.</p>
+                    <ul>
+                        <li>Event streaming</li>
+                        <li>Conflict resolution</li>
+                        <li>Offline sync support</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <h2>hAPI vs FHIR Sammenligning</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspekt</th>
+                        <th>FHIR</th>
+                        <th>hAPI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ytelse</strong></td>
+                        <td>Moderat - XML overhead</td>
+                        <td class="advantage">Høy - optimalisert JSON/binary</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kompleksitet</strong></td>
+                        <td>Høy læringskulve</td>
+                        <td class="advantage">Intuitiv developer experience</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Implementeringstid</strong></td>
+                        <td>6-12 måneder</td>
+                        <td class="advantage">2-4 måneder</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Skalering</strong></td>
+                        <td>Krever spesialisert infrastruktur</td>
+                        <td class="advantage">Cloud-native, auto-scaling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vedlikehold</strong></td>
+                        <td>Høye driftskostnader</td>
+                        <td class="advantage">Selvvedlikeholdende systemer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementeringsplan</h2>
+            
+            <h3>Fase 1: Assessment (1-2 måneder)</h3>
+            <ul>
+                <li>Evaluere eksisterende FHIR-implementasjoner</li>
+                <li>Identifisere migrasjonsmuligheter</li>
+                <li>Stakeholder-feedback og kravanalyse</li>
+            </ul>
+
+            <h3>Fase 2: Utvikling (3-4 måneder)</h3>
+            <ul>
+                <li>Design hAPI arkitektur og komponenter</li>
+                <li>Utvikle core API og sikkerhetslag</li>
+                <li>Bygge FHIR-kompatibilitetslag</li>
+                <li>Omfattende testing og optimalisering</li>
+            </ul>
+
+            <h3>Fase 3: Overgang (2-3 måneder)</h3>
+            <ul>
+                <li>Pilot hAPI i utvalgte helsemiljøer</li>
+                <li>Opplæring og brukerstøtte</li>
+                <li>Gradvis utfasing av FHIR-avhengigheter</li>
+                <li>Kontinuerlig overvåking og optimalisering</li>
+            </ul>
+
+            <h3>Fase 4: Full Deployment (1-2 måneder)</h3>
+            <ul>
+                <li>Utrulling av hAPI på tvers av alle helsesystemer</li>
+                <li>Komplett migrering fra FHIR</li>
+                <li>Performance monitoring og kontinuerlig forbedring</li>
+            </ul>
+        </section>
+
+        <section id="benefits">
+            <h2>Forventede Fordeler</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Kostnadsbesparelser</h3>
+                    <p>50-70% reduksjon i implementerings- og driftskostnader sammenlignet med FHIR.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Økt Effektivitet</h3>
+                    <p>3-5x raskere databehandling og betydelig redusert latency i systemrespons.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Bedre Brukeropplevelse</h3>
+                    <p>Intuitive APIer som gjør integrasjon enkel for utviklere og IT-avdelinger.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Framtidssikkerhet</h3>
+                    <p>Modulær arkitektur som enkelt kan tilpasses fremtidige teknologier og standarder.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

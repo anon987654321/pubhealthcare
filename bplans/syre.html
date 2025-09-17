@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SYRE™ - Ultramoderne 3D-printede sko med bærekraftig teknologi og teknologideling med SPEIS for aerospace">
+    <meta name="generator" content="master.json v111.7-internalized">
     <title>SYRE™ - Forretningsplan</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Swiper CSS for Carousel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <style>
         /* CSS Variables */
         :root {
             --primary-color: #000000;
             --background-color: #ffffff;
             --text-color: #333333;
-            --font-family: 'Inter', sans-serif;
+            --font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
 
         /* General Styles */
@@ -39,7 +36,8 @@
 
         /* Logo styling with psychedelic animated gradient */
         .logo-container {
-            font-family: 'Black Han Sans', sans-serif;
+            font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-weight: 900;
             font-size: 70px;
             color: transparent;
             background: linear-gradient(45deg, #ff007f, #00c9ff, #ffcc00, #ff007f);
@@ -62,6 +60,11 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes hueRotation {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
         /* Header styling */
@@ -109,11 +112,21 @@
             color: #444444;
         }
 
-        /* Swiper Carousel */
+        /* Internal Slider (replaces Swiper) */
         .swiper {
             width: 100%;
             height: 250px;
             margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
         }
 
         .swiper-slide {
@@ -124,6 +137,8 @@
             color: #333;
             font-size: 24px;
             overflow: hidden;
+            flex: 0 0 100%;
+            width: 100%;
         }
 
         .swiper-slide img {
@@ -133,10 +148,70 @@
             border-radius: 8px;
         }
 
-        /* Chart container */
+        .swiper-pagination {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #fff;
+        }
+
+        /* Internal Chart Utilities */
         .chart-container {
             max-width: 500px;
             margin: 2rem auto;
+            position: relative;
+        }
+
+        .chart-canvas {
+            width: 100%;
+            height: 200px;
+            background: #fff;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .chart-legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
         }
 
         /* Responsive adjustments for mobile */
@@ -149,6 +224,12 @@
             }
             h2 {
                 font-size: 1.8rem;
+            }
+            .logo-container {
+                font-size: 64px;
+            }
+            .chart-container {
+                margin: 1rem auto;
             }
         }
     </style>
@@ -231,8 +312,34 @@
                 <li><strong>Global utvidelse</strong>: Planlagt ekspansjon til utviklingsland</li>
             </ul>
 
-            <div class="chart-container">
-                <canvas id="donationChart" width="400" height="200"></canvas>
+            <div class="chart-container" aria-label="Donasjonsimpakt for gratis SYRE sko til trengende">
+                <div class="chart-title">Donasjonsimpakt og Samfunnsbidrag</div>
+                <div class="chart-canvas" id="donationChart">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <!-- Simple doughnut chart representation -->
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#8a2be2" stroke-width="20" 
+                                stroke-dasharray="150 377" transform="rotate(-90 200 100)"/>
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#ff007f" stroke-width="20" 
+                                stroke-dasharray="100 377" stroke-dashoffset="-150" transform="rotate(-90 200 100)"/>
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#cccccc" stroke-width="20" 
+                                stroke-dasharray="127 377" stroke-dashoffset="-250" transform="rotate(-90 200 100)"/>
+                        <text x="200" y="105" text-anchor="middle" font-size="16" fill="#333">Gratis Sko</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Kommersielle (40%)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #ff007f;"></div>
+                        <span>Donasjoner (26%)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #cccccc;"></div>
+                        <span>Tilgjengelig (34%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -266,7 +373,26 @@
             <h3>Markedsstørrelse og Vekst</h3>
             <p>Det norske fottøymarkedet er verdt ca. NOK 5 milliarder årlig. Skreddersydd fottøy utgjør 10 % av dette, med en forventet årlig vekst på 7 %.</p>
             <div class="chart-container" aria-label="Markedsandel for SYRE-produkter etter 3 år">
-                <canvas id="marketChart" width="250" height="150"></canvas>
+                <div class="chart-title">Markedsandel Prognoser</div>
+                <div class="chart-canvas" id="marketChart">
+                    <svg width="100%" height="150" viewBox="0 0 250 150">
+                        <!-- Simple bar chart representation -->
+                        <rect x="40" y="100" width="30" height="30" fill="#8a2be2"/>
+                        <rect x="80" y="80" width="30" height="50" fill="#ff007f"/>
+                        <rect x="120" y="60" width="30" height="70" fill="#333333"/>
+                        <rect x="160" y="40" width="30" height="90" fill="#cccccc"/>
+                        <text x="55" y="145" text-anchor="middle" font-size="10" fill="#333">År 1</text>
+                        <text x="95" y="145" text-anchor="middle" font-size="10" fill="#333">År 2</text>
+                        <text x="135" y="145" text-anchor="middle" font-size="10" fill="#333">År 3</text>
+                        <text x="175" y="145" text-anchor="middle" font-size="10" fill="#333">År 4</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Markedsandel (%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -275,15 +401,73 @@
             <h2>Finansiering</h2>
             <p>Vi søker NOK 2 millioner fra Innovasjon Norge som en del av et totalt kapitalbehov på NOK 6 millioner over to år.</p>
             <div class="chart-container" aria-label="Økonomiske prognoser for SYRE-produkter over de kommende tre årene">
-                <canvas id="financeChart" width="250" height="150"></canvas>
+                <div class="chart-title">Økonomiske Prognoser og Samfunnsimpakt</div>
+                <div class="chart-canvas" id="financeChart">
+                    <svg width="100%" height="150" viewBox="0 0 250 150">
+                        <!-- Dual-axis bar + line chart representation -->
+                        <rect x="30" y="110" width="20" height="20" fill="#8a2be2"/>
+                        <rect x="60" y="95" width="20" height="35" fill="#8a2be2"/>
+                        <rect x="90" y="80" width="20" height="50" fill="#8a2be2"/>
+                        <rect x="120" y="65" width="20" height="65" fill="#8a2be2"/>
+                        <!-- Line chart overlay -->
+                        <polyline points="40,120 70,100 100,85 130,70" stroke="#ff007f" stroke-width="2" fill="none"/>
+                        <circle cx="40" cy="120" r="3" fill="#ff007f"/>
+                        <circle cx="70" cy="100" r="3" fill="#ff007f"/>
+                        <circle cx="100" cy="85" r="3" fill="#ff007f"/>
+                        <circle cx="130" cy="70" r="3" fill="#ff007f"/>
+                        <text x="40" y="145" text-anchor="middle" font-size="10" fill="#333">2024</text>
+                        <text x="70" y="145" text-anchor="middle" font-size="10" fill="#333">2025</text>
+                        <text x="100" y="145" text-anchor="middle" font-size="10" fill="#333">2026</text>
+                        <text x="130" y="145" text-anchor="middle" font-size="10" fill="#333">2027</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Inntekt (MNOK)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #ff007f;"></div>
+                        <span>Samfunnsimpakt</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Growth Trends Section -->
         <section id="growth">
             <h2>Forventet Markedsvekst</h2>
-            <div class="chart-container">
-                <canvas id="growthChart" width="250" height="150"></canvas>
+            <div class="chart-container" aria-label="Forventet markedsvekst for SYRE">
+                <div class="chart-title">Forventet Markedsvekst</div>
+                <div class="chart-canvas" id="growthChart">
+                    <svg width="100%" height="150" viewBox="0 0 250 150">
+                        <!-- Line chart representation -->
+                        <polyline points="30,130 70,115 110,95 150,75 190,50" stroke="#8a2be2" stroke-width="3" fill="none"/>
+                        <circle cx="30" cy="130" r="4" fill="#8a2be2"/>
+                        <circle cx="70" cy="115" r="4" fill="#8a2be2"/>
+                        <circle cx="110" cy="95" r="4" fill="#8a2be2"/>
+                        <circle cx="150" cy="75" r="4" fill="#8a2be2"/>
+                        <circle cx="190" cy="50" r="4" fill="#8a2be2"/>
+                        <!-- Data points -->
+                        <text x="30" y="145" text-anchor="middle" font-size="10" fill="#333">2022</text>
+                        <text x="70" y="145" text-anchor="middle" font-size="10" fill="#333">2023</text>
+                        <text x="110" y="145" text-anchor="middle" font-size="10" fill="#333">2024</text>
+                        <text x="150" y="145" text-anchor="middle" font-size="10" fill="#333">2025</text>
+                        <text x="190" y="145" text-anchor="middle" font-size="10" fill="#333">2026</text>
+                        <!-- Y-axis labels -->
+                        <text x="25" y="135" text-anchor="end" font-size="10" fill="#333">5%</text>
+                        <text x="25" y="120" text-anchor="end" font-size="10" fill="#333">8%</text>
+                        <text x="25" y="100" text-anchor="end" font-size="10" fill="#333">10%</text>
+                        <text x="25" y="80" text-anchor="end" font-size="10" fill="#333">12%</text>
+                        <text x="25" y="55" text-anchor="end" font-size="10" fill="#333">15%</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Årlig Vekst (%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -310,132 +494,131 @@
             <p>Takk for deres tid og vurdering. Vi ser frem til muligheten for samarbeid og utvikling av bærekraftige, innovative løsninger sammen.</p>
         </section>
     </main>
-    <!-- Swiper and Chart.js Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Internal Script Implementation -->
     <script>
-        // Initialize Swiper Carousel
-        var swiper = new Swiper('.swiper', {
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            loop: true
-        });
-
-        // Donation Impact Chart
-        const donationCtx = document.getElementById('donationChart').getContext('2d');
-        const donationChart = new Chart(donationCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Solgte sko', 'Donerte sko'],
-                datasets: [{
-                    data: [50, 50],
-                    backgroundColor: ['#8a2be2', '#ff007f'],
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: '1:1 Donasjonsprogram - Gratis Sko til Trengende' },
-                    legend: { position: 'bottom' }
-                }
+        // Internal Slider Implementation (replaces Swiper)
+        class InternalSlider {
+            constructor(selector, options = {}) {
+                this.container = document.querySelector(selector);
+                this.wrapper = this.container.querySelector('.swiper-wrapper');
+                this.slides = this.container.querySelectorAll('.swiper-slide');
+                this.pagination = this.container.querySelector('.swiper-pagination');
+                
+                this.currentSlide = 0;
+                this.options = {
+                    autoplay: options.autoplay || 2500,
+                    loop: options.loop !== false,
+                    ...options
+                };
+                
+                this.init();
             }
-        });
-
-        // Market Share Chart
-        const marketCtx = document.getElementById('marketChart').getContext('2d');
-        const marketChart = new Chart(marketCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['SYRE™', 'Konkurrenter'],
-                datasets: [{
-                    data: [12, 88],
-                    backgroundColor: ['#8a2be2', '#cccccc'],
-                }]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.label}: ${context.raw}% av markedet`;
-                            }
+            
+            init() {
+                this.createPagination();
+                this.addEventListeners();
+                if (this.options.autoplay) {
+                    this.startAutoplay();
+                }
+                this.updateSlider();
+            }
+            
+            createPagination() {
+                if (!this.pagination) return;
+                
+                this.pagination.innerHTML = '';
+                this.slides.forEach((_, index) => {
+                    const bullet = document.createElement('div');
+                    bullet.className = 'swiper-pagination-bullet';
+                    bullet.addEventListener('click', () => this.goToSlide(index));
+                    this.pagination.appendChild(bullet);
+                });
+            }
+            
+            addEventListeners() {
+                let startX = null;
+                
+                this.container.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+                
+                this.container.addEventListener('touchend', (e) => {
+                    if (!startX) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
                         }
-                    },
-                    title: { display: true, text: 'Forventet Markedsandel etter 3 år' },
-                    legend: { position: 'bottom' }
+                    }
+                    startX = null;
+                });
+            }
+            
+            updateSlider() {
+                this.wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+                
+                // Update pagination
+                if (this.pagination) {
+                    const bullets = this.pagination.querySelectorAll('.swiper-pagination-bullet');
+                    bullets.forEach((bullet, index) => {
+                        bullet.classList.toggle('swiper-pagination-bullet-active', index === this.currentSlide);
+                    });
                 }
             }
-        });
-
-        // Financial Projections Chart
-        const financeCtx = document.getElementById('financeChart').getContext('2d');
-        const financeChart = new Chart(financeCtx, {
-            type: 'bar',
-            data: {
-                labels: ['År 1', 'År 2', 'År 3'],
-                datasets: [
-                    {
-                        label: 'Omsetning (MNOK)',
-                        data: [5, 12, 25],
-                        backgroundColor: '#8a2be2',
-                    },
-                    {
-                        label: 'Netto Resultat (MNOK)',
-                        data: [-1, 2, 6],
-                        backgroundColor: '#333333',
-                    },
-                    {
-                        label: 'Donerte sko (antall)',
-                        data: [2500, 6000, 12500],
-                        backgroundColor: '#ff007f',
-                        yAxisID: 'y1'
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        grid: { drawOnChartArea: false }
-                    }
-                },
-                plugins: {
-                    title: { display: true, text: 'Økonomiske Prognoser og Samfunnsimpakt' },
-                    legend: { position: 'bottom' }
+            
+            goToSlide(index) {
+                this.currentSlide = index;
+                this.updateSlider();
+            }
+            
+            nextSlide() {
+                if (this.options.loop) {
+                    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+                } else if (this.currentSlide < this.slides.length - 1) {
+                    this.currentSlide++;
+                }
+                this.updateSlider();
+            }
+            
+            prevSlide() {
+                if (this.options.loop) {
+                    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+                } else if (this.currentSlide > 0) {
+                    this.currentSlide--;
+                }
+                this.updateSlider();
+            }
+            
+            startAutoplay() {
+                this.autoplayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.options.autoplay);
+            }
+            
+            stopAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
                 }
             }
-        });
-
-        // Growth Trends Line Chart
-        const growthCtx = document.getElementById('growthChart').getContext('2d');
-        const growthChart = new Chart(growthCtx, {
-            type: 'line',
-            data: {
-                labels: ['2022', '2023', '2024', '2025'],
-                datasets: [{
-                    label: 'Årlig Vekst (%)',
-                    data: [5, 8, 10, 12],
-                    backgroundColor: 'rgba(138, 43, 226, 0.2)',
-                    borderColor: '#8a2be2',
-                    fill: true,
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: 'Forventet Markedsvekst' }
-                },
-                scales: { y: { beginAtZero: true } }
-            }
+        }
+        
+        // Initialize slider when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = new InternalSlider('.swiper', {
+                autoplay: 2500,
+                loop: true
+            });
+            
+            // Pause autoplay on hover
+            const swiperContainer = document.querySelector('.swiper');
+            swiperContainer.addEventListener('mouseenter', () => slider.stopAutoplay());
+            swiperContainer.addEventListener('mouseleave', () => slider.startAutoplay());
         });
     </script>
 </body>
 </html>
-

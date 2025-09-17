@@ -1,0 +1,37 @@
+{
+  "framework_version": "111.7-internalized",
+  "updated": "2025-09-17T03:31:15Z",
+  "user": "anon987654321",
+  "repository": "anon987654321/pub",
+  "html_policies": {
+    "white_background_only": true,
+    "allow_external_fonts": false,
+    "allow_external_scripts": false,
+    "allow_external_stylesheets": false,
+    "allow_inline_styles": true,
+    "allow_inline_scripts": true,
+    "disallow_iframe_embeds": true,
+    "disallow_tracking": true,
+    "allowed_animations": ["gradient_text", "hue_rotation"],
+    "allowed_widgets": ["minimal_slider", "minimal_charts"],
+    "type_stacks": {
+      "sans": "system-ui, -apple-system, \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+      "serif": "Georgia, Cambria, \"Times New Roman\", Times, serif"
+    },
+    "typography": {"body_weight": 400, "label_size_px": 10, "h1_min_px": 64, "h1_max_px": 140, "ragged_right": true, "thin_rules": true}
+  },
+  "metadata_injection": {"generator": "master.json v111.7-internalized", "require_description_meta": true, "require_viewport_meta": true, "title_case_policy": "lowercase_h1_visual_only"},
+  "internal_components": {
+    "slider": {"class": "swiper", "wrapper_class": "swiper-wrapper", "slide_class": "swiper-slide", "pagination_class": "swiper-pagination", "autoplay_ms": 2500, "loop": true},
+    "charts": {"supported": ["doughnut", "bar_dual_axis", "line"], "colors": {"primary": "#8a2be2", "secondary": "#333333", "accent": "#ff007f", "muted": "#cccccc", "grid": "#dddddd"}}
+  },
+  "validation": {"enforce_no_externals": true, "check_inline_logo_animation": true, "check_white_background": true, "check_meta_presence": true, "accessibility_minimums": {"image_alt_required": true, "link_visible_focus": false}},
+  "plans": [
+    {"path": "bplans/syre.html", "layout": "baseline-internalized-1", "status": "frozen_baseline"},
+    {"path": "bplans/speis.html", "layout": "internalized-trirail", "actions": ["remove_externals", "embed_logo_animation", "replace_chart_js_with_internal"]},
+    {"path": "bplans/norwegianhedge.html", "layout": "internalized-modular-grid", "actions": ["remove_externals", "embed_logo_animation", "replace_chart_js_with_internal"]},
+    {"path": "bplans/political/index.html", "layout": "internalized-left-rail", "actions": ["meta_injection", "white_bg_assert"]},
+    {"path": "bplans/healthcare/index.html", "layout": "internalized-single-column", "actions": ["meta_injection", "white_bg_assert"]}
+  ],
+  "compliance": {"on_failure": "block_merge", "remediation_required": true}
+}

@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Norwegian Hedge - Konsolidert hedge fund med AI-drevne handelsalgoritmer og nordisk prosperity fund">
+    <meta name="generator" content="master.json v111.7-internalized">
     <title>Norwegian Hedge - Konsolidert Hedge Fund</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* CSS Variables - SYRE™/LA2 Design */
         :root {
@@ -16,7 +14,7 @@
             --text-color: #222222;
             --highlight-color: #5d93ff;
             --gradient-primary: linear-gradient(45deg, #ff007f, #00c9ff, #ffcc00, #ff007f);
-            --font-family: 'Inter', sans-serif;
+            --font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
 
         /* General Styles */
@@ -40,7 +38,7 @@
 
         /* Logo styling with SYRE™ animated gradient */
         .logo-container {
-            font-family: 'Black Han Sans', sans-serif;
+            font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-weight: 900;
             font-size: 70px;
             color: transparent;
             background: var(--gradient-primary);
@@ -124,16 +122,59 @@
             font-size: 1.1rem;
         }
 
-        /* Chart container */
+        /* Internal Chart Utilities */
         .chart-container {
             max-width: 500px;
             margin: 2rem auto;
+            position: relative;
+        }
+
+        .chart-canvas {
+            width: 100%;
+            height: 200px;
+            background: #fff;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .chart-legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
         }
 
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes hueRotation {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
         /* Responsive Design */
@@ -189,7 +230,33 @@
             </ul>
 
             <div class="chart-container">
-                <canvas id="prosperityChart" width="400" height="200"></canvas>
+                <div class="chart-title">Nordic Prosperity Fund Allocation</div>
+                <div class="chart-canvas" id="prosperityChart">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <!-- Doughnut chart -->
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#8a2be2" stroke-width="25" 
+                                stroke-dasharray="180 377" transform="rotate(-90 200 100)"/>
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#ff007f" stroke-width="25" 
+                                stroke-dasharray="120 377" stroke-dashoffset="-180" transform="rotate(-90 200 100)"/>
+                        <circle cx="200" cy="100" r="60" fill="none" stroke="#333333" stroke-width="25" 
+                                stroke-dasharray="77 377" stroke-dashoffset="-300" transform="rotate(-90 200 100)"/>
+                        <text x="200" y="105" text-anchor="middle" font-size="14" fill="#333">Prosperity</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Norske fond (48%)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #ff007f;"></div>
+                        <span>Internasjonalt (32%)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #333333;"></div>
+                        <span>Alternative (20%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -219,7 +286,34 @@
             </ul>
 
             <div class="chart-container">
-                <canvas id="botChart" width="400" height="200"></canvas>
+                <div class="chart-title">Ruby Bot Performance</div>
+                <div class="chart-canvas" id="botChart">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <!-- Line chart -->
+                        <polyline points="50,150 100,120 150,100 200,80 250,70 300,60 350,50" stroke="#8a2be2" stroke-width="3" fill="none"/>
+                        <circle cx="50" cy="150" r="4" fill="#8a2be2"/>
+                        <circle cx="100" cy="120" r="4" fill="#8a2be2"/>
+                        <circle cx="150" cy="100" r="4" fill="#8a2be2"/>
+                        <circle cx="200" cy="80" r="4" fill="#8a2be2"/>
+                        <circle cx="250" cy="70" r="4" fill="#8a2be2"/>
+                        <circle cx="300" cy="60" r="4" fill="#8a2be2"/>
+                        <circle cx="350" cy="50" r="4" fill="#8a2be2"/>
+                        <!-- Labels -->
+                        <text x="50" y="190" text-anchor="middle" font-size="10" fill="#333">Q1</text>
+                        <text x="100" y="190" text-anchor="middle" font-size="10" fill="#333">Q2</text>
+                        <text x="150" y="190" text-anchor="middle" font-size="10" fill="#333">Q3</text>
+                        <text x="200" y="190" text-anchor="middle" font-size="10" fill="#333">Q4</text>
+                        <text x="250" y="190" text-anchor="middle" font-size="10" fill="#333">Q1</text>
+                        <text x="300" y="190" text-anchor="middle" font-size="10" fill="#333">Q2</text>
+                        <text x="350" y="190" text-anchor="middle" font-size="10" fill="#333">Q3</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Avkastning (%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -274,7 +368,31 @@
             </ul>
 
             <div class="chart-container">
-                <canvas id="ai3Chart" width="400" height="200"></canvas>
+                <div class="chart-title">AI3 Strategy Performance</div>
+                <div class="chart-canvas" id="ai3Chart">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <!-- Bar chart -->
+                        <rect x="80" y="120" width="40" height="60" fill="#8a2be2"/>
+                        <rect x="140" y="100" width="40" height="80" fill="#8a2be2"/>
+                        <rect x="200" y="80" width="40" height="100" fill="#8a2be2"/>
+                        <rect x="260" y="60" width="40" height="120" fill="#ff007f"/>
+                        <!-- Labels -->
+                        <text x="100" y="195" text-anchor="middle" font-size="10" fill="#333">Long</text>
+                        <text x="160" y="195" text-anchor="middle" font-size="10" fill="#333">Short</text>
+                        <text x="220" y="195" text-anchor="middle" font-size="10" fill="#333">Hedge</text>
+                        <text x="280" y="195" text-anchor="middle" font-size="10" fill="#333">AI3</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Standard strategier</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #ff007f;"></div>
+                        <span>AI3 outperformance</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -294,7 +412,36 @@
             </ul>
 
             <div class="chart-container">
-                <canvas id="performanceChart" width="400" height="200"></canvas>
+                <div class="chart-title">Historisk Performance</div>
+                <div class="chart-canvas" id="performanceChart">
+                    <svg width="100%" height="200" viewBox="0 0 400 200">
+                        <!-- Dual-axis line chart -->
+                        <polyline points="50,160 100,140 150,120 200,100 250,80 300,70 350,60" stroke="#8a2be2" stroke-width="3" fill="none"/>
+                        <polyline points="50,150 100,130 150,110 200,90 250,75 300,65 350,55" stroke="#ff007f" stroke-width="2" fill="none"/>
+                        <circle cx="50" cy="160" r="3" fill="#8a2be2"/>
+                        <circle cx="100" cy="140" r="3" fill="#8a2be2"/>
+                        <circle cx="150" cy="120" r="3" fill="#8a2be2"/>
+                        <circle cx="200" cy="100" r="3" fill="#8a2be2"/>
+                        <circle cx="250" cy="80" r="3" fill="#8a2be2"/>
+                        <circle cx="300" cy="70" r="3" fill="#8a2be2"/>
+                        <circle cx="350" cy="60" r="3" fill="#8a2be2"/>
+                        <!-- Labels -->
+                        <text x="50" y="190" text-anchor="middle" font-size="10" fill="#333">2019</text>
+                        <text x="150" y="190" text-anchor="middle" font-size="10" fill="#333">2021</text>
+                        <text x="250" y="190" text-anchor="middle" font-size="10" fill="#333">2023</text>
+                        <text x="350" y="190" text-anchor="middle" font-size="10" fill="#333">2025</text>
+                    </svg>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #8a2be2;"></div>
+                        <span>Norwegian Hedge (%)</span>
+                    </div>
+                    <div class="chart-legend-item">
+                        <div class="chart-legend-color" style="background: #ff007f;"></div>
+                        <span>Benchmark (%)</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -329,106 +476,5 @@
             <p><strong>Norwegian Hedge - Hvor teknologi møter tradisjon for å skape fremtidens investeringer.</strong></p>
         </section>
     </main>
-
-    <script>
-        // Nordic Prosperity Fund Allocation Chart
-        const prosperityCtx = document.getElementById('prosperityChart').getContext('2d');
-        const prosperityChart = new Chart(prosperityCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Nordiske aksjer', 'Internasjonale aksjer', 'Obligasjoner', 'Kryptovalutaer', 'Råvarer'],
-                datasets: [{
-                    data: [40, 30, 15, 10, 5],
-                    backgroundColor: ['#5d93ff', '#ff007f', '#00c9ff', '#ffcc00', '#8a2be2'],
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: 'Nordic Prosperity Fund - Asset Allokering' },
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
-
-        // Ruby Bot Performance Chart
-        const botCtx = document.getElementById('botChart').getContext('2d');
-        const botChart = new Chart(botCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun'],
-                datasets: [{
-                    label: 'Skalperingsroboter (%)',
-                    data: [2.5, 3.1, 2.8, 3.5, 4.2, 3.8],
-                    borderColor: '#5d93ff',
-                    backgroundColor: 'rgba(93, 147, 255, 0.1)',
-                    fill: true
-                }, {
-                    label: 'Arbitrasje-bots (%)',
-                    data: [1.8, 2.2, 2.5, 2.1, 2.8, 3.2],
-                    borderColor: '#ff007f',
-                    backgroundColor: 'rgba(255, 0, 127, 0.1)',
-                    fill: true
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: 'Ruby Bot Swarm - Månedlig Avkastning' }
-                },
-                scales: { y: { beginAtZero: true } }
-            }
-        });
-
-        // AI³ Performance Metrics
-        const ai3Ctx = document.getElementById('ai3Chart').getContext('2d');
-        const ai3Chart = new Chart(ai3Ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Risikoanalyse', 'Porteføljeoptimalisering', 'Markedsforutsigelse', 'Handelsautomatisering', 'Rapportering'],
-                datasets: [{
-                    label: 'AI³ Ytelse',
-                    data: [92, 88, 85, 95, 90],
-                    backgroundColor: 'rgba(93, 147, 255, 0.2)',
-                    borderColor: '#5d93ff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: 'AI³ System Kapabiliteter (%)' }
-                },
-                scales: {
-                    r: { beginAtZero: true, max: 100 }
-                }
-            }
-        });
-
-        // Historical Performance Chart
-        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-        const performanceChart = new Chart(performanceCtx, {
-            type: 'line',
-            data: {
-                labels: ['2020', '2021', '2022', '2023', '2024', '2025E'],
-                datasets: [{
-                    label: 'Norwegian Hedge (%)',
-                    data: [15.5, 18.2, 12.8, 16.9, 19.5, 17.0],
-                    borderColor: '#5d93ff',
-                    backgroundColor: 'rgba(93, 147, 255, 0.1)',
-                    fill: true
-                }, {
-                    label: 'OSEBX (%)',
-                    data: [8.2, 12.5, -2.1, 10.3, 8.9, 7.5],
-                    borderColor: '#cccccc',
-                    backgroundColor: 'rgba(200, 200, 200, 0.1)',
-                    fill: true
-                }]
-            },
-            options: {
-                plugins: {
-                    title: { display: true, text: 'Historisk Avkastning vs Benchmark' }
-                },
-                scales: { y: { beginAtZero: false } }
-            }
-        });
-    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #!/usr/bin/env zsh
-set -e
+set -euo pipefail
 
 # Brgen Playlist setup: Music playlist sharing platform with streaming, collaboration, and social features on OpenBSD 7.5, unprivileged user
 # Framework v37.3.2 compliant with enhanced music sharing capabilities

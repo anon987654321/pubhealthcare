@@ -1,0 +1,58 @@
+# VulCheck Enterprise Configuration Example
+# Place this file as vulcheck.yml in the same directory as vulcheck.rb
+# or in ~/.vulcheck/config.yml or /etc/vulcheck/config.yml
+
+# Basic Configuration
+log_file: "/var/log/vulcheck/security.log"
+verbose: false
+no_color: false
+strict_security: true
+scan_timeout: 600
+
+# Scan Options
+network_scan: true
+process_scan: true
+file_scan: true
+
+# Enterprise Settings (v2.0+)
+enterprise:
+  compliance_mode: "HIPAA"  # Options: SOX, HIPAA, PCI_DSS, NIST, ISO27001
+  audit_logging: true
+  evidence_collection: true
+  
+  reporting:
+    format: "json"
+    retention_days: 365
+    encryption: true
+    
+  alerting:
+    critical_threshold: 1
+    warning_threshold: 5
+    email_notifications: true
+    
+# Performance Tuning
+performance:
+  max_concurrent_checks: 4
+  memory_limit_mb: 256
+  enable_progress_indicators: true
+
+# Custom Detection Rules
+custom_rules:
+  suspicious_processes:
+    - "cryptominer"
+    - "botnet" 
+    - "backdoor"
+    - "keylogger"
+    
+  allowed_network_ports:
+    - 22    # SSH
+    - 80    # HTTP
+    - 443   # HTTPS
+    - 993   # IMAPS
+    - 995   # POP3S
+    
+  file_integrity_paths:
+    - "/etc/passwd"
+    - "/etc/shadow"
+    - "/System/Library/Extensions"
+    - "/private/etc/hosts"

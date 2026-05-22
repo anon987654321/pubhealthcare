@@ -1,0 +1,181 @@
+version: 1.0.0
+updated: 2025-08-14T11:27:00Z
+hierarchy:
+  domain:
+    macro:
+      - biomimetic-growth
+      - haptic-texture-synthesis
+      - retinal-pattern-recognition
+      - synaesthetic-color-sound-mapping
+      - metamorphic-pattern-evolution
+      - crystalline-growth-visualization
+      - photonic-sand-pattern-synthesizer
+      - magnetic-ferrofluid-conductor
+      - bioacoustic-coral-patterns
+      - neuroplastic-rhythm-garden
+    cinematic:
+      - gestural-constellation-control
+      - emotional-ai-composer
+      - holographic-depth-layers
+      - particle-system-feedback
+      - aurora-harmonic-field
+    scientific_clean:
+      - quantum-superposition-beats
+      - crystalline-growth-visualization
+      - liquid-metal-morphology
+      - gravity-wave-drum-lattice
+      - magnetic-ferrofluid-conductor
+    documentary:
+      - temporal-archaeology
+      - swarm-intelligence-sequencing
+      - subsurface-resonance-geology
+    holographic_optical:
+      - dimensional-phase-architecture
+      - emotional-ai-composer
+      - holographic-depth-layers
+      - temporal-hologram-archive
+      - fractal-origami-interface
+    geological:
+      - temporal-archaeology
+      - subsurface-resonance-geology
+      - photonic-sand-pattern-synthesizer
+  lighting:
+    prism:
+      - dimensional-phase-architecture
+      - holographic-depth-layers
+      - temporal-hologram-archive
+      - fractal-origami-interface
+    dapple:
+      - biomimetic-growth
+      - neuroplastic-rhythm-garden
+    raking:
+      - haptic-texture-synthesis
+      - geometric-mandala-synthesis
+      - breath-controlled-dynamics
+      - subsurface-resonance-geology
+    long_exposure_glow:
+      - gestural-constellation-control
+      - particle-system-feedback
+      - bioacoustic-coral-patterns
+      - aurora-harmonic-field
+    specular_metal:
+      - synaesthetic-color-sound-mapping
+      - liquid-metal-morphology
+      - photonic-sand-pattern-synthesizer
+      - magnetic-ferrofluid-conductor
+  camera_systems:
+    phase_one:
+      - biomimetic-growth
+      - synaesthetic-color-sound-mapping
+      - metamorphic-pattern-evolution
+      - geometric-mandala-synthesis
+      - neuroplastic-rhythm-garden
+      - bioacoustic-coral-patterns
+      - fractal-origami-interface
+      - photonic-sand-pattern-synthesizer
+    hasselblad:
+      - dimensional-phase-architecture
+      - temporal-archaeology
+      - swarm-intelligence-sequencing
+      - atmospheric-pressure-sequencer
+      - aurora-harmonic-field
+      - subsurface-resonance-geology
+    macro_medical:
+      - retinal-pattern-recognition
+      - quantum-superposition-beats
+      - crystalline-growth-visualization
+    ultra_highspeed:
+      - liquid-metal-morphology
+      - particle-system-feedback
+      - gravity-wave-drum-lattice
+      - magnetic-ferrofluid-conductor
+    anamorphic:
+      - emotional-ai-composer
+      - holographic-depth-layers
+      - temporal-hologram-archive
+    large_format_45:
+      - gestural-constellation-control
+      - breath-controlled-dynamics
+  visual_aesthetics:
+    organic_natural:
+      - biomimetic-growth
+      - neuroplastic-rhythm-garden
+      - photonic-sand-pattern-synthesizer
+    high_tech_synthetic:
+      - dimensional-phase-architecture
+      - retinal-pattern-recognition
+      - emotional-ai-composer
+      - holographic-depth-layers
+      - temporal-hologram-archive
+      - gravity-wave-drum-lattice
+      - magnetic-ferrofluid-conductor
+    abstract_experimental:
+      - synaesthetic-color-sound-mapping
+      - quantum-superposition-beats
+      - particle-system-feedback
+      - fractal-origami-interface
+    documentary_realistic:
+      - temporal-archaeology
+      - swarm-intelligence-sequencing
+      - subsurface-resonance-geology
+    atmospheric_ethereal:
+      - gestural-constellation-control
+      - breath-controlled-dynamics
+      - aurora-harmonic-field
+      - bioacoustic-coral-patterns
+  technical_approach:
+    focus_stacking:
+      - crystalline-growth-visualization
+      - geometric-mandala-synthesis
+      - fractal-origami-interface
+    long_exposure:
+      - gestural-constellation-control
+      - metamorphic-pattern-evolution
+      - particle-system-feedback
+      - aurora-harmonic-field
+    macro_depth:
+      - biomimetic-growth
+      - haptic-texture-synthesis
+      - retinal-pattern-recognition
+      - bioacoustic-coral-patterns
+      - photonic-sand-pattern-synthesizer
+    high_speed_capture:
+      - liquid-metal-morphology
+      - particle-system-feedback
+      - gravity-wave-drum-lattice
+      - magnetic-ferrofluid-conductor
+    clinical_precision:
+      - quantum-superposition-beats
+      - gravity-wave-drum-lattice
+  complexity_levels:
+    beginner:
+      - breath-controlled-dynamics
+      - temporal-archaeology
+      - aurora-harmonic-field
+    intermediate:
+      - biomimetic-growth
+      - haptic-texture-synthesis
+      - swarm-intelligence-sequencing
+      - atmospheric-pressure-sequencer
+      - subsurface-resonance-geology
+    advanced:
+      - dimensional-phase-architecture
+      - gestural-constellation-control
+      - retinal-pattern-recognition
+      - synaesthetic-color-sound-mapping
+      - emotional-ai-composer
+      - holographic-depth-layers
+      - neuroplastic-rhythm-garden
+      - bioacoustic-coral-patterns
+      - temporal-hologram-archive
+      - fractal-origami-interface
+      - photonic-sand-pattern-synthesizer
+    expert:
+      - quantum-superposition-beats
+      - metamorphic-pattern-evolution
+      - crystalline-growth-visualization
+      - liquid-metal-morphology
+      - particle-system-feedback
+      - geometric-mandala-synthesis
+      - gravity-wave-drum-lattice
+      - magnetic-ferrofluid-conductor

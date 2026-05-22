@@ -1,0 +1,26 @@
+{
+  "chatbot_prompts": {
+    "greeting": "Hello! I'm an AI assistant. How can I help you today?",
+    "goodbye": "Thank you for chatting with me. Have a great day!",
+    "error": "I'm sorry, I encountered an error. Please try again.",
+    "unknown_command": "I don't understand that command. Type 'help' for available commands."
+  },
+  "platform_specific": {
+    "discord": {
+      "welcome": "Welcome to the server! 🎉",
+      "commands": {
+        "help": "Available commands: !hello, !weather, !joke",
+        "hello": "Hello there! 👋",
+        "joke": "Why don't scientists trust atoms? Because they make up everything!"
+      }
+    },
+    "snapchat": {
+      "streak_reminder": "Don't forget to keep our streak going! 🔥",
+      "story_reaction": "Nice story! 😎"
+    },
+    "reddit": {
+      "comment_template": "This is an automated response. For more information, please contact the moderators.",
+      "post_template": "**Automated Post**\n\nThis post was generated automatically."
+    }
+  }
+}

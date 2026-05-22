@@ -1,0 +1,45 @@
+{
+  "camera": "Kodak",
+  "profiles": {
+    "Ektar": {
+      "color_profile": "Ektar 100",
+      "grain_structure": "fine",
+      "color_saturation": "high",
+      "contrast": "medium-high",
+      "exposure_latitude": "±2 stops",
+      "color_rendition": {
+        "reds": "vibrant",
+        "blues": "deep",
+        "skin_tones": "natural"
+      },
+      "recommended_settings": {
+        "highlights": -0.3,
+        "shadows": 0.2,
+        "whites": -0.1,
+        "blacks": 0.1,
+        "vibrance": 0.2,
+        "saturation": 0.1
+      }
+    },
+    "Portra": {
+      "color_profile": "Portra 400",
+      "grain_structure": "fine",
+      "color_saturation": "natural",
+      "contrast": "medium",
+      "exposure_latitude": "±3 stops",
+      "color_rendition": {
+        "reds": "warm",
+        "blues": "muted",
+        "skin_tones": "flattering"
+      },
+      "recommended_settings": {
+        "highlights": -0.2,
+        "shadows": 0.3,
+        "whites": 0.0,
+        "blacks": 0.0,
+        "vibrance": 0.1,
+        "saturation": 0.0
+      }
+    }
+  }
+}
